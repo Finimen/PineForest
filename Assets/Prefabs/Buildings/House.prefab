@@ -17,8 +17,9 @@ GameObject:
   - component: {fileID: 8138080901607225788}
   - component: {fileID: 4607466815771924113}
   - component: {fileID: 7362434077186150312}
+  - component: {fileID: 3970259880415159411}
   m_Layer: 0
-  m_Name: House1
+  m_Name: House
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -168,9 +169,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _triggerCollider: {fileID: 5755637583512351636}
   _price:
-    Villagers: -2
+    Food: 0
     Wood: 1
     Stone: 0
+  _residents: 2
+  _needUnemployed: 0
   _isPaced: 0
   _buildingTime: 2.5
 --- !u!114 &4607466815771924113
@@ -203,3 +206,18 @@ MonoBehaviour:
   _duration: 0.5
   _ease: 7
   _destroyOnPlayed: 0
+  _playOnAwake: 1
+--- !u!114 &3970259880415159411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7150187642842090474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bc6cc0eb54e1394ea2653e5411a8dc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ableToBuild: {fileID: 2100000, guid: 39857f7a0e7c344428f1ae44b2911724, type: 2}
+  _unableToBuild: {fileID: 2100000, guid: c4b9f130c6f72dc449e616dd2fb9fce0, type: 2}

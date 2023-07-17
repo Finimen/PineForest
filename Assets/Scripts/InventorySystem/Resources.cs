@@ -5,14 +5,12 @@ namespace Assets.Scripts
     [Serializable]
     public struct Resources
     {
-        public int Villagers;
         public int Food;
         public int Wood;
         public int Stone;
 
-        public Resources(int villagers, int food, int wood, int stone)
+        public Resources(int food, int wood, int stone)
         {
-            Villagers = villagers;
             Food = food;
             Wood = wood;
             Stone = stone;
@@ -20,37 +18,37 @@ namespace Assets.Scripts
 
         public static Resources operator -(Resources left, Resources right)
         {
-            return new Resources(left.Villagers - right.Villagers, left.Food - right.Food, left.Wood - right.Wood, left.Stone - right.Stone);
+            return new Resources(left.Food - right.Food, left.Wood - right.Wood, left.Stone - right.Stone);
         }
 
         public static Resources operator +(Resources left, Resources right)
         {
-            return new Resources(left.Villagers + right.Villagers, left.Food + right.Food, left.Wood + right.Wood, left.Stone + right.Stone);
+            return new Resources(left.Food + right.Food, left.Wood + right.Wood, left.Stone + right.Stone);
         }
 
         public static bool operator >=(Resources left, Resources right)
         {
-            return (left.Villagers >= right.Villagers) & (left.Food >= right.Food) & (left.Wood >= right.Wood) & (left.Stone >= right.Stone);
+            return (left.Food >= right.Food) & (left.Wood >= right.Wood) & (left.Stone >= right.Stone);
         }
 
         public static bool operator <=(Resources left, Resources right)
         {
-            return (left.Villagers <= right.Villagers) & (left.Food <= right.Food) & (left.Wood <= right.Wood) & (left.Stone <= right.Stone);
+            return (left.Food <= right.Food) & (left.Wood <= right.Wood) & (left.Stone <= right.Stone);
         }
 
         public static Resources operator *(Resources left, int right)
         {
-            return new Resources(left.Villagers * right, left.Food * right, left.Wood * right, left.Stone * right);
+            return new Resources(left.Food * right, left.Wood * right, left.Stone * right);
         }
 
         public static Resources operator -(Resources resources)
         {
-            return new Resources(-resources.Villagers, -resources.Food, - resources.Wood, -resources.Stone);
+            return new Resources( -resources.Food, - resources.Wood, -resources.Stone);
         }
 
         public override string ToString()
         {
-            return $"Villagers: {Villagers}\n" +
+            return
                 $"Food: {Food}\n" +
                 $"Wood: {Wood}\n" +
                 $"Stone: {Stone}";

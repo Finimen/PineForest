@@ -6,9 +6,9 @@ namespace Assets.Scripts.VillagerSystem
     {
         private enum State 
         { 
+            Idle,
             TreeMining,
             RockMining,
-            Idle,
         }
 
         [SerializeField] private LayerMask _mask;

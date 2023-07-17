@@ -14,6 +14,8 @@ namespace Assets.Scripts.BuildingSystem
 
         [Space(25)]
         [SerializeField] private Resources _price;
+        [SerializeField] private int _residents;
+        [SerializeField] private int _needUnemployed;
 
         [Space(25)]
         [SerializeField] private bool _isPaced;
@@ -70,9 +72,9 @@ namespace Assets.Scripts.BuildingSystem
 
             OnPlaced?.Invoke();
 
-            if(_price.Villagers < 0)
+            if(_residents > 0)
             {
-                FindObjectOfType<VillagerCreator>().CreateVillagers(transform.position, -_price.Villagers);
+                FindObjectOfType<VillagerCreator>().CreateVillagers(transform.position, _residents);
             }
         }
 
@@ -90,7 +92,7 @@ namespace Assets.Scripts.BuildingSystem
         {
             if(!_isPaced)
             {
-                BuildingPossible = _entryCount == 0 && _playerInventory.Resources >= Price;
+                BuildingPossible = _entryCount == 0 && _playerInventory.Resources >= Price && _playerInventory.Unemployed >= _needUnemployed;
 
                 foreach (var part in _parts)
                 {
