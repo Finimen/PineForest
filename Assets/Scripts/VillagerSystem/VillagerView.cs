@@ -23,7 +23,7 @@ namespace Assets.Scripts.VillagerSystem
             {
                 _renderer.material = _builder;
             }
-            if(_villager.Profession == Villager.ProfessionType.Farmer)
+            if(_villager.Profession == Villager.ProfessionType.Logger)
             {
                 _renderer.material = _farmer;
             }

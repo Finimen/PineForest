@@ -10,13 +10,6 @@ namespace Assets.Scripts.BuildingSystem
     {
         public event Action OnPlaced;
 
-        [SerializeField] private LayerMask _objectLayer;
-
-        [Space(25)]
-        [SerializeField] private Material _ableToBuild;
-        [SerializeField] private Material _unableToBuild;
-
-        [Space(25)]
         [SerializeField] private Collider _triggerCollider;
 
         [Space(25)]
@@ -28,7 +21,7 @@ namespace Assets.Scripts.BuildingSystem
 
         private PlayerInventory _playerInventory;
 
-        private MeshRenderer _renderer;
+        private BuildingPart[] _parts;
 
         private Material _default;
 
@@ -43,9 +36,7 @@ namespace Assets.Scripts.BuildingSystem
         {
             _playerInventory = inventory;
 
-            _renderer = GetComponent<MeshRenderer>();
-
-            _default = _renderer.material;
+            _parts = GetComponentsInChildren<BuildingPart>();
 
             _triggerCollider.isTrigger = true;
 
@@ -70,7 +61,10 @@ namespace Assets.Scripts.BuildingSystem
 
             _triggerCollider.isTrigger = false;
 
-            _renderer.material = _default;
+            foreach (var part in _parts)
+            {
+                part.UpdateMaterial(BuildingPart.BuildAbleType.Placed);
+            }
 
             _isPaced = true;
 
@@ -98,7 +92,10 @@ namespace Assets.Scripts.BuildingSystem
             {
                 BuildingPossible = _entryCount == 0 && _playerInventory.Resources >= Price;
 
-                _renderer.material = BuildingPossible? _ableToBuild: _unableToBuild;
+                foreach (var part in _parts)
+                {
+                    part.UpdateMaterial(BuildingPossible? BuildingPart.BuildAbleType.Able : BuildingPart.BuildAbleType.Unable);
+                }
             }
         }
 

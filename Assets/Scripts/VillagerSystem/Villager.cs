@@ -10,7 +10,7 @@ namespace Assets.Scripts.VillagerSystem
         {
             None,
             Builder,
-            Farmer
+            Logger
         }
 
         [SerializeField] private float _actionRadius = 1;

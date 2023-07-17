@@ -6,7 +6,8 @@ namespace Assets.Scripts.VillagerSystem
     {
         private VillagerUpdateSystem _villagerSystem;
 
-        public int BuilderToCreate { get; set; }
+        public int BuildersToCreate { get; set; }
+        public int LoggersToCreate { get; set; }
 
         private void Start()
         {
@@ -22,14 +23,25 @@ namespace Assets.Scripts.VillagerSystem
                 return;
             }
 
-            if (BuilderToCreate > 0)
+            if (BuildersToCreate > 0)
             {
-                var loopCount = Mathf.Min(BuilderToCreate, unemployed.Count);
+                var loopCount = Mathf.Min(BuildersToCreate, unemployed.Count);
 
                 for (int i = 0; i < loopCount; i++)
                 {
-                    BuilderToCreate--;
+                    BuildersToCreate--;
                     unemployed[i].ChangeProfession(Villager.ProfessionType.Builder);
+                }
+            }
+
+            if (BuildersToCreate > 0)
+            {
+                var loopCount = Mathf.Min(LoggersToCreate, unemployed.Count);
+
+                for (int i = 0; i < loopCount; i++)
+                {
+                    LoggersToCreate--;
+                    unemployed[i].ChangeProfession(Villager.ProfessionType.Logger);
                 }
             }
         }

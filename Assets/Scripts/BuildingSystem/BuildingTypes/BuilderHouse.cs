@@ -13,7 +13,7 @@ namespace Assets.Scripts.BuildingSystem
         private void Start()
         {
             _building = GetComponent<Building>();
-            _building.OnPlaced += () => FindObjectOfType<VillagerProfessionChanger>().BuilderToCreate += _builders;
+            _building.OnPlaced += () => FindObjectOfType<VillagerProfessionChanger>().BuildersToCreate += _builders;
         }
     }
 }
