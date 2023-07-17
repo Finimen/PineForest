@@ -12,6 +12,7 @@ namespace Assets.Scripts.VillagerSystem
         private void FixedUpdate()
         {
             UpdateBuilders();
+            UpdateLoggers();
         }
 
         private void UpdateBuilders()
@@ -28,6 +29,24 @@ namespace Assets.Scripts.VillagerSystem
                 if(builder.CurrentTask == null)
                 {
                     builder.SetTask(TasksForVillager.BuildingTasks.Peek());
+                }
+            }
+        }
+
+        private void UpdateLoggers()
+        {
+            if (TasksForVillager.GetTreeTasks.Count == 0)
+            {
+                return;
+            }
+
+            var loggers = Villagers.FindAll(x => x.Profession == Villager.ProfessionType.Logger);
+
+            foreach (var logger in loggers)
+            {
+                if (logger.CurrentTask == null)
+                {
+                    logger.SetTask(TasksForVillager.GetTreeTasks.Peek());
                 }
             }
         }

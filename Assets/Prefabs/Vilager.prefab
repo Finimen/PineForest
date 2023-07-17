@@ -144,7 +144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcca1e57550e25e49bf5f81421acfc28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _actionRadius: 10
+  _buildDistance: 10
+  _mineDistance: 3.5
   <Profession>k__BackingField: 0
 --- !u!114 &1057878647822360381
 MonoBehaviour:
@@ -159,4 +160,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _builder: {fileID: 2100000, guid: 69d86fef33469be42bf6712d59224423, type: 2}
-  _farmer: {fileID: 2100000, guid: 0147141cd4936ab44b636e219b690c1e, type: 2}
+  _logger: {fileID: 2100000, guid: 0147141cd4936ab44b636e219b690c1e, type: 2}
+  _mason: {fileID: 2100000, guid: 42a3c4437f556734da43cbc6676f49a3, type: 2}

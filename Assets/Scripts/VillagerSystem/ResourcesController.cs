@@ -67,7 +67,7 @@ namespace Assets.Scripts.VillagerSystem
                 case State.RockMining:
                     if (selected.Type == MinedResourceType.Rock)
                     {
-                        TasksForVillager.GetTreeTasks.Enqueue(new GetTreeTask(selected));
+                        TasksForVillager.GetRockTasks.Enqueue(new GetRockTask(selected));
                     }
                     break;
             }

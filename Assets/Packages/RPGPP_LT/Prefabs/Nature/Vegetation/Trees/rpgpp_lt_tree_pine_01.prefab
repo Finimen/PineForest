@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 33583730029358272}
   - component: {fileID: 23009263249696568}
   - component: {fileID: -6457080832765824911}
+  - component: {fileID: -8342030801540459908}
+  - component: {fileID: -2313649098479917956}
   m_Layer: 0
   m_Name: rpgpp_lt_tree_pine_01
   m_TagString: Untagged
@@ -106,3 +108,36 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 58c79ebc04f48c74fa4869c3f7d941fd, type: 3}
+--- !u!114 &-8342030801540459908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369031296425274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 199413f1579acac4f8e0a8fcaf4111a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _reward:
+    Villagers: 0
+    Food: 0
+    Wood: 3
+    Stone: 0
+  _strength: 1.25
+  <Type>k__BackingField: 0
+  <IsCollected>k__BackingField: 0
+--- !u!114 &-2313649098479917956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369031296425274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 518efc01bbe2aa24aa58d527c301c4a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _destroyDuration: 1

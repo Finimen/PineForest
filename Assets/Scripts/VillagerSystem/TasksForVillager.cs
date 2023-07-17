@@ -7,6 +7,7 @@ namespace Assets.Scripts.VillagerSystem
     {
         public static Queue<BuildingTask> BuildingTasks { get; private set; } = new Queue<BuildingTask>();
         public static Queue<GetTreeTask> GetTreeTasks { get; private set; } = new Queue<GetTreeTask>();
+        public static Queue<GetRockTask> GetRockTasks { get; private set; } = new Queue<GetRockTask>();
     }
 
     public class BuildingTask : BaseVillagerTask
@@ -24,6 +25,16 @@ namespace Assets.Scripts.VillagerSystem
         public MinedResource Target;
 
         public GetTreeTask(MinedResource target)
+        {
+            Target = target;
+        }
+    }
+
+    public class GetRockTask : BaseVillagerTask
+    {
+        public MinedResource Target;
+
+        public GetRockTask(MinedResource target)
         {
             Target = target;
         }

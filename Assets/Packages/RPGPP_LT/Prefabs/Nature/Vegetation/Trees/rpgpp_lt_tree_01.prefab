@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33222949445572694}
   - component: {fileID: 23050206849376476}
   - component: {fileID: -7617751370723368619}
+  - component: {fileID: 1867158582778895486}
   m_Layer: 0
   m_Name: rpgpp_lt_tree_01
   m_TagString: Untagged
@@ -106,3 +107,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 15977c94193725642b83e5c7be73b2e8, type: 3}
+--- !u!114 &1867158582778895486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612273161005096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 199413f1579acac4f8e0a8fcaf4111a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _reward:
+    Villagers: 0
+    Food: 0
+    Wood: 5
+    Stone: 0
+  _strength: 1.5
+  <Type>k__BackingField: 0

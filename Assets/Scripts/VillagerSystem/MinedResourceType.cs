@@ -1,6 +1,6 @@
 ﻿namespace Assets.Scripts.VillagerSystem
 {
-    internal enum MinedResourceType
+    public enum MinedResourceType
     {
         Tree,
         Rock

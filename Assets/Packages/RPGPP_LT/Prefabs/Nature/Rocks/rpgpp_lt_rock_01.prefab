@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33191280486744630}
   - component: {fileID: 23952086938741286}
   - component: {fileID: 2083584265674466097}
+  - component: {fileID: 71142956688715505}
   m_Layer: 0
   m_Name: rpgpp_lt_rock_01
   m_TagString: Untagged
@@ -105,3 +106,23 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.3086796
   m_Center: {x: 0.14191061, y: 0.12104565, z: 0.038137436}
+--- !u!114 &71142956688715505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689892608009186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 199413f1579acac4f8e0a8fcaf4111a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _reward:
+    Villagers: 0
+    Food: 0
+    Wood: 0
+    Stone: 5
+  _strength: 3
+  <Type>k__BackingField: 1
+  <IsCollected>k__BackingField: 0
