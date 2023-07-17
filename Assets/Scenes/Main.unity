@@ -1466,7 +1466,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: House 2
+  m_text: Builder
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4195,7 +4195,7 @@ PrefabInstance:
     - target: {fileID: -1882177786555402692, guid: 51acb486f9cbc854c8e2ce368e6b394c,
         type: 3}
       propertyPath: _actionRadius
-      value: 7.5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -1882177786555402692, guid: 51acb486f9cbc854c8e2ce368e6b394c,
         type: 3}
@@ -5245,6 +5245,50 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 648900220}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &698442701
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 698442702}
+  - component: {fileID: 698442703}
+  m_Layer: 0
+  m_Name: VillagerProfessionChanger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &698442702
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698442701}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 930347729}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &698442703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698442701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d64af38d2e0190b44a2173f78ba1b111, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &717377453
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7092,6 +7136,8 @@ Transform:
   - {fileID: 990855131}
   - {fileID: 19327134}
   - {fileID: 1601466764}
+  - {fileID: 1207463461}
+  - {fileID: 698442702}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7445,7 +7491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _resources:
-    Villagers: 0
+    Villagers: 3
     Wood: 5
     Stone: 5
 --- !u!114 &990855133
@@ -8495,6 +8541,53 @@ Transform:
   m_Father: {fileID: 53444463}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1207463460
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1207463461}
+  - component: {fileID: 1207463462}
+  m_Layer: 0
+  m_Name: VillagerCrator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1207463461
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207463460}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 930347729}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1207463462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207463460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8be5f68c8da7c5146a89d7bf667e0882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _villager: {fileID: -1882177786555402692, guid: 51acb486f9cbc854c8e2ce368e6b394c,
+    type: 3}
+  _parent: {fileID: 1804325195}
 --- !u!1001 &1221406527
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9001,7 +9094,21 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1239124609}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1506444393}
+        m_TargetAssemblyTypeName: Assets.Scripts.BuildingSystem.BuildingPlacer, Assembly-CSharp
+        m_MethodName: PlaceBuilding
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 5560107138346511293, guid: 10d18caedf358c64c86df6fb4f003ec6,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: Assets.Scripts.BuildingSystem.Building,
+            Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1239124609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9441,6 +9548,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1804325195}
     m_Modifications:
+    - target: {fileID: -1882177786555402692, guid: 51acb486f9cbc854c8e2ce368e6b394c,
+        type: 3}
+      propertyPath: _actionRadius
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4798702140979941191, guid: 51acb486f9cbc854c8e2ce368e6b394c,
         type: 3}
       propertyPath: m_Name
@@ -11730,7 +11842,7 @@ GameObject:
   - component: {fileID: 1601466764}
   - component: {fileID: 1601466765}
   m_Layer: 0
-  m_Name: VilagerSystem
+  m_Name: VillagerSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12083,7 +12195,7 @@ PrefabInstance:
     - target: {fileID: -1882177786555402692, guid: 51acb486f9cbc854c8e2ce368e6b394c,
         type: 3}
       propertyPath: _actionRadius
-      value: 7.5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -1882177786555402692, guid: 51acb486f9cbc854c8e2ce368e6b394c,
         type: 3}

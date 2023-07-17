@@ -34,6 +34,11 @@ namespace Assets.Scripts.VillagerSystem
             }
         }
 
+        public void ChangeProfession(ProfessionType profession)
+        {
+            Profession = profession;
+        }
+
         private void UpdateBuilderLogic()
         {
             if (_buildingTask.Target.IsPlaced)

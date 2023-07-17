@@ -1,4 +1,5 @@
 using Assets.Scripts.InventorySystem;
+using Assets.Scripts.VillagerSystem;
 using System;
 using UnityEngine;
 
@@ -74,6 +75,11 @@ namespace Assets.Scripts.BuildingSystem
             _isPaced = true;
 
             OnPlaced?.Invoke();
+
+            if(_price.Villagers < 0)
+            {
+                FindObjectOfType<VillagerCreator>().CreateVillagers(transform.position, -_price.Villagers);
+            }
         }
 
         public void IncreaseBuildingProgress()

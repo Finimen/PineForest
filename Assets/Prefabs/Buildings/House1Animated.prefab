@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8791830097093594721}
   - component: {fileID: 8092970676058036756}
   m_Layer: 0
-  m_Name: Building1Animated
+  m_Name: House1Animated
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

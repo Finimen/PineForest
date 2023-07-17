@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4134980598793004179}
   - component: {fileID: -5967713707781866815}
   - component: {fileID: -1882177786555402692}
+  - component: {fileID: 1057878647822360381}
   m_Layer: 0
   m_Name: Vilager
   m_TagString: Untagged
@@ -34,7 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4078440457947392024
 MeshFilter:
@@ -143,3 +144,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcca1e57550e25e49bf5f81421acfc28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _actionRadius: 10
+  <Profession>k__BackingField: 0
+--- !u!114 &1057878647822360381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4798702140979941191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51a10b90092007542952578920503f2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _builder: {fileID: 2100000, guid: 69d86fef33469be42bf6712d59224423, type: 2}
+  _farmer: {fileID: 2100000, guid: 0147141cd4936ab44b636e219b690c1e, type: 2}
