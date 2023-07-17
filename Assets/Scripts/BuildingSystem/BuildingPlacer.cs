@@ -1,4 +1,5 @@
 using Assets.Scripts.InventorySystem;
+using Assets.Scripts.VillagerSystem;
 using UnityEngine;
 
 namespace Assets.Scripts.BuildingSystem
@@ -45,7 +46,7 @@ namespace Assets.Scripts.BuildingSystem
             _current.transform.position = _position;
             _current.transform.rotation = Quaternion.Euler(_rotation);
 
-            _current.Place();
+            TasksForVillager.BuildingTasks.Enqueue(new BuildingTask(_current));
             _current = null;
         }
 

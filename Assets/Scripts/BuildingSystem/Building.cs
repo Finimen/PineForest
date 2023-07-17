@@ -78,7 +78,7 @@ namespace Assets.Scripts.BuildingSystem
 
         public void IncreaseBuildingProgress()
         {
-            _buildingProgress += Time.deltaTime;
+            _buildingProgress += Time.fixedDeltaTime;
 
             if (_buildingProgress > _buildingTime)
             {

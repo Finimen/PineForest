@@ -11,6 +11,11 @@ namespace Assets.Scripts.VillagerSystem
     public class BuildingTask : BaseVillagerTask
     {
         public Building Target;
+
+        public BuildingTask(Building target)
+        {
+            Target = target;
+        }
     }
 
     public abstract class BaseVillagerTask
