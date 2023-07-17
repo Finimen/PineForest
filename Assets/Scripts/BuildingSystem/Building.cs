@@ -1,4 +1,5 @@
 using Assets.Scripts.InventorySystem;
+using System;
 using UnityEngine;
 
 namespace Assets.Scripts.BuildingSystem
@@ -6,6 +7,8 @@ namespace Assets.Scripts.BuildingSystem
     [RequireComponent(typeof(Collider))]
     public class Building : MonoBehaviour
     {
+        public event Action OnPlaced;
+
         [SerializeField] private LayerMask _objectLayer;
 
         [Space(25)]
@@ -18,18 +21,22 @@ namespace Assets.Scripts.BuildingSystem
         [Space(25)]
         [SerializeField] private Resources _price;
 
+        [Space(25)]
+        [SerializeField] private bool _isPaced;
+        [SerializeField] private float _buildingTime = 1;
+
         private PlayerInventory _playerInventory;
 
         private MeshRenderer _renderer;
 
         private Material _default;
 
+        private float _buildingProgress;
         private int _entryCount;
-
-        private bool _isPaced;
 
         public Resources Price => _price;
         public bool BuildingPossible { get; private set; } = true;
+        public bool IsPlaced => _isPaced;
 
         public void Initialize(PlayerInventory inventory)
         {
@@ -65,6 +72,18 @@ namespace Assets.Scripts.BuildingSystem
             _renderer.material = _default;
 
             _isPaced = true;
+
+            OnPlaced?.Invoke();
+        }
+
+        public void IncreaseBuildingProgress()
+        {
+            _buildingProgress += Time.deltaTime;
+
+            if (_buildingProgress > _buildingTime)
+            {
+                Place();
+            }
         }
 
         private void Update()

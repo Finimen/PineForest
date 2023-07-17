@@ -22,7 +22,6 @@ namespace Assets.Scripts.BuildingSystem
         private Vector3 _rotation;
         private Vector3 _position;
 
-
         public void PlaceBuilding(Building building)
         {
             if(_current != null)
@@ -41,7 +40,7 @@ namespace Assets.Scripts.BuildingSystem
 
         private void PlaceCurrent()
         {
-            _playerInventory.DecreaseResources(_current.Price);
+            _playerInventory.ChangeResources(-_current.Price);
 
             _current.transform.position = _position;
             _current.transform.rotation = Quaternion.Euler(_rotation);

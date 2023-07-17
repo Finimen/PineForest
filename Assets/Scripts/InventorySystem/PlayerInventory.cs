@@ -8,9 +8,9 @@ namespace Assets.Scripts.InventorySystem
 
         public Resources Resources => _resources;
 
-        public void DecreaseResources(Resources resources)
+        public void ChangeResources(Resources resources)
         {
-            _resources -= resources;
+            _resources += resources;
         }
     }
 }

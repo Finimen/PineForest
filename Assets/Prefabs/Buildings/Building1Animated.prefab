@@ -97,6 +97,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _size: {x: 0, y: 0, z: 0}
-  _duration: 1
+  _duration: 0.5
   _ease: 10
   _destroyOnPlayed: 1

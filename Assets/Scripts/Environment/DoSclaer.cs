@@ -13,14 +13,21 @@ namespace Assets.Scripts
 
         [SerializeField] private bool _destroyOnPlayed;
 
+        private Tween _tween;
+
         private void OnEnable()
         {
-            transform.DOScale(_size, _duration).SetEase(_ease);
+            _tween = transform.DOScale(_size, _duration).SetEase(_ease);
 
             if(_destroyOnPlayed )
             {
                 Destroy(gameObject, _duration + 1);
             }
+        }
+
+        private void OnDisable()
+        {
+            _tween?.Kill();
         }
     }
 }
