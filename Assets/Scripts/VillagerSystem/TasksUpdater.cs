@@ -10,6 +10,16 @@ namespace Assets.Scripts.VillagerSystem
             {
                 TasksForVillager.BuildingTasks.Dequeue();
             }
+
+            if (TasksForVillager.GetTreeTasks.Count > 0 && TasksForVillager.GetTreeTasks.Peek().Target.IsCollected)
+            {
+                TasksForVillager.GetTreeTasks.Dequeue();
+            }
+
+            if (TasksForVillager.GetRockTasks.Count > 0 && TasksForVillager.GetRockTasks.Peek().Target.IsCollected)
+            {
+                TasksForVillager.GetRockTasks.Dequeue();
+            }
         }
     }
 }

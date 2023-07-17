@@ -1782,6 +1782,7 @@ Transform:
   - {fileID: 1703863884}
   - {fileID: 53444463}
   - {fileID: 956939992}
+  - {fileID: 1804325195}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2702,7 +2703,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 310738716}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 570805789}
+        m_TargetAssemblyTypeName: Assets.Scripts.VillagerSystem.ResourcesController,
+          Assembly-CSharp
+        m_MethodName: StartTreeMining
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &310738716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5170,6 +5184,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 63.058002
       objectReference: {fileID: 0}
+    - target: {fileID: 653202110744347985, guid: 6fc2010b5899cfd488a0ddf205679e2b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5668,31 +5687,66 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4548539680920072, guid: 6fc2010b5899cfd488a0ddf205679e2b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.62244093
+      value: 0.67519194
       objectReference: {fileID: 0}
     - target: {fileID: 4548539680920072, guid: 6fc2010b5899cfd488a0ddf205679e2b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.54303455
+      value: -0.475852
       objectReference: {fileID: 0}
     - target: {fileID: 4548539680920072, guid: 6fc2010b5899cfd488a0ddf205679e2b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.35743555
+      value: -0.3105202
       objectReference: {fileID: 0}
     - target: {fileID: 4548539680920072, guid: 6fc2010b5899cfd488a0ddf205679e2b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.4357988
+      value: -0.47038066
       objectReference: {fileID: 0}
     - target: {fileID: 4548539680920072, guid: 6fc2010b5899cfd488a0ddf205679e2b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -80.951004
+      value: -69.181
       objectReference: {fileID: 0}
     - target: {fileID: 4548539680920072, guid: 6fc2010b5899cfd488a0ddf205679e2b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 10.382001
+      value: 4.574
       objectReference: {fileID: 0}
     - target: {fileID: 4548539680920072, guid: 6fc2010b5899cfd488a0ddf205679e2b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -78.861
+      value: -72.882
+      objectReference: {fileID: 0}
+    - target: {fileID: 653202110744347985, guid: 6fc2010b5899cfd488a0ddf205679e2b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.524876
+      objectReference: {fileID: 0}
+    - target: {fileID: 653202110744347985, guid: 6fc2010b5899cfd488a0ddf205679e2b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.554137
+      objectReference: {fileID: 0}
+    - target: {fileID: 653202110744347985, guid: 6fc2010b5899cfd488a0ddf205679e2b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.17066622
+      objectReference: {fileID: 0}
+    - target: {fileID: 4401046204461881943, guid: 6fc2010b5899cfd488a0ddf205679e2b,
+        type: 3}
+      propertyPath: _target
+      value: 
+      objectReference: {fileID: 648900221}
+    - target: {fileID: 4401046204461881943, guid: 6fc2010b5899cfd488a0ddf205679e2b,
+        type: 3}
+      propertyPath: _offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4401046204461881943, guid: 6fc2010b5899cfd488a0ddf205679e2b,
+        type: 3}
+      propertyPath: _offset.y
+      value: 2.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4401046204461881943, guid: 6fc2010b5899cfd488a0ddf205679e2b,
+        type: 3}
+      propertyPath: _offset.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6801,7 +6855,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 790940590}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 570805789}
+        m_TargetAssemblyTypeName: Assets.Scripts.VillagerSystem.ResourcesController,
+          Assembly-CSharp
+        m_MethodName: StartRockMining
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &790940590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14287,8 +14354,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1804325194}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 918.59393, y: 63.79018, z: 63.744385}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 828.1649, y: 20.374638, z: 0.64115906}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14297,8 +14364,8 @@ Transform:
   - {fileID: 1645764406}
   - {fileID: 2065791861}
   - {fileID: 1387746013}
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_Father: {fileID: 211535982}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1808370719
 PrefabInstance:

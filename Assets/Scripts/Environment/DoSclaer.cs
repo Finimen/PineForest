@@ -13,15 +13,27 @@ namespace Assets.Scripts
 
         [SerializeField] private bool _destroyOnPlayed;
 
+        [SerializeField] private bool _playOnAwake = true;
+
         private Tween _tween;
+
+        public void SetScale(Vector3 size)
+        {
+            _size = size;
+
+            _tween = transform.DOScale(_size, _duration).SetEase(_ease);
+
+            if (_destroyOnPlayed)
+            {
+                Destroy(gameObject, _duration + 1);
+            }
+        }
 
         private void OnEnable()
         {
-            _tween = transform.DOScale(_size, _duration).SetEase(_ease);
-
-            if(_destroyOnPlayed )
+            if (_playOnAwake)
             {
-                Destroy(gameObject, _duration + 1);
+                SetScale(_size);
             }
         }
 

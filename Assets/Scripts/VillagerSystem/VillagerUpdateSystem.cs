@@ -13,6 +13,7 @@ namespace Assets.Scripts.VillagerSystem
         {
             UpdateBuilders();
             UpdateLoggers();
+            UpdateMasons();
         }
 
         private void UpdateBuilders()
@@ -47,6 +48,24 @@ namespace Assets.Scripts.VillagerSystem
                 if (logger.CurrentTask == null)
                 {
                     logger.SetTask(TasksForVillager.GetTreeTasks.Peek());
+                }
+            }
+        }
+
+        private void UpdateMasons()
+        {
+            if (TasksForVillager.GetRockTasks.Count == 0)
+            {
+                return;
+            }
+
+            var masons = Villagers.FindAll(x => x.Profession == Villager.ProfessionType.Mason);
+
+            foreach (var mason in masons)
+            {
+                if (mason.CurrentTask == null)
+                {
+                    mason.SetTask(TasksForVillager.GetRockTasks.Peek());
                 }
             }
         }

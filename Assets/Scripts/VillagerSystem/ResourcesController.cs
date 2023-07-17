@@ -43,6 +43,8 @@ namespace Assets.Scripts.VillagerSystem
                 {
                     if (hit.collider.gameObject.GetComponent<MinedResource>())
                     {
+                        hit.collider.gameObject.GetComponent<MinedResource>().ShowUI();
+
                         UpdateState(hit.collider.gameObject.GetComponent<MinedResource>());
                     }
                 }
