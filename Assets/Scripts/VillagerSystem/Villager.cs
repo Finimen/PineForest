@@ -1,3 +1,4 @@
+using Assets.Scripts.BuildingSystem;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -53,6 +54,13 @@ namespace Assets.Scripts.VillagerSystem
             Profession = profession;
         }
 
+        public void GiveResources(Resources resources)
+        {
+            Debug.Log("Я получил ресы");
+
+            _transferring += resources.GetClampedResources(resources, _maxResources - _transferring.TotalCount());
+        }
+
         private void UpdateBuilderLogic()
         {
             if (_buildingTask.Target.IsPlaced)
@@ -61,10 +69,8 @@ namespace Assets.Scripts.VillagerSystem
                 return;
             }
 
-            //Логика доставки ресурсов
             if (_buildingTask.Target.Transferred != _buildingTask.Target.Price)
             {
-                //Если нужные ресы есть с собой
                 if(_transferring.Contains(_buildingTask.Target.Needed))
                 {
                     if (Vector3.Distance(transform.position, _buildingTask.Target.transform.position) > _buildDistance)
@@ -82,7 +88,6 @@ namespace Assets.Scripts.VillagerSystem
                         _transferring = Resources.Empty;
                     }
                 }
-                //Если их нет ищем на складах
                 else
                 {
                     Debug.Log("Ищю ресы на складах");
@@ -120,7 +125,6 @@ namespace Assets.Scripts.VillagerSystem
             }
             else
             {
-                //Логика строительства
                 if (Vector3.Distance(transform.position, _buildingTask.Target.transform.position) > _buildDistance)
                 {
                     _navigationController.stoppingDistance = _buildDistance;
@@ -141,14 +145,20 @@ namespace Assets.Scripts.VillagerSystem
                 return;
             }
 
-            if (Vector3.Distance(transform.position, _masonTask.Target.transform.position) > _mineDistance)
+            if (_transferring.TotalCount() == _maxResources)
             {
-                _navigationController.stoppingDistance = _mineDistance;
-                _navigationController.SetDestination(_masonTask.Target.transform.position);
+                TransferResourcesOnStorage();
             }
-            else
             {
-                _masonTask.Target.DecreaseStrength();
+                if (Vector3.Distance(transform.position, _masonTask.Target.transform.position) > _mineDistance)
+                {
+                    _navigationController.stoppingDistance = _mineDistance;
+                    _navigationController.SetDestination(_masonTask.Target.transform.position);
+                }
+                else
+                {
+                    _masonTask.Target.DecreaseStrength(this);
+                }
             }
         }
 
@@ -160,14 +170,46 @@ namespace Assets.Scripts.VillagerSystem
                 return;
             }
 
-            if (Vector3.Distance(transform.position, _loggerTask.Target.transform.position) > _mineDistance)
+            if(_transferring.TotalCount() == _maxResources)
+            {
+                TransferResourcesOnStorage();
+            }
+            else
+            {
+                if (Vector3.Distance(transform.position, _loggerTask.Target.transform.position) > _mineDistance)
+                {
+                    _navigationController.stoppingDistance = _mineDistance;
+                    _navigationController.SetDestination(_loggerTask.Target.transform.position);
+                }
+                else
+                {
+                    _loggerTask.Target.DecreaseStrength(this);
+                }
+            }
+        }
+
+        private void TransferResourcesOnStorage()
+        {
+            StorageHouse nearest = null;
+
+            foreach(var storage in World.Storages)
+            {
+                if(nearest == null || Vector3.Distance(nearest.transform.position, transform.position) >
+                    Vector3.Distance(storage.transform.position, transform.position))
+                {
+                    nearest = storage;
+                }
+            }
+
+            if (Vector3.Distance(transform.position, nearest.transform.position) > _buildDistance)
             {
                 _navigationController.stoppingDistance = _mineDistance;
                 _navigationController.SetDestination(_loggerTask.Target.transform.position);
             }
             else
             {
-                _loggerTask.Target.DecreaseStrength();
+                nearest.TransferResources(_transferring);
+                _transferring = Resources.Empty;
             }
         }
 

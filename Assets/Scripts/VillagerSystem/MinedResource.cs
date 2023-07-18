@@ -19,13 +19,13 @@ namespace Assets.Scripts.VillagerSystem
 
         [field: SerializeField] public bool IsCollected { get; private set; }
 
-        public void DecreaseStrength()
+        public void DecreaseStrength(Villager miner)
         {
             _strength -= Time.fixedDeltaTime;
 
             if(_strength <= 0)
             {
-                Collect();
+                Collect(miner);
             }
         }
 
@@ -39,10 +39,11 @@ namespace Assets.Scripts.VillagerSystem
             _targetUI.SetScale(Vector3.zero);
         }
 
-        private void Collect()
+        private void Collect(Villager miner)
         {
             IsCollected = true;
 
+            miner.GiveResources(_reward);
             FindObjectOfType<PlayerInventory>().ChangeResources(_reward);
 
             HideUI();

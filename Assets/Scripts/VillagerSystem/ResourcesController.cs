@@ -35,7 +35,7 @@ namespace Assets.Scripts.VillagerSystem
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Mouse0) && _currentState != State.Idle)
             {
                 var ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
 
@@ -45,7 +45,6 @@ namespace Assets.Scripts.VillagerSystem
                     {
                         hit.collider.gameObject.GetComponent<MinedResource>().ShowUI();
 
-                        Debug.Log("MINED_DETECTED");
                         UpdateState(hit.collider.gameObject.GetComponent<MinedResource>());
                     }
                 }
@@ -64,14 +63,12 @@ namespace Assets.Scripts.VillagerSystem
                 case State.TreeMining:
                     if(selected.Type == MinedResourceType.Tree)
                     {
-                        Debug.Log("CRATED_TREE");
                         TasksForVillager.GetTreeTasks.Enqueue(new GetTreeTask(selected));
                     }
                     break;
                 case State.RockMining:
                     if (selected.Type == MinedResourceType.Rock)
                     {
-                        Debug.Log("CRATED_ROCK");
                         TasksForVillager.GetRockTasks.Enqueue(new GetRockTask(selected));
                     }
                     break;

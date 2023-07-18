@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts
 {
@@ -73,11 +74,6 @@ namespace Assets.Scripts
             {
                 return new Resources(0, 0, 0);
             }
-        }
-
-        public static bool ConstainsGlobal(Resources a, Resources b)
-        {
-            return a.Food > b.Food | a.Wood > b.Wood | a.Stone > b.Stone;
         }
 
         public int TotalCount()

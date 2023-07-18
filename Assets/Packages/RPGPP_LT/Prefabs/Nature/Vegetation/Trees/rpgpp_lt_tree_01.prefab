@@ -122,10 +122,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _reward:
-    Villagers: 0
-    Food: 0
-    Wood: 5
-    Stone: 0
+    <Food>k__BackingField: 0
+    <Wood>k__BackingField: 5
+    <Stone>k__BackingField: 0
   _strength: 1.5
   <Type>k__BackingField: 0
   <IsCollected>k__BackingField: 0
