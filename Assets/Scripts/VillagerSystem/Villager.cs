@@ -28,6 +28,7 @@ namespace Assets.Scripts.VillagerSystem
         private GetTreeTask _loggerTask;
         private GetRockTask _masonTask;
 
+        [field: Space(25)]
         [field: SerializeField] public ProfessionType Profession { get; private set; }
         public BaseVillagerTask CurrentTask { get; private set; }
 
@@ -190,6 +191,8 @@ namespace Assets.Scripts.VillagerSystem
 
         private void TransferResourcesOnStorage()
         {
+            Debug.Log("Сука инвентарь полный, нужно отнести добытые ресы на склад");
+
             StorageHouse nearest = null;
 
             foreach(var storage in World.Storages)

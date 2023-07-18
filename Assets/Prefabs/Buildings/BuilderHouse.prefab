@@ -170,9 +170,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _triggerCollider: {fileID: 4890295791317793044}
   _price:
-    Food: 0
-    Wood: 10
-    Stone: 5
+    <Food>k__BackingField: 0
+    <Wood>k__BackingField: 10
+    <Stone>k__BackingField: 5
+  _transferred:
+    <Food>k__BackingField: 0
+    <Wood>k__BackingField: 0
+    <Stone>k__BackingField: 0
   _residents: 0
   _needUnemployed: 3
   _isPaced: 0
@@ -235,3 +239,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ableToBuild: {fileID: 2100000, guid: 39857f7a0e7c344428f1ae44b2911724, type: 2}
   _unableToBuild: {fileID: 2100000, guid: c4b9f130c6f72dc449e616dd2fb9fce0, type: 2}
+  _plan: {fileID: 0}

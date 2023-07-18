@@ -144,8 +144,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcca1e57550e25e49bf5f81421acfc28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buildDistance: 10
-  _mineDistance: 3.5
+  _buildDistance: 10.75
+  _mineDistance: 3.75
+  _maxResources: 5
+  _transferring:
+    <Food>k__BackingField: 0
+    <Wood>k__BackingField: 0
+    <Stone>k__BackingField: 0
   <Profession>k__BackingField: 0
 --- !u!114 &1057878647822360381
 MonoBehaviour:

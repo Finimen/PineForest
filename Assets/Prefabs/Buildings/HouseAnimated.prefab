@@ -98,5 +98,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _size: {x: 0, y: 0, z: 0}
   _duration: 0.5
-  _ease: 10
+  _ease: 9
   _destroyOnPlayed: 1
+  _playOnAwake: 1
