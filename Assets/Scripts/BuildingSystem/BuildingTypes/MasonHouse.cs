@@ -11,11 +11,7 @@ namespace Assets.Scripts.BuildingSystem
         private void Start()
         {
             var building = GetComponent<Building>();
-            building.OnPlaced += () =>
-            {
-                FindObjectOfType<VillagerProfessionChanger>().LoggersToCreate += _masons;
-                Debug.Log(FindObjectOfType<VillagerProfessionChanger>().LoggersToCreate);
-            };
+            building.OnPlaced += () => FindObjectOfType<VillagerProfessionChanger>().MasonsToCreate += _masons;
         }
     }
 }

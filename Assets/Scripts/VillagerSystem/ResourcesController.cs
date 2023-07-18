@@ -25,7 +25,7 @@ namespace Assets.Scripts.VillagerSystem
 
         public void StartRockMining()
         {
-            _currentState |= State.RockMining;
+            _currentState = State.RockMining;
         }
 
         private void Start()
@@ -45,6 +45,7 @@ namespace Assets.Scripts.VillagerSystem
                     {
                         hit.collider.gameObject.GetComponent<MinedResource>().ShowUI();
 
+                        Debug.Log("MINED_DETECTED");
                         UpdateState(hit.collider.gameObject.GetComponent<MinedResource>());
                     }
                 }
@@ -63,12 +64,14 @@ namespace Assets.Scripts.VillagerSystem
                 case State.TreeMining:
                     if(selected.Type == MinedResourceType.Tree)
                     {
+                        Debug.Log("CRATED_TREE");
                         TasksForVillager.GetTreeTasks.Enqueue(new GetTreeTask(selected));
                     }
                     break;
                 case State.RockMining:
                     if (selected.Type == MinedResourceType.Rock)
                     {
+                        Debug.Log("CRATED_ROCK");
                         TasksForVillager.GetRockTasks.Enqueue(new GetRockTask(selected));
                     }
                     break;

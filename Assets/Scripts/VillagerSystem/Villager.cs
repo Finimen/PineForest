@@ -17,6 +17,10 @@ namespace Assets.Scripts.VillagerSystem
         [SerializeField] private float _buildDistance = 10f;
         [SerializeField] private float _mineDistance = 3.5f;
 
+        [Space(25)]
+        [SerializeField] private int _maxResources = 5;
+        [SerializeField] private Resources _transferring;
+
         private NavMeshAgent _navigationController;
 
         private BuildingTask _buildingTask;
@@ -57,14 +61,75 @@ namespace Assets.Scripts.VillagerSystem
                 return;
             }
 
-            if (Vector3.Distance(transform.position, _buildingTask.Target.transform.position) > _buildDistance)
+            //Логика доставки ресурсов
+            if (_buildingTask.Target.Transferred != _buildingTask.Target.Price)
             {
-                _navigationController.stoppingDistance = _buildDistance;
-                _navigationController.SetDestination(_buildingTask.Target.transform.position);
+                //Если нужные ресы есть с собой
+                if(_transferring.Contains(_buildingTask.Target.Needed))
+                {
+                    if (Vector3.Distance(transform.position, _buildingTask.Target.transform.position) > _buildDistance)
+                    {
+                        _navigationController.stoppingDistance = _buildDistance;
+                        _navigationController.SetDestination(_buildingTask.Target.transform.position);
+                        
+                        Debug.Log("Несу ресы");
+                    }
+                    else
+                    {
+                        Debug.Log("Передал ресы");
+
+                        _buildingTask.Target.TransferResources(_transferring);
+                        _transferring = Resources.Empty;
+                    }
+                }
+                //Если их нет ищем на складах
+                else
+                {
+                    Debug.Log("Ищю ресы на складах");
+
+                    var suitable = World.Storages.Find(x => x.Resources.Contains(_buildingTask.Target.Price));
+
+                    if (suitable != null)
+                    {
+                        if (Vector3.Distance(transform.position, suitable.transform.position) > _buildDistance)
+                        {
+                            Debug.Log("Иду к складу");
+                            
+                            _navigationController.stoppingDistance = _buildDistance;
+                            _navigationController.SetDestination(suitable.transform.position);
+                        }
+                        else
+                        {
+                            Debug.Log("Взял ресы");
+
+                            if(_transferring.TotalCount() == 0)
+                            {
+                                suitable.TransferResources(_transferring);
+                            }
+
+                            _transferring += suitable.Resources;
+                            _transferring = suitable.Resources.GetClampedResources(
+                                _buildingTask.Target.Price - _buildingTask.Target.Transferred,_maxResources);
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log("Нету подходящего склада");
+                    }
+                }
             }
             else
             {
-                _buildingTask.Target.IncreaseBuildingProgress();
+                //Логика строительства
+                if (Vector3.Distance(transform.position, _buildingTask.Target.transform.position) > _buildDistance)
+                {
+                    _navigationController.stoppingDistance = _buildDistance;
+                    _navigationController.SetDestination(_buildingTask.Target.transform.position);
+                }
+                else
+                {
+                    _buildingTask.Target.IncreaseBuildingProgress();
+                }
             }
         }
 

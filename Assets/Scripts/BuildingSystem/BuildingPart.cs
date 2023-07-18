@@ -9,11 +9,13 @@ namespace Assets.Scripts.BuildingSystem
         {
             Unable,
             Able,
+            Plan,
             Placed
         }
 
         [SerializeField] private Material _ableToBuild;
         [SerializeField] private Material _unableToBuild;
+        [SerializeField] private Material _plan;
 
         private Material _default;
 
@@ -28,6 +30,9 @@ namespace Assets.Scripts.BuildingSystem
                     break;
                 case BuildAbleType.Able:
                     _renderer.material = _ableToBuild;
+                    break;
+                case BuildAbleType.Plan:
+                    _renderer.material = _plan;
                     break;
                 case BuildAbleType.Placed:
                     _renderer.material = _default;

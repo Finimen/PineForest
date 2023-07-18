@@ -8,16 +8,19 @@ namespace Assets.Scripts.InventorySystem
     {
         [SerializeField] private TMP_Text _info;
 
-        private PlayerInventory inventory;
+        private PlayerInventory _inventory;
 
         private void Start()
         {
-            inventory = GetComponent<PlayerInventory>();
+            _inventory = GetComponent<PlayerInventory>();
         }
 
         private void Update()
         {
-            _info.text = inventory.Resources.ToString();
+            _info.text = 
+                $"Villagers: {_inventory.Villagers}\n" +
+                $"Unemployed: {_inventory.Unemployed}\n" +
+                $"{_inventory.Resources}";
         }
     }
 }

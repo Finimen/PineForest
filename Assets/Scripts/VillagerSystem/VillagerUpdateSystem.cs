@@ -29,6 +29,7 @@ namespace Assets.Scripts.VillagerSystem
             {
                 if(builder.CurrentTask == null)
                 {
+                    Debug.Log("BuilderTaskSetted");
                     builder.SetTask(TasksForVillager.BuildingTasks.Peek());
                 }
             }
@@ -47,6 +48,7 @@ namespace Assets.Scripts.VillagerSystem
             {
                 if (logger.CurrentTask == null)
                 {
+                    Debug.Log("LoggerTaskSetted");
                     logger.SetTask(TasksForVillager.GetTreeTasks.Peek());
                 }
             }
@@ -65,6 +67,7 @@ namespace Assets.Scripts.VillagerSystem
             {
                 if (mason.CurrentTask == null)
                 {
+                    Debug.Log("MasonTaskSetted");
                     mason.SetTask(TasksForVillager.GetRockTasks.Peek());
                 }
             }

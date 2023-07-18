@@ -171,8 +171,8 @@ MonoBehaviour:
   _triggerCollider: {fileID: 4890295791317793044}
   _price:
     Food: 0
-    Wood: 1
-    Stone: 0
+    Wood: 10
+    Stone: 5
   _residents: 0
   _needUnemployed: 3
   _isPaced: 0

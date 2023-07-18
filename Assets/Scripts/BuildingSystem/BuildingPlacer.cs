@@ -46,6 +46,8 @@ namespace Assets.Scripts.BuildingSystem
             _current.transform.position = _position;
             _current.transform.rotation = Quaternion.Euler(_rotation);
 
+            _current.InstallPlan();
+
             TasksForVillager.BuildingTasks.Enqueue(new BuildingTask(_current));
             _current = null;
         }

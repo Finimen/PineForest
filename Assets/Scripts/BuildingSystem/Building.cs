@@ -1,11 +1,13 @@
 using Assets.Scripts.InventorySystem;
 using Assets.Scripts.VillagerSystem;
 using System;
+using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Assets.Scripts.BuildingSystem
 {
-    [RequireComponent(typeof(Collider))]
+    [RequireComponent(typeof(Collider),typeof(NavMeshObstacle))]
     public class Building : MonoBehaviour
     {
         public event Action OnPlaced;
@@ -14,6 +16,9 @@ namespace Assets.Scripts.BuildingSystem
 
         [Space(25)]
         [SerializeField] private Resources _price;
+        [SerializeField] private Resources _transferred;
+
+        [Space(25)]
         [SerializeField] private int _residents;
         [SerializeField] private int _needUnemployed;
 
@@ -25,12 +30,16 @@ namespace Assets.Scripts.BuildingSystem
 
         private BuildingPart[] _parts;
 
-        private Material _default;
+        private NavMeshObstacle _navigationObstacle;
 
+        private bool _isPlan;
         private float _buildingProgress;
         private int _entryCount;
 
         public Resources Price => _price;
+        public Resources Transferred => _transferred;
+        public Resources Needed => _price - _transferred;
+
         public bool BuildingPossible { get; private set; } = true;
         public bool IsPlaced => _isPaced;
 
@@ -39,6 +48,10 @@ namespace Assets.Scripts.BuildingSystem
             _playerInventory = inventory;
 
             _parts = GetComponentsInChildren<BuildingPart>();
+
+            _navigationObstacle = GetComponent<NavMeshObstacle>();
+
+            _navigationObstacle.enabled = false;
 
             _triggerCollider.isTrigger = true;
 
@@ -51,6 +64,21 @@ namespace Assets.Scripts.BuildingSystem
             }
         }
 
+        public void TransferResources(Resources resources)
+        {
+            _transferred += resources;
+        }
+
+        public void InstallPlan()
+        {
+            foreach (var part in _parts)
+            {
+                part.UpdateMaterial(BuildingPart.BuildAbleType.Plan);
+            }
+
+            _isPlan = true;
+        }
+
         public void Place()
         {
             foreach (var collider in GetComponentsInChildren<Collider>())
@@ -60,6 +88,8 @@ namespace Assets.Scripts.BuildingSystem
                     collider.enabled = true;
                 }
             }
+
+            _navigationObstacle.enabled = true;
 
             _triggerCollider.isTrigger = false;
 
@@ -90,7 +120,7 @@ namespace Assets.Scripts.BuildingSystem
 
         private void Update()
         {
-            if(!_isPaced)
+            if(!_isPlan && !_isPaced)
             {
                 BuildingPossible = _entryCount == 0 && _playerInventory.Resources >= Price && _playerInventory.Unemployed >= _needUnemployed;
 
@@ -103,7 +133,7 @@ namespace Assets.Scripts.BuildingSystem
 
         private void OnTriggerEnter(Collider other)
         {
-            if(other.gameObject.layer == LayerMask.NameToLayer("Default"))
+            if(!_isPlan && other.gameObject.layer == LayerMask.NameToLayer("Default"))
             {
                 _entryCount++;
             }
@@ -111,7 +141,7 @@ namespace Assets.Scripts.BuildingSystem
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.gameObject.layer == LayerMask.NameToLayer("Default"))
+            if(!_isPlan && other.gameObject.layer == LayerMask.NameToLayer("Default"))
             {
                 _entryCount--;
             }
