@@ -31,6 +31,13 @@ namespace Assets.Scripts.InventorySystem
         {
             _villagers = _villagerSystem.Villagers.Count;
             _unemployed = _villagerSystem.Villagers.FindAll(x => x.Profession == Villager.ProfessionType.None).Count;
+
+            _resources = Resources.Empty;
+
+            foreach (var storage in World.Storages)
+            {
+                _resources += storage.Resources;
+            }
         }
     }
 }

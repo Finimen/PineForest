@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 7966877661582061092}
   - component: {fileID: 1098338086435985795}
   - component: {fileID: 1203685073915158541}
+  - component: {fileID: 1291257199906916251}
   m_Layer: 0
   m_Name: LoggerHouse
   m_TagString: Untagged
@@ -255,3 +256,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _header: Logger House
   _description: Loggers live in this house, they extract wood
+--- !u!114 &1291257199906916251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6657633315309505401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df2a7b75fc81fe7478de9ff148cb5b14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _template: {fileID: 3248308147006829013, guid: 0b92ed68b74f77a45bb6e12388314afa,
+    type: 3}

@@ -11349,6 +11349,7 @@ GameObject:
   - component: {fileID: -2410721928731930567}
   - component: {fileID: -8328459849736399270}
   - component: {fileID: -4283692826053666369}
+  - component: {fileID: -9112465639240130249}
   m_Layer: 0
   m_Name: Field
   m_TagString: Untagged
@@ -11599,6 +11600,20 @@ MonoBehaviour:
   _header: Field
   _description: This field grows food, which is necessary for villagers and some
     buildings
+--- !u!114 &-9112465639240130249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3255199139080369178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df2a7b75fc81fe7478de9ff148cb5b14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _template: {fileID: 3248308147006829013, guid: 0b92ed68b74f77a45bb6e12388314afa,
+    type: 3}
 --- !u!1 &3260863407419022803
 GameObject:
   m_ObjectHideFlags: 0

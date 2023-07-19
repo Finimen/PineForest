@@ -127,6 +127,7 @@ namespace Assets.Scripts.VillagerSystem
                             _transferring += nearestSuitable.Resources;
                             _transferring = nearestSuitable.Resources.GetClampedResources(
                                 _buildingTask.Target.Price - _buildingTask.Target.Transferred,_maxResources);
+                            nearestSuitable.TransferResources(-_transferring);
                         }
                     }
                     else

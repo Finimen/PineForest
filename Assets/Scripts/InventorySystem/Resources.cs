@@ -108,8 +108,6 @@ namespace Assets.Scripts
             totalCount += stone;
             result = new Resources(result.Food, result.Wood, stone);
 
-            this -= result;
-
             return result;
         }
 
