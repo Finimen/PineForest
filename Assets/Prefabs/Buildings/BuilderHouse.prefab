@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 8283208021274735216}
   - component: {fileID: 3636982025804215394}
   - component: {fileID: -3501935781160013278}
+  - component: {fileID: 6036577403314920765}
   m_Layer: 0
   m_Name: BuilderHouse
   m_TagString: Untagged
@@ -240,3 +241,17 @@ MonoBehaviour:
   _ableToBuild: {fileID: 2100000, guid: 39857f7a0e7c344428f1ae44b2911724, type: 2}
   _unableToBuild: {fileID: 2100000, guid: c4b9f130c6f72dc449e616dd2fb9fce0, type: 2}
   _plan: {fileID: 0}
+--- !u!114 &6036577403314920765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786998100140972084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6388460276902ff4a848904e9a5613d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _header: Builder House
+  _description: Builders live in this house, they help you develop your village

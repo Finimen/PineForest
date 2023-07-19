@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -4642561495367282567}
   - component: {fileID: -7795239459239202877}
   - component: {fileID: 8766162768450250641}
+  - component: {fileID: 3389513846625022177}
   m_Layer: 0
   m_Name: rpgpp_lt_rock_03
   m_TagString: Untagged
@@ -140,6 +141,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _duration: 1
+--- !u!114 &3389513846625022177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553163231892768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6388460276902ff4a848904e9a5613d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _header: Rock
+  _description: You can mine it to get stone
 --- !u!1 &1823094405966472242
 GameObject:
   m_ObjectHideFlags: 0

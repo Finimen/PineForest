@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 6841667936549268855}
   - component: {fileID: 8358025529841737503}
   - component: {fileID: 6866971734017752767}
+  - component: {fileID: -1762409675576061390}
   m_Layer: 0
   m_Name: MasonHouse
   m_TagString: Untagged
@@ -240,3 +241,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _template: {fileID: 435859614840875376, guid: 91002c27ef95ddc41916fe2c285df831,
     type: 3}
+--- !u!114 &-1762409675576061390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129048693452080375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6388460276902ff4a848904e9a5613d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _header: MasonHouse
+  _description: A mason lives here, he mines stone

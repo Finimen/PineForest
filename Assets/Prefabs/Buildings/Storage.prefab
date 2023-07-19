@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2988026313171501344}
   - component: {fileID: -8576982503240890461}
   - component: {fileID: -5168826677301997845}
+  - component: {fileID: -6168952170029782821}
   m_Layer: 0
   m_Name: Storage
   m_TagString: Untagged
@@ -264,6 +265,20 @@ MonoBehaviour:
   _ease: 7
   _destroyOnPlayed: 0
   _playOnAwake: 1
+--- !u!114 &-6168952170029782821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6358420511702842290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6388460276902ff4a848904e9a5613d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _header: Small Storage
+  _description: This repository stores your resources
 --- !u!1001 &40225433475665394
 PrefabInstance:
   m_ObjectHideFlags: 0

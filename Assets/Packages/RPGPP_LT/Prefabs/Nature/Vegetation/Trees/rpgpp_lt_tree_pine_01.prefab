@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -6457080832765824911}
   - component: {fileID: -8342030801540459908}
   - component: {fileID: -2313649098479917956}
+  - component: {fileID: 6085692931204737215}
   m_Layer: 0
   m_Name: rpgpp_lt_tree_pine_01
   m_TagString: Untagged
@@ -141,6 +142,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _duration: 1
+--- !u!114 &6085692931204737215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369031296425274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6388460276902ff4a848904e9a5613d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _header: Tree
+  _description: You can cut it down to get a wood
 --- !u!1 &1065485015447201718
 GameObject:
   m_ObjectHideFlags: 0

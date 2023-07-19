@@ -11348,6 +11348,7 @@ GameObject:
   - component: {fileID: 2221632651156422567}
   - component: {fileID: -2410721928731930567}
   - component: {fileID: -8328459849736399270}
+  - component: {fileID: -4283692826053666369}
   m_Layer: 0
   m_Name: Field
   m_TagString: Untagged
@@ -11583,6 +11584,21 @@ MonoBehaviour:
     <Wood>k__BackingField: 0
     <Stone>k__BackingField: 0
   _duration: 7.5
+--- !u!114 &-4283692826053666369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3255199139080369178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6388460276902ff4a848904e9a5613d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _header: Field
+  _description: This field grows food, which is necessary for villagers and some
+    buildings
 --- !u!1 &3260863407419022803
 GameObject:
   m_ObjectHideFlags: 0
