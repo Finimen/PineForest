@@ -93,16 +93,27 @@ namespace Assets.Scripts.VillagerSystem
                 {
                     Debug.Log("»щю ресы на складах");
 
-                    var suitable = World.Storages.Find(x => x.Resources.Contains(_buildingTask.Target.Price));
+                    var suitableList = World.Storages.FindAll(x => x.Resources.Contains(_buildingTask.Target.Price));
 
-                    if (suitable != null)
+                    if (suitableList.Count > 0)
                     {
-                        if (Vector3.Distance(transform.position, suitable.transform.position) > _buildDistance)
+                        StorageHouse nearestSuitable = null;
+
+                        foreach (var suitable in suitableList)
+                        {
+                            if(nearestSuitable == null || Vector3.Distance(transform.position, nearestSuitable.transform.position) >
+                                Vector3.Distance(transform.position, suitable.transform.position))
+                            {
+                                nearestSuitable = suitable;
+                            }
+                        }
+
+                        if (Vector3.Distance(transform.position, nearestSuitable.transform.position) > _buildDistance)
                         {
                             Debug.Log("»ду к складу");
                             
                             _navigationController.stoppingDistance = _buildDistance;
-                            _navigationController.SetDestination(suitable.transform.position);
+                            _navigationController.SetDestination(nearestSuitable.transform.position);
                         }
                         else
                         {
@@ -110,11 +121,11 @@ namespace Assets.Scripts.VillagerSystem
 
                             if(_transferring.TotalCount() == 0)
                             {
-                                suitable.TransferResources(_transferring);
+                                nearestSuitable.TransferResources(_transferring);
                             }
 
-                            _transferring += suitable.Resources;
-                            _transferring = suitable.Resources.GetClampedResources(
+                            _transferring += nearestSuitable.Resources;
+                            _transferring = nearestSuitable.Resources.GetClampedResources(
                                 _buildingTask.Target.Price - _buildingTask.Target.Transferred,_maxResources);
                         }
                     }

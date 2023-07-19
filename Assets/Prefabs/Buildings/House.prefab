@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 7362434077186150312}
   - component: {fileID: 3970259880415159411}
   - component: {fileID: -3196609187258275514}
+  - component: {fileID: -2570161166795035961}
   m_Layer: 0
   m_Name: House
   m_TagString: Untagged
@@ -242,3 +243,16 @@ MonoBehaviour:
   _header: House
   _description: This house gives housing to new residents so that they can then go
     to work
+--- !u!114 &-2570161166795035961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7150187642842090474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a47a3ec1458a09e48839d522c8df9d2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _descriptionWhenObjectIsBuilt: 

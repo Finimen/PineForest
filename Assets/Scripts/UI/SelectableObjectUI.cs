@@ -9,6 +9,10 @@ namespace Assets.Scripts.UI
 
         private SelectedObjectCanvas _canvas;
 
+        private bool _isSelected;
+
+        public string Description => _description;
+
         public void SetHeader(string text)
         {
             _header = text;
@@ -17,17 +21,26 @@ namespace Assets.Scripts.UI
         public void SetDescription(string text)
         {
             _description = text;
+
+            if (_isSelected)
+            {
+                _canvas.SetText(_header, _description);
+            }
         }
 
         public void Hide()
         {
             _canvas.HideUI();
+
+            _isSelected = false;
         }
 
         public void Show()
         {
             _canvas.ShowUI();
             _canvas.SetText(_header, _description);
+
+            _isSelected = true;
         }
 
         private void Start()

@@ -40,6 +40,7 @@ namespace Assets.Scripts.BuildingSystem
         public Resources Transferred => _transferred;
         public Resources Needed => _price - _transferred;
 
+        public float BuildingProgress => _buildingProgress / _buildingTime;
         public bool BuildingPossible { get; private set; } = true;
         public bool IsPlaced => _isPaced;
 
@@ -77,6 +78,7 @@ namespace Assets.Scripts.BuildingSystem
             }
 
             _isPlan = true;
+            _triggerCollider.isTrigger = false;
         }
 
         public void Place()
@@ -90,8 +92,6 @@ namespace Assets.Scripts.BuildingSystem
             }
 
             _navigationObstacle.enabled = true;
-
-            _triggerCollider.isTrigger = false;
 
             foreach (var part in _parts)
             {

@@ -240,7 +240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ableToBuild: {fileID: 2100000, guid: 39857f7a0e7c344428f1ae44b2911724, type: 2}
   _unableToBuild: {fileID: 2100000, guid: c4b9f130c6f72dc449e616dd2fb9fce0, type: 2}
-  _plan: {fileID: 0}
+  _plan: {fileID: 2100000, guid: 0f06930e6181b8641bff8722904cb8ce, type: 2}
 --- !u!114 &6036577403314920765
 MonoBehaviour:
   m_ObjectHideFlags: 0
