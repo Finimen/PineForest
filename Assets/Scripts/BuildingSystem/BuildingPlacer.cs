@@ -89,7 +89,7 @@ namespace Assets.Scripts.BuildingSystem
 
             var ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
 
-            if(Physics.Raycast(ray, out var hit, 100, _mask, _triggerInteraction))
+            if(Physics.Raycast(ray, out var hit, 1000, _mask, _triggerInteraction))
             {
                 _position = new Vector3(Mathf.Round(hit.point.x / _cellSize) * _cellSize, hit.point.y, Mathf.Round(hit.point.z / _cellSize) * _cellSize);
             }

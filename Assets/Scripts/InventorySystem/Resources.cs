@@ -95,7 +95,7 @@ namespace Assets.Scripts
         {
             var totalCount = 0;
             var result = new Resources();
-            
+
             var food = Mathf.Clamp(Food, 0, Mathf.Min(needed.Food, maxCount - totalCount));
             totalCount += food;
             result = new Resources(food, result.Wood, result.Stone);
@@ -104,7 +104,7 @@ namespace Assets.Scripts
             totalCount += wood;
             result = new Resources(result.Food, wood, result.Stone);
 
-            var stone = Mathf.Clamp(Stone, 0, Mathf.Min(needed.Wood, maxCount - totalCount));
+            var stone = Mathf.Clamp(Stone, 0, Mathf.Min(needed.Stone, maxCount - totalCount));
             totalCount += stone;
             result = new Resources(result.Food, result.Wood, stone);
 
