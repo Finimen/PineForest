@@ -4,76 +4,35 @@ namespace Assets.Scripts.WeatherSystem
 {
     public class WeatherSystem : MonoBehaviour
     {
-        [SerializeField] private Weather _weather;
-
         [SerializeField] private TMPro.TMP_Text _weatherText;
         [SerializeField] private TMPro.TMP_Text _sunText;
         [SerializeField] private TMPro.TMP_Text _windText;
 
         [Space(25)]
-        [SerializeField] private WeatherData _sunny;
-        [SerializeField] private WeatherData _rainy;
-        [SerializeField] private WeatherData _stormy;
-        [SerializeField] private WeatherData _clean;
+        [SerializeField] private int _startId;
+        [SerializeField] private WeatherData[] _weathers;
 
         private ChangerDayAndNight _changerDayAndNight;
 
         private WeatherData _current;
 
+        public int WeathersCount => _weathers.Length;
+
         public float SunEfficinty {get; private set;}
         public float WindEfficinty { get; private set; }
 
-        public void SetRainy()
+        public void SetWeather(int id)
         {
-            SetWeather(Weather.Rainy);
-        }
+            DisableAnyWeathers();
 
-        public void SetSunny()
-        {
-            SetWeather(Weather.Sunny);
-        }
-
-        public void SetWeather(Weather weather)
-        {
-            this._weather = weather;
-
-            switch (this._weather)
-            {
-                case Weather.Rainy:
-                    _current = _rainy;
-                    break;
-                    case Weather.Sunny:
-                    _current = _sunny;
-                    break;
-                case Weather.Storm:
-                    _current = _stormy;
-                    break;
-                case Weather.Clean:
-                    _current = _clean;
-                    break;
-            }
-        }
-
-        private void Awake()
-        {
-            _changerDayAndNight = FindObjectOfType<ChangerDayAndNight>();
-            SetWeather(Weather.Clean);
-        }
-
-        private void Update()
-        {
-            UpdateWeather();
-
-            _weatherText.text = $"{_weather}";
-            _sunText.text = $"{SunEfficinty * 100}%";
-            _windText.text = $"{WindEfficinty * 100}%";
+            _current = _weathers[id];
         }
 
         private void UpdateWeather()
         {
             DisableAnyWeathers();
 
-            if(_current.Particles != null)
+            if (_current.Particles != null)
             {
                 _current.Particles.enableEmission = true;
             }
@@ -91,23 +50,32 @@ namespace Assets.Scripts.WeatherSystem
 
         private void DisableAnyWeathers()
         {
-            if(_weather != Weather.Rainy)
+            foreach (var weather in _weathers)
             {
-                _rainy.Particles.enableEmission = false;
-                _rainy.Audio.Stop();
+                if(weather.Particles != null)
+                {
+                    weather.Particles.enableEmission = false;
+                }
+                if(weather.Audio != null)
+                {
+                    weather.Audio.Stop();
+                }
             }
+        }
 
-            if(_weather != Weather.Storm)
-            {
-                _stormy.Particles.enableEmission = false;
-                _stormy.Audio.Stop();
-            }
+        private void Awake()
+        {
+            _changerDayAndNight = FindObjectOfType<ChangerDayAndNight>();
+            SetWeather(_startId);
+        }
 
-            if(_weather != Weather.Sunny)
-            {
-                _sunny.Particles.enableEmission = false;
-                _sunny.Audio.Stop();
-            }
+        private void Update()
+        {
+            UpdateWeather();
+
+            _weatherText.text = $"{_current.Name}";
+            _sunText.text = $"{SunEfficinty * 100}%";
+            _windText.text = $"{WindEfficinty * 100}%";
         }
     }
 }

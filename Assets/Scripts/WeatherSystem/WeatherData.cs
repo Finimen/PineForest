@@ -3,9 +3,10 @@ using UnityEngine;
 
 namespace Assets.Scripts.WeatherSystem
 {
-    [CreateAssetMenu(menuName = "Environment/Weather")]
-    public class WeatherData : ScriptableObject
+    [Serializable]
+    public class WeatherData
     {
+        [field: SerializeField] public string Name { get; private set; }
         [field: SerializeField] public ParticleSystem Particles { get; private set; }
         [field: SerializeField] public AudioSource Audio { get; private set; }
         [field: SerializeField] public Gradient Light { get; private set; }

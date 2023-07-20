@@ -59,7 +59,7 @@ namespace Assets.Scripts.WeatherSystem
 
             _text.text = $"Time: {Math.Round((_timeProgress * 24), 2)}";
 
-            _directional.transform.localEulerAngles = new Vector3(Mathf.Clamp(360f * _timeProgress - 90, 45, 315 - 180) , _defaultAngels.x, _defaultAngels.y);
+            _directional.transform.localEulerAngles = new Vector3(Mathf.Clamp(360f * _timeProgress - 90, 0, 180) , _defaultAngels.x, _defaultAngels.y);
         }
     }
 }
