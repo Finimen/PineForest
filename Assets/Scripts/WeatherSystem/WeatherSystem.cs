@@ -18,8 +18,8 @@ namespace Assets.Scripts.WeatherSystem
 
         public int WeathersCount => _weathers.Length;
 
-        public float SunEfficinty {get; private set;}
-        public float WindEfficinty { get; private set; }
+        public float SunEfficiency {get; private set;}
+        public float WindEfficiency { get; private set; }
 
         public void SetWeather(int id)
         {
@@ -30,8 +30,6 @@ namespace Assets.Scripts.WeatherSystem
 
         private void UpdateWeather()
         {
-            DisableAnyWeathers();
-
             if (_current.Particles != null)
             {
                 _current.Particles.enableEmission = true;
@@ -44,8 +42,8 @@ namespace Assets.Scripts.WeatherSystem
             _changerDayAndNight.SetGradients(_current.Light, _current.Fog);
             RenderSettings.fogDensity = _current.FogAmount;
 
-            SunEfficinty = _current.SunEfficiency;
-            WindEfficinty = _current.WindEfficiency;
+            SunEfficiency = _current.SunEfficiency;
+            WindEfficiency = _current.WindEfficiency;
         }
 
         private void DisableAnyWeathers()
@@ -63,7 +61,7 @@ namespace Assets.Scripts.WeatherSystem
             }
         }
 
-        private void Awake()
+        private void Start()
         {
             _changerDayAndNight = FindObjectOfType<ChangerDayAndNight>();
             SetWeather(_startId);
@@ -74,8 +72,8 @@ namespace Assets.Scripts.WeatherSystem
             UpdateWeather();
 
             _weatherText.text = $"{_current.Name}";
-            _sunText.text = $"{SunEfficinty * 100}%";
-            _windText.text = $"{WindEfficinty * 100}%";
+            _sunText.text = $"{SunEfficiency * 100}%";
+            _windText.text = $"{WindEfficiency * 100}%";
         }
     }
 }

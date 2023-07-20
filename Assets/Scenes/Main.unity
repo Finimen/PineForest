@@ -17219,15 +17219,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19822596, guid: 68675b6de826c4b76bca37c1253d0c61, type: 3}
       propertyPath: ShapeModule.m_Scale.x
-      value: 250
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 19822596, guid: 68675b6de826c4b76bca37c1253d0c61, type: 3}
       propertyPath: ShapeModule.m_Scale.z
-      value: 250
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 19822596, guid: 68675b6de826c4b76bca37c1253d0c61, type: 3}
+      propertyPath: CollisionModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19822596, guid: 68675b6de826c4b76bca37c1253d0c61, type: 3}
+      propertyPath: CollisionModule.quality
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 19822596, guid: 68675b6de826c4b76bca37c1253d0c61, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 575
+      value: 275
       objectReference: {fileID: 0}
     - target: {fileID: 19822596, guid: 68675b6de826c4b76bca37c1253d0c61, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
@@ -23831,15 +23839,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19822596, guid: 68675b6de826c4b76bca37c1253d0c61, type: 3}
       propertyPath: ShapeModule.m_Scale.x
-      value: 250
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 19822596, guid: 68675b6de826c4b76bca37c1253d0c61, type: 3}
       propertyPath: ShapeModule.m_Scale.z
-      value: 250
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 19822596, guid: 68675b6de826c4b76bca37c1253d0c61, type: 3}
+      propertyPath: CollisionModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19822596, guid: 68675b6de826c4b76bca37c1253d0c61, type: 3}
+      propertyPath: CollisionModule.quality
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 19822596, guid: 68675b6de826c4b76bca37c1253d0c61, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 1500
+      value: 500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -34504,7 +34520,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: bbfe3af49eefe1641b2f88591d8bb862, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -38008,7 +38024,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: ad615cca33983444e9c2a076e9be8016, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -38879,17 +38895,17 @@ MonoBehaviour:
     <Audio>k__BackingField: {fileID: 1785272084}
     <Light>k__BackingField:
       serializedVersion: 2
-      key0: {r: 0.61574405, g: 0.9181654, b: 0.9528302, a: 1}
-      key1: {r: 0.6156863, g: 0.9176471, b: 0.95294124, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
+      key0: {r: 0.33241364, g: 0.6642881, b: 0.8490566, a: 1}
+      key1: {r: 0.33333337, g: 0.83529294, b: 0.8509804, a: 1}
+      key2: {r: 0.33333334, g: 0.6627451, b: 0.85098046, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 0
-      ctime1: 65535
-      ctime2: 0
+      ctime1: 32768
+      ctime2: 64957
       ctime3: 0
       ctime4: 0
       ctime5: 0
@@ -38905,13 +38921,13 @@ MonoBehaviour:
       atime7: 0
       m_Mode: 0
       m_ColorSpace: -1
-      m_NumColorKeys: 2
+      m_NumColorKeys: 3
       m_NumAlphaKeys: 2
     <Fog>k__BackingField:
       serializedVersion: 2
-      key0: {r: 0.6156863, g: 0.9176471, b: 0.95294124, a: 1}
-      key1: {r: 0.6156863, g: 0.9176471, b: 0.95294124, a: 1}
-      key2: {r: 0.6156863, g: 0.9176471, b: 0.95294124, a: 0}
+      key0: {r: 0.33333334, g: 0.6627451, b: 0.85098046, a: 1}
+      key1: {r: 0.33333337, g: 0.81364363, b: 0.8509804, a: 1}
+      key2: {r: 0.33333334, g: 0.6627451, b: 0.85098046, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
@@ -41011,7 +41027,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 745f6cb9b358e5048b4b7f68fecb3992, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
