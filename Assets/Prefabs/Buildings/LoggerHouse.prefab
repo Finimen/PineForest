@@ -171,14 +171,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34012b8cbf440034ab6fb5bc31787a2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _triggerCollider: {fileID: 588649745605397788}
+  _triggerColliders:
+  - {fileID: 588649745605397788}
   _price:
     <Food>k__BackingField: 0
     <Wood>k__BackingField: 15
-    <Stone>k__BackingField: 0
-  _transferred:
-    <Food>k__BackingField: 0
-    <Wood>k__BackingField: 0
     <Stone>k__BackingField: 0
   _residents: 0
   _needUnemployed: 3
@@ -271,6 +268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _template: {fileID: 3248308147006829013, guid: 0b92ed68b74f77a45bb6e12388314afa,
     type: 3}
+  _setParent: 0
 --- !u!114 &-6228670246720919218
 MonoBehaviour:
   m_ObjectHideFlags: 0

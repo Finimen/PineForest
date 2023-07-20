@@ -7,6 +7,8 @@ namespace Assets.Scripts.BuildingSystem
     {
         [SerializeField] private GameObject _template;
 
+        [SerializeField] private bool _setParent;
+
         private void Start()
         {
             GetComponent<Building>().OnPlaced += CreateTemplate;
@@ -14,7 +16,14 @@ namespace Assets.Scripts.BuildingSystem
 
         private void CreateTemplate()
         {
-            Instantiate(_template, transform.position, Quaternion.identity);
+            if (_setParent)
+            {
+                Instantiate(_template, transform.position, Quaternion.identity, transform);
+            }
+            else
+            {
+                Instantiate(_template, transform.position, Quaternion.identity);
+            }
         }
     }
 }

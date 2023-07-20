@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 14219492565414787}
   - component: {fileID: 7745337576702391775}
   - component: {fileID: 3308723959309271949}
-  - component: {fileID: 6659436033766678420}
+  - component: {fileID: 7556073761711909679}
   m_Layer: 0
   m_Name: Big Stone 2
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 2124161372662209800}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -84,17 +84,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6659436033766678420
-MeshCollider:
+--- !u!65 &7556073761711909679
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2124161372662209800}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -7496724586782959741, guid: 8d2f8b4f4ae6bfa47a4212f14c593495, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 7.7937, y: 8.639328, z: 5.87004}
+  m_Center: {x: 0.63752425, y: 4.0226917, z: -0.16633832}

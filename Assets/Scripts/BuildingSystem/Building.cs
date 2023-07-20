@@ -1,6 +1,7 @@
 using Assets.Scripts.InventorySystem;
 using Assets.Scripts.VillagerSystem;
 using System;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
@@ -12,11 +13,11 @@ namespace Assets.Scripts.BuildingSystem
     {
         public event Action OnPlaced;
 
-        [SerializeField] private Collider _triggerCollider;
+        [SerializeField] private Collider[] _triggerColliders;
 
         [Space(25)]
         [SerializeField] private Resources _price;
-        [SerializeField] private Resources _transferred;
+        private Resources _transferred;
 
         [Space(25)]
         [SerializeField] private int _residents;
@@ -54,11 +55,14 @@ namespace Assets.Scripts.BuildingSystem
 
             _navigationObstacle.enabled = false;
 
-            _triggerCollider.isTrigger = true;
+            foreach(var trigger in _triggerColliders)
+            {
+                trigger.isTrigger = true;
+            } 
 
             foreach (var collider in GetComponentsInChildren<Collider>())
             {
-                if(_triggerCollider != collider)
+                if(!_triggerColliders.Contains(collider))
                 {
                     collider.enabled = false;
                 }
@@ -78,14 +82,18 @@ namespace Assets.Scripts.BuildingSystem
             }
 
             _isPlan = true;
-            _triggerCollider.isTrigger = false;
+            
+            foreach (var trigger in _triggerColliders)
+            {
+                trigger.isTrigger = false;
+            }
         }
 
         public void Place()
         {
             foreach (var collider in GetComponentsInChildren<Collider>())
             {
-                if (_triggerCollider != collider)
+                if (!_triggerColliders.Contains(collider))
                 {
                     collider.enabled = true;
                 }
