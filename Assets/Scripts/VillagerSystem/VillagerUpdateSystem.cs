@@ -5,10 +5,6 @@ namespace Assets.Scripts.VillagerSystem
 {
     internal class VillagerUpdateSystem : MonoBehaviour
     {
-        private List<Villager> _villagers = new List<Villager>();
-
-        public List<Villager> Villagers => _villagers;
-
         private void FixedUpdate()
         {
             UpdateBuilders();
@@ -23,7 +19,7 @@ namespace Assets.Scripts.VillagerSystem
                 return;
             }
 
-            var builders = Villagers.FindAll(x => x.Profession == Villager.ProfessionType.Builder);
+            var builders = World.Villagers.FindAll(x => x.Profession == Villager.ProfessionType.Builder);
 
             foreach (var builder in builders)
             {
@@ -42,7 +38,7 @@ namespace Assets.Scripts.VillagerSystem
                 return;
             }
 
-            var loggers = Villagers.FindAll(x => x.Profession == Villager.ProfessionType.Logger);
+            var loggers = World.Villagers.FindAll(x => x.Profession == Villager.ProfessionType.Logger);
 
             foreach (var logger in loggers)
             {
@@ -61,7 +57,7 @@ namespace Assets.Scripts.VillagerSystem
                 return;
             }
 
-            var masons = Villagers.FindAll(x => x.Profession == Villager.ProfessionType.Mason);
+            var masons = World.Villagers.FindAll(x => x.Profession == Villager.ProfessionType.Mason);
 
             foreach (var mason in masons)
             {

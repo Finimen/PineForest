@@ -9,6 +9,7 @@ namespace Assets.Scripts.WeatherSystem
         [SerializeField] private float _delay = 15;
 
         private WeatherSystem _weatherSystem;
+        private Rigidbody rigidbody;
 
         private void Start()
         {
@@ -22,8 +23,6 @@ namespace Assets.Scripts.WeatherSystem
             yield return new WaitForSeconds(_delay * UnityEngine.Random.Range(.5f, 2f));
 
             var index = UnityEngine.Random.Range(0, Enum.GetValues(typeof(Weather)).Length);
-
-            Debug.Log((Weather)index);
 
             _weatherSystem.SetWeather(UnityEngine.Random.Range(0, _weatherSystem.WeathersCount));
 

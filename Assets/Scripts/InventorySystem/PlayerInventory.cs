@@ -11,8 +11,6 @@ namespace Assets.Scripts.InventorySystem
 
         [SerializeField] private int _villagers;
 
-        private VillagerUpdateSystem _villagerSystem;
-
         public Resources Resources => _resources;
         public int Unemployed => _unemployed;
         public int Villagers => _villagers;
@@ -22,15 +20,10 @@ namespace Assets.Scripts.InventorySystem
             _resources += resources;
         }
 
-        private void Start()
-        {
-            _villagerSystem = FindObjectOfType<VillagerUpdateSystem>();
-        }
-
         private void Update()
         {
-            _villagers = _villagerSystem.Villagers.Count;
-            _unemployed = _villagerSystem.Villagers.FindAll(x => x.Profession == Villager.ProfessionType.None).Count;
+            _villagers = World.Villagers.Count;
+            _unemployed = World.Villagers.FindAll(x => x.Profession == Villager.ProfessionType.None).Count;
 
             _resources = Resources.Empty;
 

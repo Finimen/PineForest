@@ -21,7 +21,7 @@ namespace Assets.Scripts.VillagerSystem
 
         public void DecreaseStrength(Villager miner)
         {
-            _strength -= Time.fixedDeltaTime;
+            _strength -= Time.fixedDeltaTime * WeatherSystem.WeatherSystem.WorkEfficiency;
 
             if(_strength <= 0)
             {

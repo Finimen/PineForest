@@ -28,9 +28,11 @@ namespace Assets.Scripts.VillagerSystem
         private GetTreeTask _loggerTask;
         private GetRockTask _masonTask;
 
-        [field: Space(25)]
-        [field: SerializeField] public ProfessionType Profession { get; private set; }
+        private float _movingSpeed;
+
+        [field: SerializeField, Space(25)] public ProfessionType Profession { get; private set; }
         public BaseVillagerTask CurrentTask { get; private set; }
+        public float MovingEfficiency { get; set; } = 1;
 
         public void SetTask(BaseVillagerTask task)
         {
@@ -162,6 +164,7 @@ namespace Assets.Scripts.VillagerSystem
             {
                 TransferResourcesOnStorage();
             }
+            else
             {
                 if (Vector3.Distance(transform.position, _masonTask.Target.transform.position) > _mineDistance)
                 {
@@ -230,24 +233,33 @@ namespace Assets.Scripts.VillagerSystem
 
         private void OnEnable()
         {
-            FindObjectOfType<VillagerUpdateSystem>().Villagers.Add(this);
+            World.Villagers.Add(this);
         }
 
         private void OnDisable()
         {
             if (gameObject.scene.isLoaded)
             {
-                FindObjectOfType<VillagerUpdateSystem>().Villagers.Remove(this);
+                World.Villagers.Remove(this);
             }
+        }
+
+        private void UpdateParameters()
+        {
+            _navigationController.speed = _movingSpeed * MovingEfficiency;
         }
 
         private void Start()
         {
             _navigationController = GetComponent<NavMeshAgent>();
+
+            _movingSpeed = _navigationController.speed;
         }
 
         private void FixedUpdate()
         {
+            UpdateParameters();
+
             if (CurrentTask == null)
             {
                 return;

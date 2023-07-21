@@ -1,3 +1,4 @@
+using Assets.Scripts.VillagerSystem;
 using UnityEngine;
 
 namespace Assets.Scripts.WeatherSystem
@@ -5,11 +6,11 @@ namespace Assets.Scripts.WeatherSystem
     public class WeatherSystem : MonoBehaviour
     {
         [SerializeField] private TMPro.TMP_Text _weatherText;
-        [SerializeField] private TMPro.TMP_Text _sunText;
-        [SerializeField] private TMPro.TMP_Text _windText;
+        [SerializeField] private TMPro.TMP_Text _workText;
 
         [Space(25)]
         [SerializeField] private int _startId;
+        [SerializeField] private float _sunIntensity;
         [SerializeField] private WeatherData[] _weathers;
 
         private ChangerDayAndNight _changerDayAndNight;
@@ -18,8 +19,8 @@ namespace Assets.Scripts.WeatherSystem
 
         public int WeathersCount => _weathers.Length;
 
-        public float SunEfficiency {get; private set;}
-        public float WindEfficiency { get; private set; }
+        public static float WorkEfficiency { get; private set; } = 1;
+        public static float SunEfficiency { get; private set; } = 1;
 
         public void SetWeather(int id)
         {
@@ -42,8 +43,8 @@ namespace Assets.Scripts.WeatherSystem
             _changerDayAndNight.SetGradients(_current.Light, _current.Fog);
             RenderSettings.fogDensity = _current.FogAmount;
 
-            SunEfficiency = _current.SunEfficiency;
-            WindEfficiency = _current.WindEfficiency;
+            WorkEfficiency = _current.WorkEfficiency;
+            SunEfficiency = _sunIntensity;
         }
 
         private void DisableAnyWeathers()
@@ -61,9 +62,29 @@ namespace Assets.Scripts.WeatherSystem
             }
         }
 
+        private void UpdateVillagers()
+        {
+            foreach(var villager in World.Villagers)
+            {
+                _sunIntensity = _changerDayAndNight.TimeDay > .5f ? 
+                    Mathf.Lerp(_current.MaxSunIntensity, 0, _changerDayAndNight.TimeDay) * 2 :
+                    Mathf.Lerp(0, _current.MaxSunIntensity, _changerDayAndNight.TimeDay) * 2;
+
+                var intensity = _sunIntensity;
+
+                foreach (var source in World.LightSources)
+                {
+                    intensity += source.Intensity / Vector3.Distance(villager.transform.position, source.transform.position) * 10;
+                }
+
+                villager.MovingEfficiency = Mathf.Clamp(intensity, .25f, 1);
+            }
+        }
+
         private void Start()
         {
             _changerDayAndNight = FindObjectOfType<ChangerDayAndNight>();
+
             SetWeather(_startId);
         }
 
@@ -71,9 +92,10 @@ namespace Assets.Scripts.WeatherSystem
         {
             UpdateWeather();
 
+            UpdateVillagers();
+
             _weatherText.text = $"{_current.Name}";
-            _sunText.text = $"{SunEfficiency * 100}%";
-            _windText.text = $"{WindEfficiency * 100}%";
+            _workText.text = $"{WorkEfficiency * 100}%";
         }
     }
 }

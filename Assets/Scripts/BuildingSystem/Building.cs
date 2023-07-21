@@ -2,13 +2,11 @@ using Assets.Scripts.InventorySystem;
 using Assets.Scripts.VillagerSystem;
 using System;
 using System.Linq;
-using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace Assets.Scripts.BuildingSystem
 {
-    [RequireComponent(typeof(Collider),typeof(NavMeshObstacle))]
     public class Building : MonoBehaviour
     {
         public event Action OnPlaced;
@@ -17,7 +15,6 @@ namespace Assets.Scripts.BuildingSystem
 
         [Space(25)]
         [SerializeField] private Resources _price;
-        private Resources _transferred;
 
         [Space(25)]
         [SerializeField] private int _residents;
@@ -32,6 +29,8 @@ namespace Assets.Scripts.BuildingSystem
         private BuildingPart[] _parts;
 
         private NavMeshObstacle _navigationObstacle;
+
+        private Resources _transferred;
 
         private bool _isPlan;
         private float _buildingProgress;
@@ -53,9 +52,12 @@ namespace Assets.Scripts.BuildingSystem
 
             _navigationObstacle = GetComponent<NavMeshObstacle>();
 
-            _navigationObstacle.enabled = false;
+            if(_navigationObstacle != null)
+            {
+                _navigationObstacle.enabled = false;
+            }
 
-            foreach(var trigger in _triggerColliders)
+            foreach (var trigger in _triggerColliders)
             {
                 trigger.isTrigger = true;
             } 
@@ -99,7 +101,10 @@ namespace Assets.Scripts.BuildingSystem
                 }
             }
 
-            _navigationObstacle.enabled = true;
+            if (_navigationObstacle != null)
+            {
+                _navigationObstacle.enabled = true;
+            }
 
             foreach (var part in _parts)
             {
@@ -118,7 +123,7 @@ namespace Assets.Scripts.BuildingSystem
 
         public void IncreaseBuildingProgress()
         {
-            _buildingProgress += Time.fixedDeltaTime;
+            _buildingProgress += Time.fixedDeltaTime * WeatherSystem.WeatherSystem.WorkEfficiency;
 
             if (_buildingProgress > _buildingTime)
             {

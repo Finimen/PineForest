@@ -5,28 +5,21 @@ namespace Assets.Scripts.VillagerSystem
 {
     public class VillagerProfessionChanger : MonoBehaviour
     {
-        private VillagerUpdateSystem _villagerSystem;
-
         [field: SerializeField] public int BuildersToCreate { get; set; }
         [field: SerializeField] public int LoggersToCreate { get; set; }
         [field: SerializeField] public int MasonsToCreate { get; set; }
 
-        private void Start()
-        {
-            _villagerSystem = FindObjectOfType<VillagerUpdateSystem>();
-        }
-
         private void Update()
         {
-            var unemployed = _villagerSystem.Villagers.FindAll(x => x.Profession == Villager.ProfessionType.None);
+            var unemployed = World.Villagers.FindAll(x => x.Profession == Villager.ProfessionType.None);
 
             TryCreateBuilders(unemployed);
 
-            unemployed = _villagerSystem.Villagers.FindAll(x => x.Profession == Villager.ProfessionType.None);
+            unemployed = World.Villagers.FindAll(x => x.Profession == Villager.ProfessionType.None);
 
             TryCreateLoggers(unemployed);
             
-            unemployed = _villagerSystem.Villagers.FindAll(x => x.Profession == Villager.ProfessionType.None);
+            unemployed = World.Villagers.FindAll(x => x.Profession == Villager.ProfessionType.None);
 
             TryCreateMasons(unemployed);
         }
