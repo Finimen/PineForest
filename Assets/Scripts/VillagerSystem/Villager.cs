@@ -21,6 +21,7 @@ namespace Assets.Scripts.VillagerSystem
             IBringResources,
             IGoToTheStorage,
             TheStoragesDoNotHaveTheNecessaryResources,
+            WaitingForOtherBuildersToBringResources,
         }
 
         [SerializeField] private float _actionDistance = 2.5f;
@@ -130,6 +131,14 @@ namespace Assets.Scripts.VillagerSystem
                 }
                 else
                 {
+                    if (_buildingTask.Target.Price == _buildingTask.Target.StartTransferring)
+                    {
+                        Debug.Log("Жду пока другие типы принесут ресы");
+
+                        _workType = WorkType.WaitingForOtherBuildersToBringResources;
+                        return;
+                    }
+
                     Debug.Log("Ищю ресы на складах");
 
                     var suitableList = World.Storages.FindAll(x => x.Resources.Contains(_buildingTask.Target.Price - _buildingTask.Target.StartTransferring));
@@ -190,7 +199,7 @@ namespace Assets.Scripts.VillagerSystem
                 }
                 else
                 {
-                    Debug.Log($"{gameObject.name} is building");
+                    Debug.Log("Строю дом епта");
 
                     _buildingTask.Target.IncreaseBuildingProgress();
                 }

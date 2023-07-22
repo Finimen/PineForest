@@ -82,13 +82,13 @@ namespace Assets.Scripts.VillagerSystem
                 case State.TreeMining:
                     if(selected.Type == MinedResourceType.Tree)
                     {
-                        TasksForVillager.GetTreeTasks.Enqueue(new GetTreeTask(selected));
+                        TasksForVillager.GetTreeTasks.Add(new GetTreeTask(selected));
                     }
                     break;
                 case State.RockMining:
                     if (selected.Type == MinedResourceType.Rock)
                     {
-                        TasksForVillager.GetRockTasks.Enqueue(new GetRockTask(selected));
+                        TasksForVillager.GetRockTasks.Add(new GetRockTask(selected));
                     }
                     break;
             }
@@ -100,7 +100,7 @@ namespace Assets.Scripts.VillagerSystem
             {
                 building.StartDestroying();
 
-                TasksForVillager.DestroyBuildingTasks.Enqueue(new DestroyBuildingTask(building));
+                TasksForVillager.DestroyBuildingTasks.Add(new DestroyBuildingTask(building));
             }
             else
             {

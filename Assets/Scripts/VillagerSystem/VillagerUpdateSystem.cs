@@ -22,7 +22,16 @@ namespace Assets.Scripts.VillagerSystem
                     if (builder.CurrentTask == null)
                     {
                         Debug.Log("BuilderTaskSetted");
-                        builder.SetTask(TasksForVillager.CreateBuildingTasks.Peek());
+                        builder.SetTask(TasksForVillager.CreateBuildingTasks[0]);
+                    }
+                    else if (builder.CurrentWork == Villager.WorkType.WaitingForOtherBuildersToBringResources)
+                    {
+                        var otherTask = TasksForVillager.CreateBuildingTasks.Find(x => x != builder.CurrentTask);
+
+                        if(otherTask != null)
+                        {
+                            builder.SetTask(otherTask);
+                        }
                     }
                 }
             }
@@ -36,7 +45,7 @@ namespace Assets.Scripts.VillagerSystem
                     if (builder.CurrentTask == null)
                     {
                         Debug.Log("BuilderTaskSetted");
-                        builder.SetTask(TasksForVillager.DestroyBuildingTasks.Peek());
+                        builder.SetTask(TasksForVillager.DestroyBuildingTasks[0]);
                     }
                 }
             }
@@ -56,7 +65,7 @@ namespace Assets.Scripts.VillagerSystem
                 if (logger.CurrentTask == null)
                 {
                     Debug.Log("LoggerTaskSetted");
-                    logger.SetTask(TasksForVillager.GetTreeTasks.Peek());
+                    logger.SetTask(TasksForVillager.GetTreeTasks[0]);
                 }
             }
         }
@@ -75,7 +84,7 @@ namespace Assets.Scripts.VillagerSystem
                 if (mason.CurrentTask == null)
                 {
                     Debug.Log("MasonTaskSetted");
-                    mason.SetTask(TasksForVillager.GetRockTasks.Peek());
+                    mason.SetTask(TasksForVillager.GetRockTasks[0]);
                 }
             }
         }

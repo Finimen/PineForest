@@ -5,10 +5,10 @@ namespace Assets.Scripts.VillagerSystem
 {
     public static class TasksForVillager
     {
-        public static Queue<BuildingTask> CreateBuildingTasks { get; private set; } = new Queue<BuildingTask>();
-        public static Queue<GetTreeTask> GetTreeTasks { get; private set; } = new Queue<GetTreeTask>();
-        public static Queue<GetRockTask> GetRockTasks { get; private set; } = new Queue<GetRockTask>();
-        public static Queue<DestroyBuildingTask> DestroyBuildingTasks { get; private set; } = new Queue<DestroyBuildingTask>();
+        public static List<BuildingTask> CreateBuildingTasks { get; private set; } = new List<BuildingTask>();
+        public static List<GetTreeTask> GetTreeTasks { get; private set; } = new List<GetTreeTask>();
+        public static List<GetRockTask> GetRockTasks { get; private set; } = new List<GetRockTask>();
+        public static List<DestroyBuildingTask> DestroyBuildingTasks { get; private set; } = new List<DestroyBuildingTask>();
     }
 
     public class BuildingTask : BaseVillagerTask
