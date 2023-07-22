@@ -11,6 +11,9 @@ namespace Assets.Scripts.BuildingSystem
     {
         public event Action OnPlaced;
 
+        [SerializeField] private Transform[] _navigationPoints;
+
+        [Space(25)]
         [SerializeField] private Collider[] _triggerColliders;
 
         [Space(25)]
@@ -24,6 +27,9 @@ namespace Assets.Scripts.BuildingSystem
         [SerializeField] private bool _isPaced;
         [SerializeField] private float _buildingTime = 1;
 
+        [Space(25)]
+        [SerializeField] private DoScaler _destroyingUI;
+
         private PlayerInventory _playerInventory;
 
         private BuildingPart[] _parts;
@@ -32,9 +38,11 @@ namespace Assets.Scripts.BuildingSystem
 
         private Resources _transferred;
 
-        private bool _isPlan;
         private float _buildingProgress;
+        private float _destroyingProgress;
         private int _entryCount;
+        private bool _isPlan;
+        private bool _isDestroying;
 
         public Resources Price => _price;
         public Resources Transferred => _transferred;
@@ -43,12 +51,11 @@ namespace Assets.Scripts.BuildingSystem
         public float BuildingProgress => _buildingProgress / _buildingTime;
         public bool BuildingPossible { get; private set; } = true;
         public bool IsPlaced => _isPaced;
+        public bool IsDestroying => _isDestroying;
 
         public void Initialize(PlayerInventory inventory)
         {
             _playerInventory = inventory;
-
-            _parts = GetComponentsInChildren<BuildingPart>();
 
             _navigationObstacle = GetComponent<NavMeshObstacle>();
 
@@ -123,12 +130,47 @@ namespace Assets.Scripts.BuildingSystem
 
         public void IncreaseBuildingProgress()
         {
-            _buildingProgress += Time.fixedDeltaTime * WeatherSystem.WeatherSystem.WorkEfficiency;
+            _buildingProgress += Time.fixedDeltaTime * World.WorkEfficiency;
 
             if (_buildingProgress > _buildingTime)
             {
                 Place();
             }
+        }
+
+        public void IncreaseDestroyingProgress()
+        {
+            _destroyingProgress += Time.fixedDeltaTime * World.WorkEfficiency;
+
+            if (_destroyingProgress > _buildingTime)
+            {
+                Destroy(gameObject);
+            }
+        }
+
+        public void StartDestroying()
+        {
+            foreach (var part in _parts)
+            {
+                part.UpdateMaterial(BuildingPart.BuildAbleType.Placed);
+            }
+
+            _destroyingUI?.SetScale(Vector3.one);
+        }
+
+        public Vector3 GetNearestPoint(Vector3 his)
+        {
+            var nearest = _navigationPoints[0];
+
+            foreach(var point in _navigationPoints)
+            {
+                if(Vector3.Distance(nearest.position, his) > Vector3.Distance(point.position, his))
+                {
+                    nearest = point;
+                }
+            }
+
+            return nearest.position;
         }
 
         private void Update()
@@ -142,6 +184,11 @@ namespace Assets.Scripts.BuildingSystem
                     part.UpdateMaterial(BuildingPossible? BuildingPart.BuildAbleType.Able : BuildingPart.BuildAbleType.Unable);
                 }
             }
+        }
+
+        private void OnEnable()
+        {
+            _parts = GetComponentsInChildren<BuildingPart>();
         }
 
         private void OnTriggerEnter(Collider other)

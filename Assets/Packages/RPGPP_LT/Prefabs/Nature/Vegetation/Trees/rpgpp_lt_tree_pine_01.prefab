@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -8342030801540459908}
   - component: {fileID: -2313649098479917956}
   - component: {fileID: 6085692931204737215}
+  - component: {fileID: 3424315614817110986}
   m_Layer: 0
   m_Name: rpgpp_lt_tree_pine_01
   m_TagString: Untagged
@@ -156,6 +157,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _header: Tree
   _description: You can cut it down to get a wood
+--- !u!208 &3424315614817110986
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369031296425274}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 1.75, y: 3.5, z: 1.75}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 4, z: -0.35}
+  m_TimeToStationary: 0.5
 --- !u!1 &1065485015447201718
 GameObject:
   m_ObjectHideFlags: 0

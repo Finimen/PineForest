@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts.InventorySystem;
 using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Assets.Scripts.VillagerSystem
 {
@@ -21,7 +20,7 @@ namespace Assets.Scripts.VillagerSystem
 
         public void DecreaseStrength(Villager miner)
         {
-            _strength -= Time.fixedDeltaTime * WeatherSystem.WeatherSystem.WorkEfficiency;
+            _strength -= Time.fixedDeltaTime * World.WorkEfficiency;
 
             if(_strength <= 0)
             {

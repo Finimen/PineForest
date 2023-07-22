@@ -48,7 +48,7 @@ namespace Assets.Scripts.BuildingSystem
 
             _current.InstallPlan();
 
-            TasksForVillager.BuildingTasks.Enqueue(new BuildingTask(_current));
+            TasksForVillager.CreateBuildingTasks.Enqueue(new BuildingTask(_current));
             _current = null;
         }
 

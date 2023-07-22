@@ -10,5 +10,8 @@ namespace Assets.Scripts
         public static List<Villager> Villagers { get; private set; } = new List<Villager>();
         public static List<StorageHouse> Storages { get; private set; } = new List<StorageHouse>();
         public static List<LightSource> LightSources { get; private set; } = new List<LightSource>();
+
+        public static float WorkEfficiency { get; set; } = 1;
+        public static float SunEfficiency { get; set; } = 1;
     }
 }

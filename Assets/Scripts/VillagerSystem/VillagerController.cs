@@ -1,14 +1,16 @@
+using Assets.Scripts.BuildingSystem;
 using UnityEngine;
 
 namespace Assets.Scripts.VillagerSystem
 {
-    public class ResourcesController : MonoBehaviour
+    public class VillagerController : MonoBehaviour
     {
         private enum State 
         { 
             Idle,
             TreeMining,
             RockMining,
+            BuildingDestroying
         }
 
         [SerializeField] private LayerMask _mask;
@@ -28,6 +30,11 @@ namespace Assets.Scripts.VillagerSystem
             _currentState = State.RockMining;
         }
 
+        public void StartBuildingDestroying()
+        {
+            _currentState = State.BuildingDestroying;
+        }
+
         private void Start()
         {
             _mainCamera = Camera.main;
@@ -41,12 +48,24 @@ namespace Assets.Scripts.VillagerSystem
 
                 if(Physics.Raycast(ray, out var hit, 1000, _mask, _triggerInteraction))
                 {
-                    if (hit.collider.gameObject.GetComponent<MinedResource>())
+                    if (_currentState != State.BuildingDestroying && hit.collider.GetComponent<MinedResource>() != null)
                     {
                         hit.collider.gameObject.GetComponent<MinedResource>().ShowUI();
 
-                        UpdateState(hit.collider.gameObject.GetComponent<MinedResource>());
+                        UpdateResourcesState(hit.collider.gameObject.GetComponent<MinedResource>());
                     }
+                    else if(_currentState == State.BuildingDestroying && hit.collider.GetComponent<Building>() != null)
+                    {
+                        UpdateBuildingState(hit.collider.GetComponent<Building>());
+                    }
+                    else
+                    {
+                        _currentState = State.Idle;
+                    }
+                }
+                else
+                {
+                    _currentState = State.Idle;
                 }
             }
 
@@ -56,7 +75,7 @@ namespace Assets.Scripts.VillagerSystem
             }
         }
 
-        private void UpdateState(MinedResource selected)
+        private void UpdateResourcesState(MinedResource selected)
         {
             switch (_currentState)
             {
@@ -72,6 +91,20 @@ namespace Assets.Scripts.VillagerSystem
                         TasksForVillager.GetRockTasks.Enqueue(new GetRockTask(selected));
                     }
                     break;
+            }
+        }
+
+        private void UpdateBuildingState(Building building)
+        {
+            if(building.IsPlaced)
+            {
+                building.StartDestroying();
+
+                TasksForVillager.DestroyBuildingTasks.Enqueue(new DestroyBuildingTask(building));
+            }
+            else
+            {
+                Destroy(building.gameObject);
             }
         }
     }

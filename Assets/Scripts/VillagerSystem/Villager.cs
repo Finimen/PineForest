@@ -25,6 +25,7 @@ namespace Assets.Scripts.VillagerSystem
         private NavMeshAgent _navigationController;
 
         private BuildingTask _buildingTask;
+        private DestroyBuildingTask _destroyingTask;
         private GetTreeTask _loggerTask;
         private GetRockTask _masonTask;
 
@@ -41,7 +42,16 @@ namespace Assets.Scripts.VillagerSystem
             switch (Profession)
             {
                 case ProfessionType.Builder:
-                    _buildingTask = (BuildingTask)CurrentTask;
+                    if(CurrentTask is (BuildingTask))
+                    {
+                        _buildingTask = (BuildingTask)CurrentTask;
+                        _destroyingTask = null;
+                    }
+                    else
+                    {
+                        _destroyingTask = (DestroyBuildingTask)CurrentTask;
+                        _buildingTask = null;
+                    }
                     break;
                 case ProfessionType.Logger:
                     _loggerTask = (GetTreeTask)CurrentTask;
@@ -64,9 +74,25 @@ namespace Assets.Scripts.VillagerSystem
             _transferring += resources.GetClampedResources(resources, _maxResources - _transferring.TotalCount());
         }
 
-        private void UpdateBuilderLogic()
+        private void UpdateDestroyingTask()
         {
-            if (_buildingTask.Target.IsPlaced)
+            if (_destroyingTask.Target != null)
+            {
+                if (Vector3.Distance(transform.position, _destroyingTask.Target.transform.position) > _buildDistance)
+                {
+                    _navigationController.stoppingDistance = _buildDistance * .75f;
+                    _navigationController.SetDestination(_destroyingTask.Target.transform.position);
+                }
+                else
+                {
+                    _destroyingTask.Target.IncreaseDestroyingProgress();
+                }
+            }
+        }
+
+        private void UpdateBuildingTask()
+        {
+            if (_buildingTask.Target == null || _buildingTask.Target.IsPlaced)
             {
                 CurrentTask = null;
                 return;
@@ -74,13 +100,13 @@ namespace Assets.Scripts.VillagerSystem
 
             if (_buildingTask.Target.Transferred != _buildingTask.Target.Price)
             {
-                if(_transferring.Contains(_buildingTask.Target.Needed))
+                if (_transferring.Contains(_buildingTask.Target.Needed))
                 {
-                    if (Vector3.Distance(transform.position, _buildingTask.Target.transform.position) > _buildDistance)
+                    if (Vector3.Distance(transform.position, _buildingTask.Target.GetNearestPoint(transform.position)) > _buildDistance)
                     {
-                        _navigationController.stoppingDistance = _buildDistance;
-                        _navigationController.SetDestination(_buildingTask.Target.transform.position);
-                        
+                        _navigationController.stoppingDistance = _buildDistance * .75f;
+                        _navigationController.SetDestination(_buildingTask.Target.GetNearestPoint(transform.position));
+
                         Debug.Log("Несу ресы");
                     }
                     else
@@ -103,32 +129,34 @@ namespace Assets.Scripts.VillagerSystem
 
                         foreach (var suitable in suitableList)
                         {
-                            if(nearestSuitable == null || Vector3.Distance(transform.position, nearestSuitable.transform.position) >
-                                Vector3.Distance(transform.position, suitable.transform.position))
+                            if (nearestSuitable == null || Vector3.Distance(transform.position, nearestSuitable.Building.GetNearestPoint(transform.position)) >
+                                Vector3.Distance(transform.position, suitable.Building.GetNearestPoint(transform.position)))
                             {
                                 nearestSuitable = suitable;
                             }
                         }
 
-                        if (Vector3.Distance(transform.position, nearestSuitable.transform.position) > _buildDistance)
+                        if (Vector3.Distance(transform.position, nearestSuitable.Building.GetNearestPoint(transform.position)) > _buildDistance)
                         {
                             Debug.Log("Иду к складу");
-                            
-                            _navigationController.stoppingDistance = _buildDistance;
-                            _navigationController.SetDestination(nearestSuitable.transform.position);
+
+                            Debug.Log(_buildingTask.Target.name);
+
+                            _navigationController.stoppingDistance = _buildDistance * .75f;
+                            _navigationController.SetDestination(nearestSuitable.Building.GetNearestPoint(transform.position));
                         }
                         else
                         {
                             Debug.Log("Взял ресы");
 
-                            if(_transferring.TotalCount() == 0)
+                            if (_transferring.TotalCount() == 0)
                             {
                                 nearestSuitable.TransferResources(_transferring);
                             }
 
                             _transferring += nearestSuitable.Resources;
                             _transferring = nearestSuitable.Resources.GetClampedResources(
-                                _buildingTask.Target.Price - _buildingTask.Target.Transferred,_maxResources);
+                                _buildingTask.Target.Price - _buildingTask.Target.Transferred, _maxResources);
                             nearestSuitable.TransferResources(-_transferring);
                         }
                     }
@@ -140,15 +168,27 @@ namespace Assets.Scripts.VillagerSystem
             }
             else
             {
-                if (Vector3.Distance(transform.position, _buildingTask.Target.transform.position) > _buildDistance)
+                if (Vector3.Distance(transform.position, _buildingTask.Target.GetNearestPoint(transform.position)) > _buildDistance)
                 {
-                    _navigationController.stoppingDistance = _buildDistance;
-                    _navigationController.SetDestination(_buildingTask.Target.transform.position);
+                    _navigationController.stoppingDistance = _buildDistance * .75f;
+                    _navigationController.SetDestination(_buildingTask.Target.GetNearestPoint(transform.position));
                 }
                 else
                 {
                     _buildingTask.Target.IncreaseBuildingProgress();
                 }
+            }
+        }
+
+        private void UpdateBuilderLogic()
+        {
+            if(_buildingTask != null)
+            {
+                UpdateBuildingTask();
+            }
+            else
+            {
+                UpdateDestroyingTask();
             }
         }
 
@@ -168,7 +208,7 @@ namespace Assets.Scripts.VillagerSystem
             {
                 if (Vector3.Distance(transform.position, _masonTask.Target.transform.position) > _mineDistance)
                 {
-                    _navigationController.stoppingDistance = _mineDistance;
+                    _navigationController.stoppingDistance = _mineDistance * .75f;
                     _navigationController.SetDestination(_masonTask.Target.transform.position);
                 }
                 else
@@ -194,7 +234,7 @@ namespace Assets.Scripts.VillagerSystem
             {
                 if (Vector3.Distance(transform.position, _loggerTask.Target.transform.position) > _mineDistance)
                 {
-                    _navigationController.stoppingDistance = _mineDistance;
+                    _navigationController.stoppingDistance = _mineDistance * .75f;
                     _navigationController.SetDestination(_loggerTask.Target.transform.position);
                 }
                 else
@@ -221,7 +261,7 @@ namespace Assets.Scripts.VillagerSystem
 
             if (Vector3.Distance(transform.position, nearest.transform.position) > _buildDistance)
             {
-                _navigationController.stoppingDistance = _mineDistance;
+                _navigationController.stoppingDistance = _mineDistance * .75f;
                 _navigationController.SetDestination(_loggerTask.Target.transform.position);
             }
             else
@@ -262,8 +302,11 @@ namespace Assets.Scripts.VillagerSystem
 
             if (CurrentTask == null)
             {
+                _navigationController.isStopped = true;
                 return;
             }
+
+            _navigationController.isStopped = false;
 
             switch (Profession)
             {

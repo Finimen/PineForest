@@ -1,4 +1,3 @@
-using Assets.Scripts.VillagerSystem;
 using UnityEngine;
 
 namespace Assets.Scripts.WeatherSystem
@@ -18,9 +17,6 @@ namespace Assets.Scripts.WeatherSystem
         private WeatherData _current;
 
         public int WeathersCount => _weathers.Length;
-
-        public static float WorkEfficiency { get; private set; } = 1;
-        public static float SunEfficiency { get; private set; } = 1;
 
         public void SetWeather(int id)
         {
@@ -43,8 +39,8 @@ namespace Assets.Scripts.WeatherSystem
             _changerDayAndNight.SetGradients(_current.Light, _current.Fog);
             RenderSettings.fogDensity = _current.FogAmount;
 
-            WorkEfficiency = _current.WorkEfficiency;
-            SunEfficiency = _sunIntensity;
+            World.WorkEfficiency = _current.WorkEfficiency;
+            World.SunEfficiency = _sunIntensity;
         }
 
         private void DisableAnyWeathers()
@@ -95,7 +91,7 @@ namespace Assets.Scripts.WeatherSystem
             UpdateVillagers();
 
             _weatherText.text = $"{_current.Name}";
-            _workText.text = $"{WorkEfficiency * 100}%";
+            _workText.text = $"{World.WorkEfficiency * 100}%";
         }
     }
 }

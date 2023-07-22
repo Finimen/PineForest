@@ -9,6 +9,8 @@ namespace Assets.Scripts.BuildingSystem
 
         private Building _building;
 
+        public Building Building => _building;
+
         public Resources Resources => _resources;
 
         public void TransferResources(Resources resources)

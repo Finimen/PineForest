@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.VillagerSystem
 {
-    internal class VillagerUpdateSystem : MonoBehaviour
+    public class VillagerUpdateSystem : MonoBehaviour
     {
         private void FixedUpdate()
         {
@@ -14,19 +13,31 @@ namespace Assets.Scripts.VillagerSystem
 
         private void UpdateBuilders()
         {
-            if(TasksForVillager.BuildingTasks.Count == 0)
+            if(TasksForVillager.CreateBuildingTasks.Count != 0)
             {
-                return;
+                var builders = World.Villagers.FindAll(x => x.Profession == Villager.ProfessionType.Builder);
+
+                foreach (var builder in builders)
+                {
+                    if (builder.CurrentTask == null)
+                    {
+                        Debug.Log("BuilderTaskSetted");
+                        builder.SetTask(TasksForVillager.CreateBuildingTasks.Peek());
+                    }
+                }
             }
 
-            var builders = World.Villagers.FindAll(x => x.Profession == Villager.ProfessionType.Builder);
-
-            foreach (var builder in builders)
+            if (TasksForVillager.DestroyBuildingTasks.Count != 0)
             {
-                if(builder.CurrentTask == null)
+                var builders = World.Villagers.FindAll(x => x.Profession == Villager.ProfessionType.Builder);
+
+                foreach (var builder in builders)
                 {
-                    Debug.Log("BuilderTaskSetted");
-                    builder.SetTask(TasksForVillager.BuildingTasks.Peek());
+                    if (builder.CurrentTask == null)
+                    {
+                        Debug.Log("BuilderTaskSetted");
+                        builder.SetTask(TasksForVillager.DestroyBuildingTasks.Peek());
+                    }
                 }
             }
         }
