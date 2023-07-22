@@ -90,8 +90,8 @@ namespace Assets.Scripts.WeatherSystem
 
             UpdateVillagers();
 
-            _weatherText.text = $"{_current.Name}";
-            _workText.text = $"{World.WorkEfficiency * 100}%";
+            _weatherText.text = $"Weather: {_current.Name}";
+            _workText.text = $"Work: {World.WorkEfficiency * 100}%";
         }
     }
 }

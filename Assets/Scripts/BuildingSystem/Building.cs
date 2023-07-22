@@ -46,6 +46,7 @@ namespace Assets.Scripts.BuildingSystem
 
         public Resources Price => _price;
         public Resources Transferred => _transferred;
+        public Resources StartTransferring { get; set; }
         public Resources Needed => _price - _transferred;
 
         public float BuildingProgress => _buildingProgress / _buildingTime;

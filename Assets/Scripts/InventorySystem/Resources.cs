@@ -93,6 +93,11 @@ namespace Assets.Scripts
 
         public Resources GetClampedResources(Resources needed, int maxCount)
         {
+            if(needed.TotalCount() <= 0)
+            {
+                return Empty;
+            }
+
             var totalCount = 0;
             var result = new Resources();
 
