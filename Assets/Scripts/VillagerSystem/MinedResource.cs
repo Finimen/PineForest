@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.InventorySystem;
-using System;
+﻿using System;
 using UnityEngine;
 
 namespace Assets.Scripts.VillagerSystem
@@ -43,7 +42,6 @@ namespace Assets.Scripts.VillagerSystem
             IsCollected = true;
 
             miner.GiveResources(_reward);
-            FindObjectOfType<PlayerInventory>().ChangeResources(_reward);
 
             HideUI();
 

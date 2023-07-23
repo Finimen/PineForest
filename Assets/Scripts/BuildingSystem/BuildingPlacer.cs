@@ -41,8 +41,6 @@ namespace Assets.Scripts.BuildingSystem
 
         private void PlaceCurrent()
         {
-            _playerInventory.ChangeResources(-_current.Price);
-
             _current.transform.position = _position;
             _current.transform.rotation = Quaternion.Euler(_rotation);
 

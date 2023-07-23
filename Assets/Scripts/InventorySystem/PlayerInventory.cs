@@ -15,11 +15,6 @@ namespace Assets.Scripts.InventorySystem
         public int Unemployed => _unemployed;
         public int Villagers => _villagers;
 
-        public void ChangeResources(Resources resources)
-        {
-            _resources += resources;
-        }
-
         private void Update()
         {
             _villagers = World.Villagers.Count;

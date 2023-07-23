@@ -30,6 +30,9 @@ namespace Assets.Scripts.VillagerSystem
         [SerializeField] private int _maxResources = 5;
         [SerializeField] private Resources _transferring;
 
+        [Space(25)]
+        [SerializeField] private float _hunger;
+
         private NavMeshAgent _navigationController;
 
         private BuildingTask _buildingTask;
@@ -53,7 +56,7 @@ namespace Assets.Scripts.VillagerSystem
             switch (Profession)
             {
                 case ProfessionType.Builder:
-                    if(CurrentTask is (BuildingTask))
+                    if (CurrentTask is (BuildingTask))
                     {
                         _buildingTask = (BuildingTask)CurrentTask;
                         _destroyingTask = null;
@@ -91,13 +94,16 @@ namespace Assets.Scripts.VillagerSystem
             {
                 if (Vector3.Distance(transform.position, _destroyingTask.Target.transform.position) > _actionDistance)
                 {
-                    _navigationController.stoppingDistance = _actionDistance * .75f;
                     _navigationController.SetDestination(_destroyingTask.Target.transform.position);
                 }
                 else
                 {
                     _destroyingTask.Target.IncreaseDestroyingProgress();
                 }
+            }
+            else
+            {
+                CurrentTask = null;
             }
         }
 
@@ -108,7 +114,7 @@ namespace Assets.Scripts.VillagerSystem
                 CurrentTask = null;
                 return;
             }
-            
+
             if (_buildingTask.Target.Needed.TotalCount() > 0)
             {
                 if (_transferring.Contains(_buildingTask.Target.Needed))
@@ -176,7 +182,7 @@ namespace Assets.Scripts.VillagerSystem
 
                             _transferring += nearestSuitable.Resources;
                             _transferring = nearestSuitable.Resources.GetClampedResources(
-                                _buildingTask.Target.Price - _buildingTask.Target.StartTransferring, _maxResources);    
+                                _buildingTask.Target.Price - _buildingTask.Target.StartTransferring, _maxResources);
                             nearestSuitable.TransferResources(-_transferring);
 
                             _buildingTask.Target.StartTransferring += _transferring;
@@ -194,7 +200,6 @@ namespace Assets.Scripts.VillagerSystem
             {
                 if (Vector3.Distance(transform.position, _buildingTask.Target.GetNearestPoint(transform.position)) > _actionDistance)
                 {
-                    _navigationController.stoppingDistance = _actionDistance * .75f;
                     _navigationController.SetDestination(_buildingTask.Target.GetNearestPoint(transform.position));
                 }
                 else
@@ -208,7 +213,7 @@ namespace Assets.Scripts.VillagerSystem
 
         private void UpdateBuilderLogic()
         {
-            if(_buildingTask != null)
+            if (_buildingTask != null)
             {
                 UpdateBuildingTask();
             }
@@ -234,7 +239,6 @@ namespace Assets.Scripts.VillagerSystem
             {
                 if (Vector3.Distance(transform.position, _masonTask.Target.transform.position) > _actionDistance)
                 {
-                    _navigationController.stoppingDistance = _actionDistance * .75f;
                     _navigationController.SetDestination(_masonTask.Target.transform.position);
                 }
                 else
@@ -253,7 +257,7 @@ namespace Assets.Scripts.VillagerSystem
                 return;
             }
 
-            if(_transferring.TotalCount() == _maxResources)
+            if (_transferring.TotalCount() == _maxResources)
             {
                 TransferResourcesOnStorage();
             }
@@ -261,7 +265,6 @@ namespace Assets.Scripts.VillagerSystem
             {
                 if (Vector3.Distance(transform.position, _loggerTask.Target.transform.position) > _actionDistance)
                 {
-                    _navigationController.stoppingDistance = _actionDistance * .75f;
                     _navigationController.SetDestination(_loggerTask.Target.transform.position);
                 }
                 else
@@ -277,25 +280,90 @@ namespace Assets.Scripts.VillagerSystem
 
             StorageHouse nearest = null;
 
-            foreach(var storage in World.Storages)
+            foreach (var storage in World.Storages)
             {
-                if(nearest == null || Vector3.Distance(nearest.transform.position, transform.position) >
-                    Vector3.Distance(storage.transform.position, transform.position))
+                if (nearest == null || Vector3.Distance(transform.position, nearest.Building.GetNearestPoint(transform.position)) >
+                                Vector3.Distance(transform.position, storage.Building.GetNearestPoint(transform.position)))
                 {
                     nearest = storage;
                 }
             }
 
-            if (Vector3.Distance(transform.position, nearest.transform.position) > _actionDistance)
+            if (Vector3.Distance(transform.position, nearest.Building.GetNearestPoint(transform.position)) > _actionDistance)
             {
-                _navigationController.stoppingDistance = _actionDistance * .75f;
-                _navigationController.SetDestination(nearest.transform.position);
+                _navigationController.SetDestination(nearest.Building.GetNearestPoint(transform.position));
             }
             else
             {
                 nearest.TransferResources(_transferring);
                 _transferring = Resources.Empty;
             }
+        }
+
+        private void UpdateProfession()
+        {
+            switch (Profession)
+            {
+                case ProfessionType.Builder:
+                    UpdateBuilderLogic();
+                    break;
+                case ProfessionType.Logger:
+                    UpdateLoggerLogic();
+                    break;
+                case ProfessionType.Mason:
+                    UpdateMasonLogic();
+                    break;
+            }
+        }
+
+        private void UpdateParameters()
+        {
+            _navigationController.speed = _movingSpeed * MovingEfficiency;
+
+            _navigationController.stoppingDistance = _actionDistance * .75f;
+
+            _hunger += Time.deltaTime / Random.Range(20, 40);
+        }
+
+        private bool TryToEat()
+        {
+            var suitableList = World.Storages.FindAll(x => x.Resources.Contains(new Resources(1, 0, 0)));
+
+            if (suitableList.Count > 0)
+            {
+                StorageHouse nearestSuitable = null;
+
+                foreach (var suitable in suitableList)
+                {
+                    if (nearestSuitable == null || Vector3.Distance(transform.position,
+                        nearestSuitable.Building.GetNearestPoint(transform.position)) >
+                        Vector3.Distance(transform.position, suitable.Building.GetNearestPoint(transform.position)))
+                    {
+                        nearestSuitable = suitable;
+                    }
+                }
+
+                if (Vector3.Distance(transform.position, nearestSuitable.Building.GetNearestPoint(transform.position)) > _actionDistance)
+                {
+                    _navigationController.SetDestination(nearestSuitable.Building.GetNearestPoint(transform.position));
+                }
+                else
+                {
+                    nearestSuitable.TransferResources(_transferring);
+                    nearestSuitable.TransferResources(-new Resources(1, 0, 0));
+
+                    _hunger = 0;
+                }
+
+                return true;
+            }
+
+            return false;
+        }
+
+        private void Die()
+        {
+            Destroy(gameObject);
         }
 
         private void OnEnable()
@@ -311,11 +379,6 @@ namespace Assets.Scripts.VillagerSystem
             }
         }
 
-        private void UpdateParameters()
-        {
-            _navigationController.speed = _movingSpeed * MovingEfficiency;
-        }
-
         private void Start()
         {
             _navigationController = GetComponent<NavMeshAgent>();
@@ -325,7 +388,19 @@ namespace Assets.Scripts.VillagerSystem
 
         private void FixedUpdate()
         {
+            _navigationController.isStopped = false;
+
             UpdateParameters();
+
+            if (_hunger >= 1)
+            {
+                Die();
+                return;
+            }
+            else if (_hunger > .75f && TryToEat())
+            {
+                return;
+            }
 
             if (CurrentTask == null)
             {
@@ -333,27 +408,19 @@ namespace Assets.Scripts.VillagerSystem
                 {
                     TransferResourcesOnStorage();
                 }
+                else if(_hunger > .5f)
+                {
+                    TryToEat();
+                }
                 else
                 {
                     _navigationController.isStopped = true;
                 }
+                
                 return;
             }
 
-            _navigationController.isStopped = false;
-
-            switch (Profession)
-            {
-                case ProfessionType.Builder:
-                    UpdateBuilderLogic();
-                    break;
-                case ProfessionType.Logger:
-                    UpdateLoggerLogic();
-                    break;
-                case ProfessionType.Mason:
-                    UpdateMasonLogic();
-                    break;
-            }
+            UpdateProfession();
         }
     }
 }

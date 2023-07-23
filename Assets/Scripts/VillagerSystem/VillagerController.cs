@@ -1,4 +1,5 @@
 using Assets.Scripts.BuildingSystem;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 namespace Assets.Scripts.VillagerSystem
@@ -50,8 +51,6 @@ namespace Assets.Scripts.VillagerSystem
                 {
                     if (_currentState != State.BuildingDestroying && hit.collider.GetComponent<MinedResource>() != null)
                     {
-                        hit.collider.gameObject.GetComponent<MinedResource>().ShowUI();
-
                         UpdateResourcesState(hit.collider.gameObject.GetComponent<MinedResource>());
                     }
                     else if(_currentState == State.BuildingDestroying && hit.collider.GetComponent<Building>() != null)
@@ -77,6 +76,8 @@ namespace Assets.Scripts.VillagerSystem
 
         private void UpdateResourcesState(MinedResource selected)
         {
+            selected.ShowUI();
+
             switch (_currentState)
             {
                 case State.TreeMining:
@@ -98,9 +99,24 @@ namespace Assets.Scripts.VillagerSystem
         {
             if(building.IsPlaced)
             {
-                building.StartDestroying();
+                if(!building.IsDestroying)
+                {
+                    building.StartDestroying();
 
-                TasksForVillager.DestroyBuildingTasks.Add(new DestroyBuildingTask(building));
+                    TasksForVillager.DestroyBuildingTasks.Add(new DestroyBuildingTask(building));
+                }
+                else
+                {
+                    building.StopDestroying();
+
+                    var currentTask = TasksForVillager.DestroyBuildingTasks.Find(x => x.Target == building);
+
+                    if(currentTask != null)
+                    {
+                        currentTask.Target = null;
+                        TasksForVillager.DestroyBuildingTasks.Remove(currentTask);
+                    }
+                }
             }
             else
             {

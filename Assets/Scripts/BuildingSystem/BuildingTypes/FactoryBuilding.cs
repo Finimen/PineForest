@@ -11,6 +11,8 @@ namespace Assets.Scripts.BuildingSystem
 
         [SerializeField] private float _duration;
 
+        private Resources _produced;
+
         private PlayerInventory _player;
 
         private void Start()
@@ -31,7 +33,7 @@ namespace Assets.Scripts.BuildingSystem
             {
                 yield return new WaitForSeconds(_duration);
 
-                _player.ChangeResources(_reward);
+                _produced += _reward;
             }
         }
     }

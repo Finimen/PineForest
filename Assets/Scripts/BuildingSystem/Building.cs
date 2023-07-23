@@ -157,6 +157,15 @@ namespace Assets.Scripts.BuildingSystem
             }
 
             _destroyingUI?.SetScale(Vector3.one);
+
+            _isDestroying = true;
+        }
+
+        public void StopDestroying()
+        {
+            _destroyingUI?.SetScale(Vector3.zero);
+
+            _isDestroying = false;
         }
 
         public Vector3 GetNearestPoint(Vector3 his)
