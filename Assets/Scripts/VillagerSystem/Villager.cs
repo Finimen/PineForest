@@ -39,6 +39,7 @@ namespace Assets.Scripts.VillagerSystem
         private DestroyBuildingTask _destroyingTask;
         private GetTreeTask _loggerTask;
         private GetRockTask _masonTask;
+        private MoveResourcesTask _moveTask;
 
         private WorkType _workType;
 
@@ -47,11 +48,22 @@ namespace Assets.Scripts.VillagerSystem
         [field: SerializeField, Space(25)] public ProfessionType Profession { get; private set; }
         public BaseVillagerTask CurrentTask { get; private set; }
         public float MovingEfficiency { get; set; } = 1;
+        public int MaxResources => _maxResources;
         public WorkType CurrentWork => _workType;
 
         public void SetTask(BaseVillagerTask task)
         {
             CurrentTask = task;
+
+            if(task is MoveResourcesTask)
+            {
+                _moveTask = (MoveResourcesTask)task;
+                return;
+            }
+            else
+            {
+                _moveTask = null;
+            }
 
             switch (Profession)
             {
@@ -274,6 +286,29 @@ namespace Assets.Scripts.VillagerSystem
             }
         }
 
+        private void UpdateMoverLogic()
+        {
+            if (_transferring.TotalCount() >= _maxResources)
+            {
+                TransferResourcesOnStorage();
+            }
+            else
+            {
+                if (Vector3.Distance(transform.position, _moveTask.Target.GetNearestPoint(transform.position)) > _actionDistance)
+                {
+                    _navigationController.SetDestination(_moveTask.Target.GetNearestPoint(transform.position));
+                }
+                else
+                {
+                    var difference = _moveTask.Resources.
+                        GetClampedResources(_moveTask.Resources, _maxResources - _transferring.TotalCount());
+
+                    _moveTask.Resources -= difference;
+                    _transferring += difference;
+                }
+            }
+        }
+
         private void TransferResourcesOnStorage()
         {
             Debug.Log("Несу добытые ресы на склад");
@@ -404,7 +439,7 @@ namespace Assets.Scripts.VillagerSystem
 
             if (CurrentTask == null)
             {
-                if(_transferring.TotalCount()  > 0)
+                if (_transferring.TotalCount()  > 0)
                 {
                     TransferResourcesOnStorage();
                 }
@@ -417,6 +452,13 @@ namespace Assets.Scripts.VillagerSystem
                     _navigationController.isStopped = true;
                 }
                 
+                return;
+            }
+
+            if (_moveTask != null)
+            {
+                UpdateMoverLogic();
+
                 return;
             }
 

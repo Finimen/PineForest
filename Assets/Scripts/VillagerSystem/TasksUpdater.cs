@@ -49,6 +49,17 @@ namespace Assets.Scripts.VillagerSystem
                     }
                 }
             }
+
+            if (TasksForVillager.MoveResourcesTasks.Count > 0)
+            {
+                for (int i = 0; i < TasksForVillager.MoveResourcesTasks.Count; i++)
+                {
+                    if (TasksForVillager.MoveResourcesTasks[i].Target == null || TasksForVillager.MoveResourcesTasks[i].Resources.TotalCount() <= 0)
+                    {
+                        TasksForVillager.MoveResourcesTasks.RemoveAt(i);
+                    }
+                }
+            }
         }
     }
 }

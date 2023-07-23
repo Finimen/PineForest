@@ -6,6 +6,7 @@ namespace Assets.Scripts.VillagerSystem
     {
         private void FixedUpdate()
         {
+            UpdateMoveLogic();
             UpdateBuilders();
             UpdateLoggers();
             UpdateMasons();
@@ -86,6 +87,28 @@ namespace Assets.Scripts.VillagerSystem
                     Debug.Log("MasonTaskSetted");
                     mason.SetTask(TasksForVillager.GetRockTasks[0]);
                 }
+            }
+        }
+
+        private void UpdateMoveLogic()
+        {
+            if (TasksForVillager.MoveResourcesTasks.Count == 0)
+            {
+                return;
+            }
+
+            var villagers = World.Villagers.FindAll(x => x.CurrentTask == null);
+
+            if(villagers.Count == 0)
+            {
+                return;
+            }
+
+            var iterationCount = Mathf.Min(villagers.Count, TasksForVillager.MoveResourcesTasks[0].Resources.TotalCount() / villagers[0].MaxResources);
+            
+            for (int i = 0; i < iterationCount; i++)
+            {
+                villagers[i].SetTask(TasksForVillager.MoveResourcesTasks[0]);
             }
         }
     }
