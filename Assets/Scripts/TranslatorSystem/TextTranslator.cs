@@ -14,6 +14,7 @@ namespace Assets.Scripts.TranslatorSystem
             text = GetComponent<TMPro.TMP_Text>();
 
             FindObjectOfType<Translator>().OnLanguageChanged += SetText;
+            SetText(FindObjectOfType<Translator>().Current);
         }
 
         private void SetText(Language language)

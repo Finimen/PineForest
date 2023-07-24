@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Rendering.UI;
 
 namespace Assets.Scripts.WeatherSystem
 {
@@ -57,7 +58,10 @@ namespace Assets.Scripts.WeatherSystem
             RenderSettings.skybox.color = _ambientLight.Evaluate(_timeProgress);
             RenderSettings.fogColor = Color.Lerp(RenderSettings.fogColor, _fog.Evaluate(_timeProgress), .01f);
 
-            _text.text = $"Time: {Math.Round((_timeProgress * 24), 2)}";
+            if(_text != null)
+            {
+                _text.text = $"Time: {Math.Round((_timeProgress * 24), 2)}";
+            }
 
             _directional.transform.localEulerAngles = new Vector3(Mathf.Clamp(360f * _timeProgress - 90, 0, 180) , _defaultAngels.x, _defaultAngels.y);
         }

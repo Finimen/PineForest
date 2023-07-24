@@ -199,6 +199,11 @@ namespace Assets.Scripts.BuildingSystem
         private void OnEnable()
         {
             _parts = GetComponentsInChildren<BuildingPart>();
+
+            if (_isPaced)
+            {
+                Initialize(FindObjectOfType<PlayerInventory>());
+            }
         }
 
         private void OnTriggerEnter(Collider other)
