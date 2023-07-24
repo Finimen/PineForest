@@ -45,6 +45,16 @@ namespace Assets.Scripts.TranslatorSystem
             return sentence;
         }
 
+        private void OnEnable()
+        {
+            Current = (Language)PlayerPrefs.GetInt("Language");
+        }
+
+        private void OnDisable()
+        {
+            PlayerPrefs.SetInt("Language", (int)Current);
+        }
+
         [Serializable]
         public class KeySentence
         {
