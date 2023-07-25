@@ -357,7 +357,7 @@ namespace Assets.Scripts.VillagerSystem
 
             _navigationController.stoppingDistance = _actionDistance * .75f;
 
-            _hunger += Time.deltaTime / Random.Range(20, 40);
+            _hunger += Time.deltaTime / Random.Range(100, 150);
         }
 
         private bool TryToEat()
@@ -443,7 +443,7 @@ namespace Assets.Scripts.VillagerSystem
                 {
                     TransferResourcesOnStorage();
                 }
-                else if(_hunger > .5f)
+                else if(_hunger > .25f)
                 {
                     TryToEat();
                 }

@@ -1,6 +1,4 @@
-using Assets.Scripts.InventorySystem;
 using Assets.Scripts.VillagerSystem;
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -12,17 +10,16 @@ namespace Assets.Scripts.BuildingSystem
         [SerializeField] private Resources _reward;
 
         [SerializeField] private float _duration;
+        [SerializeField] private bool _useSunIntensity;
+
+        private float _progress;
 
         private MoveResourcesTask _moveResourcesTask;
 
         private Resources _produced;
 
-        private PlayerInventory _player;
-
         private void Start()
         {
-            _player = FindObjectOfType<PlayerInventory>();
-
             GetComponent<Building>().OnPlaced += StartProduction;
         }
 
@@ -35,19 +32,23 @@ namespace Assets.Scripts.BuildingSystem
         {
             while (true)
             {
-                yield return new WaitForSeconds(_duration);
+                _progress += Time.deltaTime * (_useSunIntensity? World.SunEfficiency : 1);
+                yield return null;
 
-                _produced += _reward;
-
-                if(_moveResourcesTask == null)
+                if(_progress >= _duration)
                 {
-                    _moveResourcesTask = new MoveResourcesTask(GetComponent<Building>(), _produced);
+                    _produced += _reward;
 
-                    TasksForVillager.MoveResourcesTasks.Add(_moveResourcesTask);
-                }
-                else
-                {
-                    _moveResourcesTask.Resources = _produced;
+                    if (_moveResourcesTask == null)
+                    {
+                        _moveResourcesTask = new MoveResourcesTask(GetComponent<Building>(), _produced);
+
+                        TasksForVillager.MoveResourcesTasks.Add(_moveResourcesTask);
+                    }
+                    else
+                    {
+                        _moveResourcesTask.Resources = _produced;
+                    }
                 }
             }
         }

@@ -9,7 +9,7 @@ namespace Assets.Scripts.TranslatorSystem
 
         private TMPro.TMP_Text text;
 
-        private void Start()
+        private void Awake()
         {
             text = GetComponent<TMPro.TMP_Text>();
 
