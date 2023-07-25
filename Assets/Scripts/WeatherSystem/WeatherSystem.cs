@@ -40,6 +40,8 @@ namespace Assets.Scripts.WeatherSystem
             RenderSettings.fogDensity = _current.FogAmount;
 
             World.WorkEfficiency = _current.WorkEfficiency;
+            World.RainEfficiency = _current.RainIntensity;
+
             World.SunEfficiency = _sunIntensity;
         }
 

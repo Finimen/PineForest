@@ -1,17 +1,16 @@
-﻿using Assets.Scripts.VillagerSystem;
-using DG.Tweening;
+﻿using DG.Tweening;
 using UnityEngine;
 
 namespace Assets.Scripts.Environment
 {
-    [RequireComponent(typeof(MinedResource))]
+    [RequireComponent(typeof(DamageableObject))]
     internal class RockAnimator : MonoBehaviour
     {
         [SerializeField] private float _duration = 1;
 
         private void Start()
         {
-            GetComponent<MinedResource>().OnCollected += () =>
+            GetComponent<DamageableObject>().OnDestroyed += () =>
             {
                 transform.DOScale(Vector3.zero, _duration).SetEase(Ease.InOutBounce);
             };

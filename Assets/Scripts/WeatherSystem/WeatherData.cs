@@ -16,5 +16,6 @@ namespace Assets.Scripts.WeatherSystem
         [field: Space(25)]
         [field: SerializeField] public float WorkEfficiency { get; private set; }
         [field: SerializeField] public float MaxSunIntensity { get; private set; }
+        [field: SerializeField] public float RainIntensity { get; private set; }
     }
 }

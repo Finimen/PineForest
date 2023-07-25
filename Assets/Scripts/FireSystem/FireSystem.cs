@@ -30,9 +30,9 @@ namespace Assets.Scripts.FireSystems
                     foreach (var fireComponent in fireComponents)
                     {
                         fireComponent.FireTime -= _fireUpdateTickRate;
-                        fireComponent.FireIntensity += _fireUpdateTickRate;
+                        fireComponent.FireIntensity += _fireUpdateTickRate - World.RainEfficiency * _fireUpdateTickRate * Random.Range(.5f, 4.5f);
 
-                        if(fireComponent.FireTime <= 0)
+                        if(fireComponent.FireIntensity < 0 || fireComponent.FireTime <= 0)
                         {
                             fireComponent.IsFire = false;
                         }

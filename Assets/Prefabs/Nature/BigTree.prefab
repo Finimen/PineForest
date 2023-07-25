@@ -262,6 +262,7 @@ GameObject:
   - component: {fileID: 4525882656146170427}
   - component: {fileID: -1639313400587787141}
   - component: {fileID: 5969375237215867720}
+  - component: {fileID: 1547597423408469609}
   m_Layer: 0
   m_Name: BigTree
   m_TagString: Untagged
@@ -381,7 +382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 518efc01bbe2aa24aa58d527c301c4a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _duration: 1
+  _duration: 3
 --- !u!114 &4525882656146170427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,6 +432,18 @@ MonoBehaviour:
   _fireLight: {fileID: 6061547075947969014}
   _emissionMultiplier: 15
   _scaleMultiplier: 0.3
+--- !u!114 &1547597423408469609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6273801463415905216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 179cffe3be6fc1f4fa8b10bbbcf9ee9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8084672565182747603
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,7 +15,7 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 1
-  m_FogColor: {r: 0.6670855, g: 0.9048778, b: 0.9933462, a: 1}
+  m_FogColor: {r: 0.6671552, g: 0.9049133, b: 0.99337, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.0035
   m_LinearFogStart: 0
@@ -22772,7 +22772,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 596453215}
-  m_LocalRotation: {x: 0.16154708, y: 0.12050125, z: 0.12050121, w: 0.9720398}
+  m_LocalRotation: {x: 0.16154708, y: 0.12050122, z: 0.120501265, w: 0.9720398}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -69061,10 +69061,10 @@ RectTransform:
   m_Father: {fileID: 1758032496}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 425}
-  m_SizeDelta: {x: -100, y: -950}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -115}
+  m_SizeDelta: {x: 1820, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1745740749
 MonoBehaviour:

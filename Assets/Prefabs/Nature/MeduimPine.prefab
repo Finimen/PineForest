@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 1342397873094194336}
   - component: {fileID: 17857552854864712}
   - component: {fileID: 6116876466985909145}
+  - component: {fileID: 6965632113834480744}
   m_Layer: 0
   m_Name: MeduimPine
   m_TagString: Untagged
@@ -219,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 518efc01bbe2aa24aa58d527c301c4a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _duration: 1
+  _duration: 3
 --- !u!114 &1342397873094194336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,6 +270,18 @@ MonoBehaviour:
   _fireLight: {fileID: 8709538876064518246}
   _emissionMultiplier: 10
   _scaleMultiplier: 0.5
+--- !u!114 &6965632113834480744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5657038311622204750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 179cffe3be6fc1f4fa8b10bbbcf9ee9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7749291200835090603
 GameObject:
   m_ObjectHideFlags: 0

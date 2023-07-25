@@ -18,13 +18,14 @@ namespace Assets.Scripts.FireSystems
 
                 if (_isFire)
                 {
-                    Debug.Log("FIRE ON");
-
                     OnFireStarted?.Invoke();
                 }
                 else
                 {
-                    Debug.Log("FIRE OFF");
+                    if(FireTime <= 0)
+                    {
+                        GetComponent<DamageableObject>()?.Destroy();
+                    }
 
                     OnFireEnded?.Invoke();
                 }

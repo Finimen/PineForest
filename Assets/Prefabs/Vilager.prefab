@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -1882177786555402692}
   - component: {fileID: 1057878647822360381}
   - component: {fileID: 9086512554373240031}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Vilager
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -13,5 +13,6 @@ namespace Assets.Scripts
 
         public static float WorkEfficiency { get; set; } = 1;
         public static float SunEfficiency { get; set; } = 1;
+        public static float RainEfficiency { get; set; } = 0;
     }
 }

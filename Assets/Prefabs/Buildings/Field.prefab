@@ -28127,7 +28127,8 @@ MonoBehaviour:
     <Food>k__BackingField: 5
     <Wood>k__BackingField: 0
     <Stone>k__BackingField: 0
-  _duration: 7.5
+  _duration: 12.5
+  _useSunIntensity: 1
 --- !u!114 &-4283692826053666369
 MonoBehaviour:
   m_ObjectHideFlags: 0

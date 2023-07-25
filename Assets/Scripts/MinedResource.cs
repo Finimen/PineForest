@@ -45,6 +45,8 @@ namespace Assets.Scripts.VillagerSystem
 
             HideUI();
 
+            GetComponent<DamageableObject>()?.Destroy();
+
             OnCollected?.Invoke();
         }
 
