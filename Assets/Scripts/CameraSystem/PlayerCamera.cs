@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 namespace Assets.Scripts.CameraSystem
@@ -7,13 +8,16 @@ namespace Assets.Scripts.CameraSystem
         [SerializeField] private float _multiplier = 1;
         [SerializeField] private float _lerpSpeed = 1;
 
+        [SerializeField] private Transform _min;
+        [SerializeField] private Transform _max;
+
         [SerializeField] private Transform _camera;
 
         private Vector3 _startPosition;
 
         private Vector3 _destination;
 
-        [field: SerializeField] public bool EnabelInput { get; set; }
+        [field: SerializeField] public bool EnableInput { get; set; }
 
         public void SetDestination(Vector3 destination)
         {
@@ -27,7 +31,7 @@ namespace Assets.Scripts.CameraSystem
 
         private void Update()
         {
-            if (EnabelInput)
+            if (EnableInput)
             {
                 ReadInput();
             }
@@ -38,6 +42,10 @@ namespace Assets.Scripts.CameraSystem
             {
                 _destination += Vector3.up / 2 * Time.deltaTime;
             }
+
+            _destination = new Vector3(Mathf.Clamp(_destination.x, _min.position.x, _max.position.x),
+               Mathf.Clamp(_destination.y, _min.position.y, _max.position.y),
+               Mathf.Clamp(_destination.z, _min.position.z, _max.position.z));
         }
 
         private void ReadInput()
