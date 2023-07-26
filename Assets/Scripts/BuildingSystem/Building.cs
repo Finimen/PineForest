@@ -1,6 +1,7 @@
 using Assets.Scripts.InventorySystem;
 using Assets.Scripts.VillagerSystem;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
@@ -29,6 +30,8 @@ namespace Assets.Scripts.BuildingSystem
 
         [Space(25)]
         [SerializeField] private DoScaler _destroyingUI;
+
+        private List<string> _debugNames = new List<string>();
 
         private PlayerInventory _playerInventory;
 
@@ -187,7 +190,7 @@ namespace Assets.Scripts.BuildingSystem
         {
             if(!_isPlan && !_isPaced)
             {
-                BuildingPossible = _entryCount == 0 && _playerInventory.Resources >= Price && _playerInventory.Unemployed >= _needUnemployed;
+                BuildingPossible = _entryCount <= 0 && _playerInventory.Resources >= Price && _playerInventory.Unemployed >= _needUnemployed;
 
                 foreach (var part in _parts)
                 {
@@ -208,16 +211,20 @@ namespace Assets.Scripts.BuildingSystem
 
         private void OnTriggerEnter(Collider other)
         {
-            if(!_isPlan && other.gameObject.layer == LayerMask.NameToLayer("Default"))
+            if (!_isPlan)
             {
+                _debugNames.Add(other.name);
+
                 _entryCount++;
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if(!_isPlan && other.gameObject.layer == LayerMask.NameToLayer("Default"))
+            if(!_isPlan)
             {
+                _debugNames.Remove(other.name);
+
                 _entryCount--;
             }
         }
