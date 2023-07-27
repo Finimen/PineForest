@@ -134,7 +134,6 @@ namespace Assets.Scripts.VillagerSystem
                 {
                     if (Vector3.Distance(transform.position, _buildingTask.Target.GetNearestPoint(transform.position)) > _actionDistance)
                     {
-                        _navigationController.stoppingDistance = _actionDistance * .75f;
                         _navigationController.SetDestination(_buildingTask.Target.GetNearestPoint(transform.position));
 
                         _workType = WorkType.IBringResources;
@@ -181,7 +180,6 @@ namespace Assets.Scripts.VillagerSystem
 
                             _workType = WorkType.IGoToTheStorage;
 
-                            _navigationController.stoppingDistance = _actionDistance * .75f;
                             _navigationController.SetDestination(nearestSuitable.Building.GetNearestPoint(transform.position));
                         }
                         else
@@ -356,7 +354,7 @@ namespace Assets.Scripts.VillagerSystem
         {
             _navigationController.speed = _movingSpeed * MovingEfficiency;
 
-            _navigationController.stoppingDistance = _actionDistance * .75f;
+            _navigationController.stoppingDistance = _actionDistance * .6f;
 
             _hunger += Time.deltaTime / Random.Range(100, 150);
         }
