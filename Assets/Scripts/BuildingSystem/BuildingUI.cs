@@ -14,7 +14,7 @@ namespace Assets.Scripts.BuildingSystem
 
         private void SetBuiltDescription()
         {
-            FindObjectOfType<GameLogger>().SendLog($"{_selectableUI.Header} is built", GameLogSystem.LogType.Info);
+            FindObjectOfType<GameLogger>()?.SendLog($"{_selectableUI.Header} is built", GameLogSystem.LogType.Info);
 
             _selectableUI.SetDescription(_descriptionWhenObjectIsBuilt);
             enabled = false;
