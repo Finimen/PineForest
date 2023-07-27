@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4276324180339636}
   - component: {fileID: 33491677292423316}
   - component: {fileID: 23905449073395398}
+  - component: {fileID: -2912110133247371488}
   m_Layer: 0
   m_Name: rpgpp_lt_flower_01
   m_TagString: Untagged
@@ -83,3 +84,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!205 &-2912110133247371488
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1046453777464574}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.072722614, y: 0.52170324, z: 0.00662601}
+  m_Size: 1.2106802
+  m_FadeMode: 2
+  m_AnimateCrossFading: 1
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.02
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 23905449073395398}
+  m_Enabled: 1

@@ -1251,9 +1251,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _resources:
-    <Food>k__BackingField: 100
-    <Wood>k__BackingField: 100
-    <Stone>k__BackingField: 100
+    <Food>k__BackingField: 0
+    <Wood>k__BackingField: 0
+    <Stone>k__BackingField: 0
 --- !u!114 &3703361204786538817
 MonoBehaviour:
   m_ObjectHideFlags: 0

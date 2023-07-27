@@ -50130,6 +50130,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1830574651}
     m_Modifications:
+    - target: {fileID: -8576982503240890461, guid: fbe8c733ae84b204e8fe46c3ca0f5f58,
+        type: 3}
+      propertyPath: _resources.<Food>k__BackingField
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -8576982503240890461, guid: fbe8c733ae84b204e8fe46c3ca0f5f58,
+        type: 3}
+      propertyPath: _resources.<Wood>k__BackingField
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -8576982503240890461, guid: fbe8c733ae84b204e8fe46c3ca0f5f58,
+        type: 3}
+      propertyPath: _resources.<Stone>k__BackingField
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: -4113775658738515353, guid: fbe8c733ae84b204e8fe46c3ca0f5f58,
         type: 3}
       propertyPath: m_Carve
@@ -87974,6 +87989,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5235798648618127837, guid: 452c968e11b6bfa4ea67c48409184a3b,
         type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5235798648618127837, guid: 452c968e11b6bfa4ea67c48409184a3b,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 50.85968
       objectReference: {fileID: 0}
@@ -88909,9 +88929,9 @@ RectTransform:
   m_Father: {fileID: 1673648840}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 5, y: 5}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -955, y: -535}
   m_SizeDelta: {x: 450, y: 300}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1793291800

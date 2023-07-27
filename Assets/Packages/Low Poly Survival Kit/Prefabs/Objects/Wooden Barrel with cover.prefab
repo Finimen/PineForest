@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1666098159925246369}
   - component: {fileID: 3228390057274890690}
   - component: {fileID: 6707787355441868686}
+  - component: {fileID: 4793150520820492728}
   m_Layer: 0
   m_Name: Wooden Barrel with cover
   m_TagString: Untagged
@@ -104,8 +105,28 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.7329081, y: 0.96705353, z: 0.7684733}
-  m_Center: {x: 0.0017672926, y: 0.5115437, z: 0}
+  m_Size: {x: 0.74, y: 0.97, z: 0.77}
+  m_Center: {x: 0, y: 0.51, z: 0}
+--- !u!205 &4793150520820492728
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975640849184470819}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.0017672777, y: 0.5115437, z: 0}
+  m_Size: 0.96705353
+  m_FadeMode: 2
+  m_AnimateCrossFading: 1
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.015
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 3228390057274890690}
+    - renderer: {fileID: 1112121469141037673}
+  m_Enabled: 1
 --- !u!1 &7010390600992150435
 GameObject:
   m_ObjectHideFlags: 0
