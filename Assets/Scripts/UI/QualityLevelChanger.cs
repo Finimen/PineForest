@@ -7,7 +7,7 @@ namespace Assets.Scripts.Settings
     [RequireComponent(typeof(TMP_Dropdown))]
     public class QualityLevelChanger : MonoBehaviour
     {
-        private void Awake()
+        private void Start()
         {
             var dropdown = GetComponent<TMP_Dropdown>();
             dropdown.ClearOptions();
