@@ -1,4 +1,5 @@
 using Assets.Scripts.BuildingSystem;
+using Assets.Scripts.GameLogSystem;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -399,6 +400,8 @@ namespace Assets.Scripts.VillagerSystem
         private void Die()
         {
             Destroy(gameObject);
+
+            FindObjectOfType<GameLogger>().SendLog("Villager died (No food)", GameLogSystem.LogType.Warning);
         }
 
         private void OnEnable()

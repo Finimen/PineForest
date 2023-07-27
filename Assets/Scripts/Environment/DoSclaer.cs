@@ -17,6 +17,11 @@ namespace Assets.Scripts
 
         private Tween _tween;
 
+        public void SetDestroyOnPlayed(bool destroy)
+        {
+            _destroyOnPlayed = destroy;
+        }
+
         public void SetScale(Vector3 size)
         {
             _size = size;

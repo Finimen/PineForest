@@ -35,9 +35,9 @@ namespace Assets.Scripts.UI
 
                 if (Physics.Raycast(ray, out var hit, 1000, _mask, _triggerInteraction))
                 {
-                    if (hit.collider.GetComponent<SelectableObjectUI>() != null)
+                    if (hit.collider.GetComponentInParent<SelectableObjectUI>() != null)
                     {
-                        _selected = hit.collider.GetComponent<SelectableObjectUI>();
+                        _selected = hit.collider.GetComponentInParent<SelectableObjectUI>();
                         _selected.Show();
                     }
                 }

@@ -1,3 +1,4 @@
+using Assets.Scripts.GameLogSystem;
 using Assets.Scripts.UI;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ namespace Assets.Scripts.BuildingSystem
 
         private void SetBuiltDescription()
         {
+            FindObjectOfType<GameLogger>().SendLog($"{_selectableUI.Header} is built", GameLogSystem.LogType.Info);
+
             _selectableUI.SetDescription(_descriptionWhenObjectIsBuilt);
             enabled = false;
         }

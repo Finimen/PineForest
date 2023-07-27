@@ -11,6 +11,7 @@ namespace Assets.Scripts.UI
 
         private bool _isSelected;
 
+        public string Header => _header;
         public string Description => _description;
 
         public void SetHeader(string text)
