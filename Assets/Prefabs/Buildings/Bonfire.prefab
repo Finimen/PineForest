@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: -1264237453874868358}
   - component: {fileID: 873356018270463778}
   - component: {fileID: 658643174257821303}
+  - component: {fileID: 7175495903517889609}
   m_Layer: 0
   m_Name: Bonfire
   m_TagString: Untagged
@@ -247,6 +248,21 @@ MonoBehaviour:
   _ease: 7
   _destroyOnPlayed: 0
   _playOnAwake: 1
+--- !u!114 &7175495903517889609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 563745153645192659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df2a7b75fc81fe7478de9ff148cb5b14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _template: {fileID: 3248308147006829013, guid: 0b92ed68b74f77a45bb6e12388314afa,
+    type: 3}
+  _setParent: 0
 --- !u!1 &985210104247377539
 GameObject:
   m_ObjectHideFlags: 0

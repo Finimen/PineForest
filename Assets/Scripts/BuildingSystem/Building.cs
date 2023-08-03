@@ -206,6 +206,8 @@ namespace Assets.Scripts.BuildingSystem
             if (_isPaced)
             {
                 Initialize(FindObjectOfType<PlayerInventory>());
+
+                Place();
             }
         }
 

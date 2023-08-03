@@ -28103,7 +28103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _reward:
-    <Food>k__BackingField: 5
+    <Food>k__BackingField: 15
     <Wood>k__BackingField: 0
     <Stone>k__BackingField: 0
   _duration: 12.5

@@ -1038,6 +1038,7 @@ GameObject:
   - component: {fileID: 5139797719850579834}
   - component: {fileID: 826692520303447316}
   - component: {fileID: 3816117989314583493}
+  - component: {fileID: 9078652328661487220}
   m_Layer: 0
   m_Name: SmallStorage
   m_TagString: Untagged
@@ -1225,6 +1226,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxParts: 5
   _minParts: 3
+--- !u!114 &9078652328661487220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6358420511702842290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a47a3ec1458a09e48839d522c8df9d2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7373872592162947262
 GameObject:
   m_ObjectHideFlags: 0

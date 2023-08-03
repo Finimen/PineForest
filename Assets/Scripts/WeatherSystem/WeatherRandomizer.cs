@@ -7,6 +7,7 @@ namespace Assets.Scripts.WeatherSystem
     public class WeatherRandomizer : MonoBehaviour
     {
         [SerializeField] private float _delay = 15;
+        [SerializeField] private float _randomness = 2f;
 
         private WeatherSystem _weatherSystem;
         private Rigidbody rigidbody;
@@ -20,7 +21,7 @@ namespace Assets.Scripts.WeatherSystem
 
         private IEnumerator UpdateWeather()
         {
-            yield return new WaitForSeconds(_delay * UnityEngine.Random.Range(.5f, 2f));
+            yield return new WaitForSeconds(_delay * UnityEngine.Random.Range(1 / _randomness, _randomness));
 
             var index = UnityEngine.Random.Range(0, Enum.GetValues(typeof(Weather)).Length);
 

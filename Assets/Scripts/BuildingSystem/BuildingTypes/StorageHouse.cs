@@ -17,11 +17,9 @@ namespace Assets.Scripts.BuildingSystem
         {
             _resources += resources;
         }
-
+        
         private void Start()
         {
-            _building = GetComponent<Building>();
-
             if (_building.IsPlaced)
             {
                 World.Storages.Add(this);
@@ -30,6 +28,11 @@ namespace Assets.Scripts.BuildingSystem
             {
                 _building.OnPlaced += () => World.Storages.Add(this);
             }
+        }
+
+        private void OnEnable()
+        {
+            _building = GetComponent<Building>();
         }
 
         private void OnDisable()

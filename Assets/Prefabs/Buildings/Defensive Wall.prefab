@@ -271,6 +271,7 @@ GameObject:
   - component: {fileID: 6629615412707842587}
   - component: {fileID: 3365226527527835400}
   - component: {fileID: -3176770879531611658}
+  - component: {fileID: -4590989488755524970}
   m_Layer: 0
   m_Name: Defensive Wall
   m_TagString: Untagged
@@ -446,6 +447,21 @@ MonoBehaviour:
   _ease: 7
   _destroyOnPlayed: 0
   _playOnAwake: 1
+--- !u!114 &-4590989488755524970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6555446359113149873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df2a7b75fc81fe7478de9ff148cb5b14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _template: {fileID: 3248308147006829013, guid: 0b92ed68b74f77a45bb6e12388314afa,
+    type: 3}
+  _setParent: 0
 --- !u!1 &7813731123618082560
 GameObject:
   m_ObjectHideFlags: 0

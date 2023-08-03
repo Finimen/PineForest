@@ -12,11 +12,11 @@ namespace Assets.Scripts.BuildingSystem
         [SerializeField] private float _duration;
         [SerializeField] private bool _useSunIntensity;
 
-        private float _progress;
-
         private MoveResourcesTask _moveResourcesTask;
 
         private Resources _produced;
+
+        private float _progress;
 
         private void Start()
         {

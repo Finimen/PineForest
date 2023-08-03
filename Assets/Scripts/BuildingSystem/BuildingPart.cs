@@ -19,31 +19,28 @@ namespace Assets.Scripts.BuildingSystem
 
         private Material _default;
 
-        private MeshRenderer _renderer;
-
         public void UpdateMaterial(BuildAbleType buildAbleType)
         {
+            if(_default == null)
+            {
+                _default = GetComponent<MeshRenderer>().material;
+            }
+
             switch (buildAbleType)
             {
                 case BuildAbleType.Unable:
-                    _renderer.material = _unableToBuild;
+                    GetComponent<MeshRenderer>().material = _unableToBuild;
                     break;
                 case BuildAbleType.Able:
-                    _renderer.material = _ableToBuild;
+                    GetComponent<MeshRenderer>().material = _ableToBuild;
                     break;
                 case BuildAbleType.Plan:
-                    _renderer.material = _plan;
+                    GetComponent<MeshRenderer>().material = _plan;
                     break;
                 case BuildAbleType.Placed:
-                    _renderer.material = _default;
+                    GetComponent<MeshRenderer>().material = _default;
                     break;
             }
-        }
-
-        private void Start()
-        {
-            _renderer = GetComponent<MeshRenderer>();
-            _default = _renderer.material;
         }
     }
 }

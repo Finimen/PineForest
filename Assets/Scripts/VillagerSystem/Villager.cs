@@ -302,7 +302,9 @@ namespace Assets.Scripts.VillagerSystem
                     var difference = _moveTask.Resources.
                         GetClampedResources(_moveTask.Resources, _maxResources - _transferring.TotalCount());
 
-                    _moveTask.Resources -= difference;
+                    Debug.Log(difference);
+
+                    _moveTask.Resources += difference;
                     _transferring += difference;
                 }
             }
