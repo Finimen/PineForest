@@ -7,15 +7,23 @@ namespace Assets.Scripts.BuildingSystem
     {
         [SerializeField] private Resources _resources;
 
+        [SerializeField] private int _maxResources = 100;
+
         private Building _building;
 
         public Building Building => _building;
 
         public Resources Resources => _resources;
+        public int MaxResources => _maxResources;
 
         public void TransferResources(Resources resources)
         {
             _resources += resources;
+
+            if(resources.TotalCount() > _maxResources)
+            {
+                throw new System.InvalidOperationException();
+            }
         }
         
         private void Start()

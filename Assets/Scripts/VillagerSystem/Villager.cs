@@ -318,11 +318,21 @@ namespace Assets.Scripts.VillagerSystem
 
             foreach (var storage in World.Storages)
             {
-                if (nearest == null || Vector3.Distance(transform.position, nearest.Building.GetNearestPoint(transform.position)) >
-                                Vector3.Distance(transform.position, storage.Building.GetNearestPoint(transform.position)))
+                if(storage.Resources.TotalCount() + _transferring.TotalCount() <= storage.MaxResources)
                 {
-                    nearest = storage;
+                    if (nearest == null || Vector3.Distance(transform.position, nearest.Building.GetNearestPoint(transform.position)) >
+                                Vector3.Distance(transform.position, storage.Building.GetNearestPoint(transform.position)))
+                    {
+                        nearest = storage;
+                    }
                 }
+            }
+
+            if(nearest == null)
+            {
+                Debug.Log("Нет незаполеных складов!");
+
+                return;
             }
 
             if (Vector3.Distance(transform.position, nearest.Building.GetNearestPoint(transform.position)) > _actionDistance)
