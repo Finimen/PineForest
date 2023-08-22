@@ -28,6 +28,22 @@ namespace Assets.Scripts.WeatherSystem
                 return _timeProgress;
             }
         }
+        public float DayDuration
+        {
+            get
+            {
+                return _timeDay;
+            }
+        }
+
+        public void SetTime(int time)
+        {
+            _timeProgress = Mathf.InverseLerp(0, 24, time);
+        }
+        public void SetDayDuration(int duration)
+        {
+            _timeDay = duration;
+        }
 
         public void SetGradients(Gradient lights, Gradient fog)
         {
@@ -47,7 +63,7 @@ namespace Assets.Scripts.WeatherSystem
                 _timeProgress += Time.deltaTime / _timeDay;
             }
 
-            if (_timeProgress > 1) 
+            if (_timeProgress > 1)
             {
                 _timeProgress = 0;
             }
@@ -70,7 +86,7 @@ namespace Assets.Scripts.WeatherSystem
                 _text.text = $"Time: {timeStr}";
             }
 
-            _directional.transform.localEulerAngles = new Vector3(Mathf.Clamp(360f * _timeProgress - 90, 0, 180) , _defaultAngels.x, _defaultAngels.y);
+            _directional.transform.localEulerAngles = new Vector3(Mathf.Clamp(360f * _timeProgress - 90, 0, 180), _defaultAngels.x, _defaultAngels.y);
         }
     }
 }

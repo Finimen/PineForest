@@ -20,12 +20,29 @@ namespace Assets.Scripts.BuildingSystem
         {
             _resources += resources;
 
-            if(resources.TotalCount() > _maxResources)
+            if (resources.TotalCount() > _maxResources)
             {
                 throw new System.InvalidOperationException();
             }
         }
-        
+  
+        public void FillFull()
+        {
+            float division = 1 / 3;
+
+            //DevHrytsan: Need some constant for it or variable which determinates total resource types
+            int maxResourceFood = Mathf.FloorToInt(_maxResources * division);
+            int maxResourceStone = Mathf.FloorToInt(_maxResources * division);
+            int maxResourceWood = Mathf.FloorToInt(_maxResources * division);
+
+            _resources = new Resources(maxResourceFood, maxResourceWood, maxResourceStone);
+
+        }
+        public void Clean()
+        {
+            _resources = new Resources(0, 0, 0);
+        }
+
         private void Start()
         {
             if (_building.IsPlaced)

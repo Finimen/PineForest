@@ -65,7 +65,7 @@ namespace Assets.Scripts
 
         public static Resources operator -(Resources resources)
         {
-            return new Resources( -resources.Food, - resources.Wood, -resources.Stone);
+            return new Resources(-resources.Food, -resources.Wood, -resources.Stone);
         }
 
         public static Resources Empty
@@ -80,7 +80,19 @@ namespace Assets.Scripts
         {
             return Food + Wood + Stone;
         }
-
+        //DevHrytsan: I added some ability to modification amount of some resources
+        public void ModifyFood(int amount)
+        {
+            Food += amount;
+        }
+        public void ModifyWood(int amount)
+        {
+            Wood += amount;
+        }
+        public void ModifyStone(int amount)
+        {
+            Stone += amount;
+        }
         public bool Contains(Resources other)
         {
             return (Food > 0 & other.Food > 0) | (Wood > 0 & other.Wood > 0) | (Stone > 0 & other.Stone > 0);
@@ -88,12 +100,12 @@ namespace Assets.Scripts
 
         public bool ContainsInversed(Resources other)
         {
-            return  other.Food > Food | other.Wood > Wood | other.Stone > Stone;
+            return other.Food > Food | other.Wood > Wood | other.Stone > Stone;
         }
 
         public Resources GetClampedResources(Resources needed, int maxCount)
         {
-            if(needed.TotalCount() <= 0)
+            if (needed.TotalCount() <= 0)
             {
                 return Empty;
             }

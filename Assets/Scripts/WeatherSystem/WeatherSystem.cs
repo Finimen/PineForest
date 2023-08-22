@@ -22,7 +22,14 @@ namespace Assets.Scripts.WeatherSystem
         {
             DisableAnyWeathers();
 
-            _current = _weathers[id];
+            int fid = Mathf.Clamp(id, 0, _weathers.Length - 1); //DevHrytsan: Prevent out of range
+
+            _current = _weathers[fid];
+        }
+
+        public WeatherData GetCurrentWeather()
+        {
+            return _current;
         }
 
         private void UpdateWeather()
@@ -49,11 +56,11 @@ namespace Assets.Scripts.WeatherSystem
         {
             foreach (var weather in _weathers)
             {
-                if(weather.Particles != null)
+                if (weather.Particles != null)
                 {
                     weather.Particles.enableEmission = false;
                 }
-                if(weather.Audio != null)
+                if (weather.Audio != null)
                 {
                     weather.Audio.Stop();
                 }
@@ -62,9 +69,9 @@ namespace Assets.Scripts.WeatherSystem
 
         private void UpdateVillagers()
         {
-            foreach(var villager in World.Villagers)
+            foreach (var villager in World.Villagers)
             {
-                _sunIntensity = _changerDayAndNight.TimeDay > .5f ? 
+                _sunIntensity = _changerDayAndNight.TimeDay > .5f ?
                     Mathf.Lerp(_current.MaxSunIntensity, 0, _changerDayAndNight.TimeDay) * 2 :
                     Mathf.Lerp(0, _current.MaxSunIntensity, _changerDayAndNight.TimeDay) * 2;
 

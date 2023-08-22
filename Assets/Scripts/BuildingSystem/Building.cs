@@ -128,7 +128,8 @@ namespace Assets.Scripts.BuildingSystem
 
             if(_residents > 0)
             {
-                FindObjectOfType<VillagerCreator>().CreateVillagers(transform.position, _residents);
+                FindObjectOfType<VillagerCreator>()?.CreateVillagers(transform.position, _residents);
+                //Dev Hrytsan: Added little check
             }
         }
 

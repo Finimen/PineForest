@@ -15,6 +15,8 @@ namespace Assets.Scripts
 
         [SerializeField] private bool _playOnAwake = true;
 
+        [SerializeField] private bool _onEnableImmediately = true; //DevHrytsan: Added little checkbox. If scene only started scale will be immediately set.
+
         private Tween _tween;
 
         public void SetDestroyOnPlayed(bool destroy)
@@ -24,13 +26,18 @@ namespace Assets.Scripts
 
         public void SetScale(Vector3 size)
         {
+            SetScale(size, _duration);
+        }
+
+        public void SetScale(Vector3 size, float duration)
+        {
             _size = size;
 
-            _tween = transform.DOScale(_size, _duration).SetEase(_ease);
+            _tween = transform.DOScale(_size, duration).SetEase(_ease);
 
             if (_destroyOnPlayed)
             {
-                Destroy(gameObject, _duration + 1);
+                Destroy(gameObject, duration + 1);
             }
         }
 
@@ -38,8 +45,16 @@ namespace Assets.Scripts
         {
             if (_playOnAwake)
             {
-                SetScale(_size);
+                if (_onEnableImmediately)
+                {
+                    SetScale(_size, 0);
+                }
+                else
+                {
+                    SetScale(_size, _duration);
+                }
             }
+
         }
 
         private void OnDisable()
