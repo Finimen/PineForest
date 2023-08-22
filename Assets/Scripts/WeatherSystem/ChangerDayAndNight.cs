@@ -58,9 +58,16 @@ namespace Assets.Scripts.WeatherSystem
             RenderSettings.skybox.color = _ambientLight.Evaluate(_timeProgress);
             RenderSettings.fogColor = Color.Lerp(RenderSettings.fogColor, _fog.Evaluate(_timeProgress), .01f);
 
-            if(_text != null)
+            float hoursTime = _timeProgress * 24;
+            float totalMinutes = hoursTime * 60;
+            int hours = Mathf.FloorToInt(totalMinutes / 60);
+            int minutes = Mathf.FloorToInt(totalMinutes % 60);
+
+            string timeStr = string.Format("{0:00}:{1:00}", hours, minutes);
+
+            if (_text != null)
             {
-                _text.text = $"Time: {Math.Round((_timeProgress * 24), 2)}";
+                _text.text = $"Time: {timeStr}";
             }
 
             _directional.transform.localEulerAngles = new Vector3(Mathf.Clamp(360f * _timeProgress - 90, 0, 180) , _defaultAngels.x, _defaultAngels.y);

@@ -8,6 +8,7 @@ namespace Assets.Scripts.VillagerSystem
     [RequireComponent(typeof(NavMeshAgent))]
     public class Villager : MonoBehaviour
     {
+        //DevHrytsan: Maybe made professions as scriptable object with different possible conditions?
         public enum ProfessionType
         {
             None,
@@ -16,6 +17,7 @@ namespace Assets.Scripts.VillagerSystem
             Mason,
         }
 
+        //Work type is defining what villager do now
         public enum WorkType
         {
             None,
@@ -25,11 +27,11 @@ namespace Assets.Scripts.VillagerSystem
             WaitingForOtherBuildersToBringResources,
         }
 
-        [SerializeField] private float _actionDistance = 2.5f;
+        [SerializeField] private float _actionDistance = 2.5f; 
 
         [Space(25)]
-        [SerializeField] private int _maxResources = 5;
-        [SerializeField] private Resources _transferring;
+        [SerializeField] private int _maxResources = 5;  //Max possible resources for transferring
+        [SerializeField] private Resources _transferring; //Resource which transfering
 
         [Space(25)]
         [SerializeField] private float _hunger;
@@ -56,7 +58,7 @@ namespace Assets.Scripts.VillagerSystem
         {
             CurrentTask = task;
 
-            if(task is MoveResourcesTask)
+            if (task is MoveResourcesTask)
             {
                 _moveTask = (MoveResourcesTask)task;
                 return;
@@ -96,7 +98,7 @@ namespace Assets.Scripts.VillagerSystem
 
         public void GiveResources(Resources resources)
         {
-            Debug.Log("Я получил ресы");
+            Debug.Log("I got my resources");
 
             _transferring += resources.GetClampedResources(resources, _maxResources - _transferring.TotalCount());
         }
@@ -137,11 +139,11 @@ namespace Assets.Scripts.VillagerSystem
                         _navigationController.SetDestination(_buildingTask.Target.GetNearestPoint(transform.position));
 
                         _workType = WorkType.IBringResources;
-                        Debug.Log("Несу ресы");
+                        Debug.Log("Transporting resources");
                     }
                     else
                     {
-                        Debug.Log("Передал ресы");
+                        Debug.Log("Transfer resources");
 
                         _buildingTask.Target.TransferResources(_transferring);
                         _transferring = Resources.Empty;
@@ -151,13 +153,13 @@ namespace Assets.Scripts.VillagerSystem
                 {
                     if (_buildingTask.Target.Price == _buildingTask.Target.StartTransferring)
                     {
-                        Debug.Log("Жду пока другие типы принесут ресы");
+                        Debug.Log("I'm waiting for other villagers to bring resources");
 
                         _workType = WorkType.WaitingForOtherBuildersToBringResources;
                         return;
                     }
 
-                    Debug.Log("Ищю ресы на складах");
+                    Debug.Log("Finding resources on storages");
 
                     var suitableList = World.Storages.FindAll(x => x.Resources.Contains(_buildingTask.Target.Price - _buildingTask.Target.StartTransferring));
 
@@ -176,7 +178,7 @@ namespace Assets.Scripts.VillagerSystem
 
                         if (Vector3.Distance(transform.position, nearestSuitable.Building.GetNearestPoint(transform.position)) > _actionDistance)
                         {
-                            Debug.Log("Иду к складу");
+                            Debug.Log("Move to the Village");
 
                             _workType = WorkType.IGoToTheStorage;
 
@@ -184,7 +186,7 @@ namespace Assets.Scripts.VillagerSystem
                         }
                         else
                         {
-                            Debug.Log("Взял ресы");
+                            Debug.Log("Got resources");
 
                             if (_transferring.TotalCount() == 0)
                             {
@@ -203,7 +205,7 @@ namespace Assets.Scripts.VillagerSystem
                     {
                         _workType = WorkType.TheStoragesDoNotHaveTheNecessaryResources;
 
-                        Debug.Log("Нету подходящего склада");
+                        Debug.Log("No suitable storages");
                     }
                 }
             }
@@ -215,7 +217,7 @@ namespace Assets.Scripts.VillagerSystem
                 }
                 else
                 {
-                    Debug.Log("Строю дом епта");
+                    Debug.Log("Building house");
 
                     _buildingTask.Target.IncreaseBuildingProgress();
                 }
@@ -261,7 +263,8 @@ namespace Assets.Scripts.VillagerSystem
 
         private void UpdateLoggerLogic()
         {
-            if (_loggerTask.Target.IsCollected)
+          
+            if (_loggerTask.Target.IsCollected || _loggerTask.Target == null) 
             {
                 CurrentTask = null;
                 _workType = WorkType.None;
@@ -312,13 +315,13 @@ namespace Assets.Scripts.VillagerSystem
 
         private void TransferResourcesOnStorage()
         {
-            Debug.Log("Несу добытые ресы на склад");
+            Debug.Log("Transfering resourcesto storage");
 
             StorageHouse nearest = null;
 
             foreach (var storage in World.Storages)
             {
-                if(storage.Resources.TotalCount() + _transferring.TotalCount() <= storage.MaxResources)
+                if (storage.Resources.TotalCount() + _transferring.TotalCount() <= storage.MaxResources)
                 {
                     if (nearest == null || Vector3.Distance(transform.position, nearest.Building.GetNearestPoint(transform.position)) >
                                 Vector3.Distance(transform.position, storage.Building.GetNearestPoint(transform.position)))
@@ -328,9 +331,9 @@ namespace Assets.Scripts.VillagerSystem
                 }
             }
 
-            if(nearest == null)
+            if (nearest == null)
             {
-                Debug.Log("Нет незаполеных складов!");
+                Debug.Log("No free space in storages!");
 
                 return;
             }
@@ -410,7 +413,7 @@ namespace Assets.Scripts.VillagerSystem
         private void Die()
         {
             Destroy(gameObject);
-
+            //DevHrytsan: Maybe use Singleton for it. Hah?
             FindObjectOfType<GameLogger>().SendLog("Villager died (No food)", GameLogSystem.LogType.Warning);
         }
 
@@ -452,11 +455,11 @@ namespace Assets.Scripts.VillagerSystem
 
             if (CurrentTask == null)
             {
-                if (_transferring.TotalCount()  > 0)
+                if (_transferring.TotalCount() > 0)
                 {
                     TransferResourcesOnStorage();
                 }
-                else if(_hunger > .25f)
+                else if (_hunger > .25f)
                 {
                     TryToEat();
                 }
@@ -464,7 +467,7 @@ namespace Assets.Scripts.VillagerSystem
                 {
                     _navigationController.isStopped = true;
                 }
-                
+
                 return;
             }
 

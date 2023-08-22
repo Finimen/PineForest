@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Assets.Scripts.WeatherSystem
 {
+    //DevHrytsan: Using IEnumerator is quite strange for weather system.
+    //Will change in feature to some kinda timer based in FixedUpdate
+   
     public class WeatherRandomizer : MonoBehaviour
     {
         [SerializeField] private float _delay = 15;
