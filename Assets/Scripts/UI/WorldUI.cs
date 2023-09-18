@@ -8,6 +8,10 @@ namespace Assets.Scripts.UI
         [SerializeField] private Vector3 _offset;
 
         private Camera _camera;
+        
+        private Vector3 _lastPosition;
+
+        private const float _minMoving = .1f;
 
         private void OnEnable()
         {
@@ -16,11 +20,16 @@ namespace Assets.Scripts.UI
             GetComponent<Canvas>().worldCamera = _camera;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
-            transform.LookAt(_camera.transform);
+            if(_lastPosition.sqrMagnitude - _camera.transform.position.sqrMagnitude > _minMoving)
+            {
+                _lastPosition = _camera.transform.position;
 
-            transform.Rotate(_offset);
+                transform.LookAt(_camera.transform);
+
+                transform.Rotate(_offset);
+            }
         }
     }
 }

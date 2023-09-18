@@ -1,5 +1,62 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &540759635438488565
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6501952151972891937}
+  - component: {fileID: 6291380686660495759}
+  m_Layer: 8
+  m_Name: Model
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6501952151972891937
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540759635438488565}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5514445518970501441}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6291380686660495759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540759635438488565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4566abe2e3718334b8e0f8e7d4317e47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _templates:
+  - {fileID: 183992, guid: 5e2584a852ef63142b40e217afbf01bc, type: 3}
+  - {fileID: 152104, guid: 12ca67ad4d842c44398557f35a3cd3b4, type: 3}
+  - {fileID: 154742, guid: 83905b55894130240b8d1a2922bf2198, type: 3}
+  - {fileID: 193144, guid: c4f65cc2474b3f1438e9c9389c03822b, type: 3}
+  - {fileID: 147178, guid: cb4c55143b7840648a254f9d2288de23, type: 3}
+  - {fileID: 141462, guid: 4077c14a264a5f14b8d66749500af8bd, type: 3}
+  - {fileID: 137452, guid: 60a516d7b8bfd714b917bd2817fad388, type: 3}
+  - {fileID: 107266, guid: 77583b79f48966b44bc141a814e51207, type: 3}
+  - {fileID: 101078, guid: ee184764e771a3e4abd5783e82f1e128, type: 3}
+  - {fileID: 136822, guid: 2729a1c5ff6386c49850ac51fba60386, type: 3}
+  - {fileID: 128866, guid: 711e9dfdc8410b046a712ab7cf76a906, type: 3}
+  - {fileID: 101004, guid: f1935b8868aef41499f30ff190ab7e82, type: 3}
 --- !u!1 &4798702140979941191
 GameObject:
   m_ObjectHideFlags: 0
@@ -16,6 +73,7 @@ GameObject:
   - component: {fileID: -1882177786555402692}
   - component: {fileID: 1057878647822360381}
   - component: {fileID: 9086512554373240031}
+  - component: {fileID: 547599914573106164}
   m_Layer: 8
   m_Name: Vilager
   m_TagString: Untagged
@@ -34,9 +92,10 @@ Transform:
   m_LocalPosition: {x: 82.757454, y: 46.818913, z: 71.81331}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6501952151972891937}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4078440457947392024
 MeshFilter:
@@ -53,7 +112,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4798702140979941191}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -160,7 +219,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4798702140979941191}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51a10b90092007542952578920503f2c, type: 3}
   m_Name: 
@@ -182,3 +241,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _header: Vilager
   _description: A mason lives here, he mines stone
+--- !u!114 &547599914573106164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4798702140979941191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9b8eb17982f33b408ee6c108f15ce4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _idleName: Idle
+  _walkName: Walk
+  _runName: Run
+  _buildingName: Mining
+  _miningName: Mining
+  _pickupName: PickUp
+  _deathName: Death

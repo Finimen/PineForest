@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.Rendering.UI;
 
 namespace Assets.Scripts.WeatherSystem
 {

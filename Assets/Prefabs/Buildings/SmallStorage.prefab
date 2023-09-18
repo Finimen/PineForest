@@ -1136,7 +1136,7 @@ MonoBehaviour:
   _residents: 0
   _needUnemployed: 0
   _isPaced: 0
-  _buildingTime: 10
+  _buildingTime: 20
   _destroyingUI: {fileID: 5482508947494752044}
 --- !u!114 &-8576982503240890461
 MonoBehaviour:
@@ -1154,6 +1154,7 @@ MonoBehaviour:
     <Food>k__BackingField: 0
     <Wood>k__BackingField: 0
     <Stone>k__BackingField: 0
+  _maxResources: 100
 --- !u!114 &-5168826677301997845
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -50,6 +50,11 @@ namespace Assets.Scripts.VillagerSystem
         public BaseVillagerTask CurrentTask { get; private set; }
         public float MovingEfficiency { get; set; } = 1;
         public int MaxResources => _maxResources;
+        
+        public bool IsMining { get; private set; }
+        public bool IsGetting { get; private set; }
+        public bool IsBuilding { get; private set; }
+
         public WorkType CurrentWork => _workType;
 
         public void SetTask(BaseVillagerTask task)
@@ -122,6 +127,8 @@ namespace Assets.Scripts.VillagerSystem
 
         private void UpdateBuildingTask()
         {
+            IsBuilding = false;
+
             if (_buildingTask.Target == null || _buildingTask.Target.IsPlaced)
             {
                 CurrentTask = null;
@@ -218,6 +225,8 @@ namespace Assets.Scripts.VillagerSystem
                     Debug.Log("Строю дом епта");
 
                     _buildingTask.Target.IncreaseBuildingProgress();
+
+                    IsBuilding = true;
                 }
             }
         }
@@ -236,9 +245,12 @@ namespace Assets.Scripts.VillagerSystem
 
         private void UpdateMasonLogic()
         {
+            IsMining = false;
+
             if (_masonTask.Target.IsCollected)
             {
                 CurrentTask = null;
+
                 return;
             }
 
@@ -255,12 +267,16 @@ namespace Assets.Scripts.VillagerSystem
                 else
                 {
                     _masonTask.Target.DecreaseStrength(this);
+
+                    IsMining = true;
                 }
             }
         }
 
         private void UpdateLoggerLogic()
         {
+            IsMining = false;
+
             if (_loggerTask.Target.IsCollected)
             {
                 CurrentTask = null;
@@ -280,6 +296,8 @@ namespace Assets.Scripts.VillagerSystem
                 }
                 else
                 {
+                    IsMining = true;
+
                     _loggerTask.Target.DecreaseStrength(this);
                 }
             }

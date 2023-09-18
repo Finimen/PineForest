@@ -28071,7 +28071,7 @@ MonoBehaviour:
   _residents: 0
   _needUnemployed: 0
   _isPaced: 0
-  _buildingTime: 1
+  _buildingTime: 2
   _destroyingUI: {fileID: 6760938150843753916}
 --- !u!114 &-2410721928731930567
 MonoBehaviour:
