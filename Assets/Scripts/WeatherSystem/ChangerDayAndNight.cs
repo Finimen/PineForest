@@ -1,3 +1,4 @@
+using Assets.Scripts.TranslatorSystem;
 using System;
 using UnityEngine;
 
@@ -18,6 +19,8 @@ namespace Assets.Scripts.WeatherSystem
 
         [SerializeField] private Light _directional;
 
+        private Translator _translator;
+
         private Vector3 _defaultAngels;
 
         public float TimeDay
@@ -37,6 +40,8 @@ namespace Assets.Scripts.WeatherSystem
         private void Awake()
         {
             _defaultAngels = _directional.transform.localEulerAngles;
+
+            _translator = FindObjectOfType<Translator>();
         }
 
         private void Update()
@@ -57,9 +62,9 @@ namespace Assets.Scripts.WeatherSystem
             RenderSettings.skybox.color = _ambientLight.Evaluate(_timeProgress);
             RenderSettings.fogColor = Color.Lerp(RenderSettings.fogColor, _fog.Evaluate(_timeProgress), .01f);
 
-            if(_text != null)
+            if(_text != null && Application.isPlaying)
             {
-                _text.text = $"Time: {Math.Round((_timeProgress * 24), 2)}";
+                _text.text = $"{_translator.Translate("Time")}: {Math.Round(_timeProgress * 24, 2)}";
             }
 
             _directional.transform.localEulerAngles = new Vector3(Mathf.Clamp(360f * _timeProgress - 90, 0, 180) , _defaultAngels.x, _defaultAngels.y);

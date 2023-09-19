@@ -9,6 +9,7 @@ namespace Assets.Scripts.UI
         [SerializeField] private Ease _ease = Ease.InOutSine;
 
         [SerializeField] private bool _active;
+        [SerializeField] private bool _useStartScale = true;
 
         private Vector3 _startScale;
 
@@ -21,7 +22,7 @@ namespace Assets.Scripts.UI
 
         private void UpdateScale()
         {
-            transform.DOScale(_active ? _startScale : Vector3.zero, _duration).SetEase(_ease);
+            transform.DOScale(_active ? _useStartScale ? _startScale: Vector3.one : Vector3.zero, _duration).SetEase(_ease);
         }
 
         private void OnEnable()

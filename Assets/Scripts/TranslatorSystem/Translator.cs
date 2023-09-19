@@ -18,7 +18,7 @@ namespace Assets.Scripts.TranslatorSystem
             OnLanguageChanged?.Invoke(language);
         }
 
-        public string TranslateSentence(string sentence)
+        public string Translate(string sentence)
         {
             if (Current == Language.English)
             {

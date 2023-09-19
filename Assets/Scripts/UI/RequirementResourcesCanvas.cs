@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using Assets.Scripts.TranslatorSystem;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
@@ -17,6 +18,8 @@ namespace Assets.Scripts.UI
 
         [SerializeField] private Ease _moveEase = Ease.OutBounce;
 
+        private Translator _translator;
+
         public void UpdateUI(Vector3 position, Resources resources, int unemployed = 0)
         {
             _panel.transform.DOMove(position, _moveDuration).SetEase(_moveEase);
@@ -29,7 +32,7 @@ namespace Assets.Scripts.UI
             {
                 _wood.gameObject.SetActive(true);
 
-                _wood.text = $"Wood: {resources.Wood}";
+                _wood.text = $"{_translator.Translate("Wood")}: {resources.Wood}";
             }
 
             if (resources.Stone == 0)
@@ -40,7 +43,7 @@ namespace Assets.Scripts.UI
             {
                 _stone.gameObject.SetActive(true);
 
-                _stone.text = $"Stone: {resources.Stone}";
+                _stone.text = $"{_translator.Translate("Stone")}: {resources.Stone}";
             }
 
             if (resources.Food == 0)
@@ -51,7 +54,7 @@ namespace Assets.Scripts.UI
             {
                 _food.gameObject.SetActive(true);
 
-                _food.text = $"Food: {resources.Food}";
+                _food.text = $"{_translator.Translate("Food")}: {resources.Food}";
             }
 
             if (unemployed == 0)
@@ -62,7 +65,7 @@ namespace Assets.Scripts.UI
             {
                 _unemployed.gameObject.SetActive(true);
 
-                _unemployed.text = $"Unemployed: {unemployed}";
+                _unemployed.text = $"{_translator.Translate("Unemployed")}: {unemployed}";
             }
         }
 
@@ -74,6 +77,11 @@ namespace Assets.Scripts.UI
         public void HideUI()
         {
             _panel?.SetScale(Vector3.zero);
+        }
+
+        private void Start()
+        {
+            _translator = FindObjectOfType<Translator>();
         }
     }
 }

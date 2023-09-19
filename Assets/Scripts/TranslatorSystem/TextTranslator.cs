@@ -2,14 +2,24 @@
 
 namespace Assets.Scripts.TranslatorSystem
 {
-    [RequireComponent(typeof(TMPro.TMP_Text)), ExecuteInEditMode]
+    [RequireComponent(typeof(TMPro.TMP_Text))]
     public class TextTranslator : MonoBehaviour
     {
         [SerializeField] private Sentence[] sentences;
 
         private TMPro.TMP_Text text;
 
-        private void Awake()
+        private void Reset()
+        {
+            if(GetComponent<TMPro.TMP_Text>().text.Length > 0)
+            {
+                sentences = new Sentence[] { 
+                    new Sentence(Language.English, GetComponent<TMPro.TMP_Text>().text),
+                    new Sentence(Language.Russian, "")};
+            }
+        }
+
+        private void Start()
         {
             text = GetComponent<TMPro.TMP_Text>();
 

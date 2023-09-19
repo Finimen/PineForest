@@ -1,10 +1,14 @@
 using Assets.Scripts.UI;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.GameLogSystem
 {
     public class GameLogger : MonoBehaviour
     {
+        [SerializeField] private LogType[] _ignoringTypes;
+
+        [Space(25)]
         [SerializeField] private Transform _logsParent;
 
         [SerializeField] private ScaleController _education;
@@ -25,6 +29,11 @@ namespace Assets.Scripts.GameLogSystem
 
         public void SendLog(string message, LogType logType)
         {
+            if (_ignoringTypes.Contains(logType))
+            {
+                return;
+            }
+
             _education.SetActive(false);
             _selectableUI.SetScale(Vector3.zero);
 
