@@ -348,7 +348,7 @@ namespace Assets.Scripts.VillagerSystem
 
             if(nearest == null)
             {
-                Debug.Log("Нет незаполеных складов!");
+                Debug.Log("Все склады заполнены!");
 
                 return;
             }

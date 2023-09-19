@@ -23,7 +23,9 @@ namespace Assets.Scripts.WeatherSystem
 
         private Vector3 _defaultAngels;
 
-        public float TimeDay
+        public float TimeSpeed { get; private set; } = 1;
+
+        public float CurrentTime
         {
             get
             {
@@ -37,6 +39,26 @@ namespace Assets.Scripts.WeatherSystem
             _fog = fog;
         }
 
+        public void SetTime(float time)
+        {
+            if (_timeProgress < 0)
+            {
+                throw new InvalidOperationException();
+            }
+
+            _timeProgress = time;
+        }
+
+        public void SetTimeSpeed(float multiplier)
+        {
+            if(TimeSpeed <= 0)
+            {
+                throw new InvalidOperationException();
+            }
+
+            TimeSpeed = multiplier;
+        }
+
         private void Awake()
         {
             _defaultAngels = _directional.transform.localEulerAngles;
@@ -48,7 +70,7 @@ namespace Assets.Scripts.WeatherSystem
         {
             if (Application.isPlaying)
             {
-                _timeProgress += Time.deltaTime / _timeDay;
+                _timeProgress += Time.deltaTime / _timeDay * TimeSpeed;
             }
 
             if (_timeProgress > 1) 

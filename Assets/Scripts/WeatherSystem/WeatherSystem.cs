@@ -16,6 +16,8 @@ namespace Assets.Scripts.WeatherSystem
 
         private WeatherData _current;
 
+        public WeatherData Current => _current;
+
         public int WeathersCount => _weathers.Length;
 
         public void SetWeather(int id)
@@ -64,9 +66,9 @@ namespace Assets.Scripts.WeatherSystem
         {
             foreach(var villager in World.Villagers)
             {
-                _sunIntensity = _changerDayAndNight.TimeDay > .5f ? 
-                    Mathf.Lerp(_current.MaxSunIntensity, 0, _changerDayAndNight.TimeDay) * 2 :
-                    Mathf.Lerp(0, _current.MaxSunIntensity, _changerDayAndNight.TimeDay) * 2;
+                _sunIntensity = _changerDayAndNight.CurrentTime > .5f ? 
+                    Mathf.Lerp(_current.MaxSunIntensity, 0, _changerDayAndNight.CurrentTime) * 2 :
+                    Mathf.Lerp(0, _current.MaxSunIntensity, _changerDayAndNight.CurrentTime) * 2;
 
                 var intensity = _sunIntensity;
 

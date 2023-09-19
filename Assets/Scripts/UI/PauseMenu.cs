@@ -1,3 +1,4 @@
+using Assets.Scripts.CameraSystem;
 using UnityEngine;
 
 namespace Assets.Scripts.UI
@@ -6,22 +7,34 @@ namespace Assets.Scripts.UI
     {
         [SerializeField] private ScaleController _menu;
 
+        [SerializeField] private PlayerCamera _playerCamera;
+
         [SerializeField] private KeyCode _switchKey;
 
         private bool _enabled;
 
-        public void Hide()
+        public void Hide(bool changeInput = true)
         {
             _enabled = false;
 
-            _menu.SetActive(_enabled);
+            UpdateLogic(changeInput);
         }
 
         public void Show()
         {
             _enabled = true;
 
+            UpdateLogic();
+        }
+
+        private void UpdateLogic(bool changeInput = true)
+        {
             _menu.SetActive(_enabled);
+
+            if (changeInput)
+            {
+                _playerCamera.EnableInput = !_enabled;
+            }
         }
 
         private void Update()
@@ -30,7 +43,7 @@ namespace Assets.Scripts.UI
             {
                 _enabled = !_enabled;
 
-                _menu.SetActive(_enabled);
+                UpdateLogic();
             }
         }
     }
