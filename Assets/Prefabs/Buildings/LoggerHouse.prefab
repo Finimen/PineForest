@@ -1025,7 +1025,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _header: Logger House
-  _description: Loggers live in this house, they extract wood
+  _description: Loggers live in this house, they extract wood.
 --- !u!114 &1291257199906916251
 MonoBehaviour:
   m_ObjectHideFlags: 0

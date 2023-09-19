@@ -13,6 +13,9 @@ namespace Assets.Scripts.InventorySystem
 
         [SerializeField] private Button _switchMode;
 
+        [SerializeField] private float _basicFontSize = 75;
+        [SerializeField] private float _detailFontSize = 50;
+
         [Space(25)]
         [SerializeField] private Color _greenWhite;
         [SerializeField] private Color _greenBlack;
@@ -36,10 +39,13 @@ namespace Assets.Scripts.InventorySystem
                 _detail = !_detail;
                 _switchMode.GetComponentInChildren<TMP_Text>().text = _detail ?
                 _translator.Translate("ShowBasic") : _translator.Translate("ShowAll");
+                UpdateUI();
                 });
+
+            UpdateUI();
         }
 
-        private void Update()
+        private void UpdateUI()
         {
             if (_detail)
             {
@@ -58,6 +64,8 @@ namespace Assets.Scripts.InventorySystem
                 $"{_translator.Translate("Unemployed")}: {_inventory.Unemployed}\n" +
                 $"{_inventory.Resources}";
             }
+
+            _info.fontSize = _detail? _detailFontSize : _basicFontSize;
         }
     }
 }

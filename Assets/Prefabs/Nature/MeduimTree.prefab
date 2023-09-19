@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _header: Tree
-  _description: You can cut it down to get a wood
+  _description: You can cut it down to get a wood.
 --- !u!114 &5578176956027769906
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1047,7 +1047,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _header: House
   _description: This house gives housing to new residents so that they can then go
-    to work
+    to work.
 --- !u!114 &-2570161166795035961
 MonoBehaviour:
   m_ObjectHideFlags: 0

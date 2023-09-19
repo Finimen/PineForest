@@ -28122,7 +28122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _header: Field
   _description: This field grows food, which is necessary for villagers and some
-    buildings
+    buildings.
 --- !u!114 &-9112465639240130249
 MonoBehaviour:
   m_ObjectHideFlags: 0

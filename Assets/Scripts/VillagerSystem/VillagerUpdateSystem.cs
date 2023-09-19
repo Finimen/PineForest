@@ -22,7 +22,6 @@ namespace Assets.Scripts.VillagerSystem
                 {
                     if (builder.CurrentTask == null)
                     {
-                        Debug.Log("BuilderTaskSetted");
                         builder.SetTask(TasksForVillager.CreateBuildingTasks[0]);
                     }
                     else if (builder.CurrentWork == Villager.WorkType.WaitingForOtherBuildersToBringResources)
@@ -45,7 +44,6 @@ namespace Assets.Scripts.VillagerSystem
                 {
                     if (builder.CurrentTask == null)
                     {
-                        Debug.Log("BuilderTaskSetted");
                         builder.SetTask(TasksForVillager.DestroyBuildingTasks[0]);
                     }
                 }
@@ -65,7 +63,6 @@ namespace Assets.Scripts.VillagerSystem
             {
                 if (logger.CurrentTask == null)
                 {
-                    Debug.Log("LoggerTaskSetted");
                     logger.SetTask(TasksForVillager.GetTreeTasks[0]);
                 }
             }
@@ -84,7 +81,6 @@ namespace Assets.Scripts.VillagerSystem
             {
                 if (mason.CurrentTask == null)
                 {
-                    Debug.Log("MasonTaskSetted");
                     mason.SetTask(TasksForVillager.GetRockTasks[0]);
                 }
             }

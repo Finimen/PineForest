@@ -511,7 +511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _header: Builder House
-  _description: Builders live in this house, they help you develop your village
+  _description: Builders live in this house, they help you develop your village.
 --- !u!114 &-1001341891149829749
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -560,8 +560,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6388460276902ff4a848904e9a5613d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _header: MasonHouse
-  _description: A mason lives here, he mines stone
+  _header: Mason House
+  _description: A mason lives here, he mines stone.
 --- !u!114 &2191603543685009610
 MonoBehaviour:
   m_ObjectHideFlags: 0

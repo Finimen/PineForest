@@ -1,3 +1,4 @@
+using Assets.Scripts.TranslatorSystem;
 using TMPro;
 using UnityEngine;
 
@@ -10,10 +11,12 @@ namespace Assets.Scripts.UI
         [SerializeField] private TMP_Text _header;
         [SerializeField] private TMP_Text _description;
 
+        private Translator _translator;
+
         public void SetText(string header, string description)
         {
-            _header.text = header;
-            _description.text = description;
+            _header.text = _translator.Translate(header);
+            _description.text = _translator.Translate(description);
         }
 
         public void ShowUI()
@@ -24,6 +27,11 @@ namespace Assets.Scripts.UI
         public void HideUI()
         {
             _panel.SetScale(Vector3.zero);
+        }
+
+        private void Awake()
+        {
+            _translator = FindObjectOfType<Translator>();
         }
     }
 }

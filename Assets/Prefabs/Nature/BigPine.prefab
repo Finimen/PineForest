@@ -320,6 +320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _duration: 3
+  _delay: 1
 --- !u!114 &4339896425706507053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,7 +334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _header: Tree
-  _description: You can cut it down to get a wood
+  _description: You can cut it down to get a wood.
 --- !u!114 &-7117967878366416688
 MonoBehaviour:
   m_ObjectHideFlags: 0

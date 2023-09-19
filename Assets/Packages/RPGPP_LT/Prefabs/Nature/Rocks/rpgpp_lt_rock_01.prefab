@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1447615680978193892}
   - component: {fileID: 2532874752271048781}
   - component: {fileID: 5212486813313098592}
+  - component: {fileID: 3666366064638503085}
   m_Layer: 0
   m_Name: rpgpp_lt_rock_01
   m_TagString: Untagged
@@ -155,7 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _header: Rock
-  _description: You can mine it to get stone
+  _description: You can mine it to get stone.
 --- !u!208 &5212486813313098592
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -172,6 +173,18 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0.15, y: 0.125, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &3666366064638503085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689892608009186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 179cffe3be6fc1f4fa8b10bbbcf9ee9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1571060726047538468
 GameObject:
   m_ObjectHideFlags: 0

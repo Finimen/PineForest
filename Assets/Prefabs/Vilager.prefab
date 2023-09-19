@@ -219,14 +219,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4798702140979941191}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51a10b90092007542952578920503f2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _builder: {fileID: 2100000, guid: 69d86fef33469be42bf6712d59224423, type: 2}
-  _logger: {fileID: 2100000, guid: 0147141cd4936ab44b636e219b690c1e, type: 2}
-  _mason: {fileID: 2100000, guid: 42a3c4437f556734da43cbc6676f49a3, type: 2}
 --- !u!114 &9086512554373240031
 MonoBehaviour:
   m_ObjectHideFlags: 0
