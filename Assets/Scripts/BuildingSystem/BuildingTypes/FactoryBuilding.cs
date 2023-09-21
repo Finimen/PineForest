@@ -37,6 +37,8 @@ namespace Assets.Scripts.BuildingSystem
 
                 if(_progress >= _duration)
                 {
+                    _progress = 0;
+
                     _produced += _reward;
 
                     if (_moveResourcesTask == null)

@@ -1154,7 +1154,7 @@ MonoBehaviour:
     <Food>k__BackingField: 0
     <Wood>k__BackingField: 0
     <Stone>k__BackingField: 0
-  _maxResources: 100
+  _maxResources: 1250
 --- !u!114 &-5168826677301997845
 MonoBehaviour:
   m_ObjectHideFlags: 0

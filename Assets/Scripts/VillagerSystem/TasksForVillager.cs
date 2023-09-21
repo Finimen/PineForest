@@ -13,6 +13,7 @@ namespace Assets.Scripts.VillagerSystem
         public static List<MoveResourcesTask> MoveResourcesTasks { get; private set; } = new List<MoveResourcesTask>();
     }
 
+    [Serializable]
     public class BuildingTask : BaseVillagerTask
     {
         public Building Target;
@@ -22,7 +23,8 @@ namespace Assets.Scripts.VillagerSystem
             Target = target;
         }
     }
-
+    
+    [Serializable]
     public class GetTreeTask : BaseVillagerTask
     {
         public MinedResource Target;
@@ -33,6 +35,7 @@ namespace Assets.Scripts.VillagerSystem
         }
     }
 
+    [Serializable]
     public class GetRockTask : BaseVillagerTask
     {
         public MinedResource Target;
@@ -43,6 +46,7 @@ namespace Assets.Scripts.VillagerSystem
         }
     }
 
+    [Serializable]
     public class DestroyBuildingTask : BaseVillagerTask
     {
         public Building Target;
@@ -53,6 +57,7 @@ namespace Assets.Scripts.VillagerSystem
         }
     }
 
+    [Serializable]
     public class MoveResourcesTask : BaseVillagerTask
     {
         public Building Target;

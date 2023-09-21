@@ -41,7 +41,7 @@ namespace Assets.Scripts.TranslatorSystem
                 }
             }
 
-            Debug.Log("Translation not found");
+            Debug.Log($"Translation not found {sentence}");
             return sentence;
         }
 
