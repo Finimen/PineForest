@@ -7,7 +7,8 @@ namespace Assets.Scripts.SaveSystem.Data
     [Serializable]
     internal struct VillagerData
     {
-        public Transform Transform;
+        public Vector3 Position;
+        public Quaternion Rotation;
 
         public Villager.ProfessionType ProfessionType;
     }

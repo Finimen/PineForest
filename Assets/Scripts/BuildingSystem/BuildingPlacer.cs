@@ -31,6 +31,7 @@ namespace Assets.Scripts.BuildingSystem
             }
 
             _current = Instantiate(building, _buildingsParent);
+            _current.name = _current.name.Replace(" (Clone) ", "");
             _current.Initialize(_playerInventory);
         }
 

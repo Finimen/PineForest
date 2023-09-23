@@ -1,29 +1,29 @@
 ﻿using Assets.Scripts.SaveSystem.Data;
 using Assets.Scripts.BuildingSystem;
-using System.Collections.Generic;
-using System.IO;
-using UnityEngine;
-using System;
 using Assets.Scripts.VillagerSystem;
+using UnityEngine;
+using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 
 namespace Assets.Scripts.SaveSystem
 {
     internal class SaveManager : MonoBehaviour
     {
-        [Serializable]
-        public class BuildingTemplate
-        {
-            public string Name;
-            public Building Template;
-        }
-
         [SerializeField] private string saveName;
         [SerializeField] private string folder = "/saves/";
 
         [Space(25), Header("Buildings")]
         [SerializeField] private Transform _buildingsParent;
-        [SerializeField] private BuildingTemplate[] _buildingTemplates;
+        [SerializeField] private Building[] _buildingTemplates;
+
+        [Space(25), Header("Resources")]
+        [SerializeField] private Transform _resourcesParent;
+        [SerializeField] private MinedResource[] _resourcesTemplates;
+
+        [Space(25), Header("Villagers")]
+        [SerializeField] private Transform _villagersParent;
+        [SerializeField] private Villager _villagerTemplates;
 
         public void SetSaveName(string saveName)
         {
@@ -59,8 +59,10 @@ namespace Assets.Scripts.SaveSystem
         }
 
         [ContextMenu("Save")]
-        public void OnSave(List<Building> buildings, List<MinedResource> resources, List<Villager> villagers)
+        public void OnSave()
         {
+            var buildings = FindObjectsOfType<Building>();
+
             var buildingData = new List<BuildingData>();
             var minedResourceData = new List<MinedResourceData>();
             var villagerData = new List<VillagerData>();
@@ -69,7 +71,8 @@ namespace Assets.Scripts.SaveSystem
             {
                 var data = new BuildingData()
                 {
-                    Transform = building.transform,
+                    Position = building.transform.position,
+                    Rotation = building.transform.rotation,
                     IsPlaced = building.IsPlaced,
                     Name = building.name,
                 };
@@ -85,6 +88,8 @@ namespace Assets.Scripts.SaveSystem
         [ContextMenu("Load")]
         public void OnLoad()
         {
+            DestroySpawnedObjects();
+
             var buildings = new List<Building>();
             var resources = new List<MinedResource>();
             var villagers = new List<Villager>();
@@ -95,10 +100,12 @@ namespace Assets.Scripts.SaveSystem
 
             foreach (var buildingData in sceneData.Buildings)
             {
-                var buildingClone = Instantiate(_buildingTemplates.Where(x => x.Name == buildingData.Name).ToArray()[0].Template, _buildingsParent);
+                Debug.Log(buildingData.Name);
 
-                buildingClone.transform.position = buildingData.Transform.position;
-                buildingClone.transform.rotation = buildingData.Transform.rotation;
+                var buildingClone = Instantiate(_buildingTemplates.Where(x => x.name == buildingData.Name).ToArray()[0], _buildingsParent);
+
+                buildingClone.transform.position = buildingData.Position;
+                buildingClone.transform.rotation = buildingData.Rotation;
 
                 if (buildingData.IsPlaced)
                 {
@@ -108,5 +115,15 @@ namespace Assets.Scripts.SaveSystem
                 buildings.Add(buildingClone);
             }
         }
+
+        private void DestroySpawnedObjects()
+        {
+            var buildings = FindObjectsOfType<Building>();
+
+            foreach (var building in buildings)
+            {
+                Destroy(building.gameObject); 
+            }
+        }
     }
-}
+} 

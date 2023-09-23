@@ -6,7 +6,8 @@ namespace Assets.Scripts.SaveSystem.Data
     [Serializable]
     public struct BuildingData
     {
-        public Transform Transform;
+        public Vector3 Position;
+        public Quaternion Rotation;
 
         public string Name;
 

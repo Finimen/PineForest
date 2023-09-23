@@ -26,6 +26,8 @@ namespace Assets.Scripts.SaveSystem
 
             fileStream.Close();
 
+            Debug.Log("Saved");
+
             return true;
         }
 
@@ -39,6 +41,8 @@ namespace Assets.Scripts.SaveSystem
             BinaryFormatter formatter = GetBinaryFormatter();
 
             FileStream fileStream = File.Open(path, FileMode.Open);
+
+            Debug.Log("Loaded");
 
             try
             {

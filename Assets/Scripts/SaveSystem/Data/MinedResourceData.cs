@@ -6,7 +6,8 @@ namespace Assets.Scripts.SaveSystem.Data
     [Serializable]
     public struct MinedResourceData
     {
-        public Transform Transform;
+        public Vector3 Position;
+        public Quaternion Rotation;
 
         public bool IsMined;
     }
