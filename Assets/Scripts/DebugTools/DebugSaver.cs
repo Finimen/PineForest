@@ -23,6 +23,11 @@ namespace Assets.Scripts.DebugTools
             {
                 _saver.Load();
             }
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                Debug.Log("Reset");
+            }
         }
     }
 }

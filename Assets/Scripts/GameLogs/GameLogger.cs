@@ -11,7 +11,7 @@ namespace Assets.Scripts.GameLogSystem
         [Space(25)]
         [SerializeField] private Transform _logsParent;
 
-        [SerializeField] private ScaleController _education;
+        [SerializeField] private UIAnimator _education;
         [SerializeField] private DoScaler _selectableUI;
 
         [Space(25)]

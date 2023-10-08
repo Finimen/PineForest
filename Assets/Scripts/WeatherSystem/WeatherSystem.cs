@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using UnityEngine;
 
 namespace Assets.Scripts.WeatherSystem
@@ -8,7 +9,7 @@ namespace Assets.Scripts.WeatherSystem
         [SerializeField] private TMPro.TMP_Text _workText;
 
         [Space(25)]
-        [SerializeField] private int _startId;
+        [SerializeField] private int _id;
         [SerializeField] private float _sunIntensity;
         [SerializeField] private WeatherData[] _weathers;
 
@@ -18,11 +19,15 @@ namespace Assets.Scripts.WeatherSystem
 
         public WeatherData Current => _current;
 
+        public int CurrentIndex => _id;
+
         public int WeathersCount => _weathers.Length;
 
         public void SetWeather(int id)
         {
             DisableAnyWeathers();
+
+            _id = id;
 
             _current = _weathers[id];
         }
@@ -85,7 +90,7 @@ namespace Assets.Scripts.WeatherSystem
         {
             _changerDayAndNight = FindObjectOfType<ChangerDayAndNight>();
 
-            SetWeather(_startId);
+            SetWeather(_id);
         }
 
         private void Update()

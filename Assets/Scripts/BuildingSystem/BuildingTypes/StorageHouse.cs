@@ -25,7 +25,17 @@ namespace Assets.Scripts.BuildingSystem
                 throw new System.InvalidOperationException();
             }
         }
-        
+
+        public void SetResources(Resources resources)
+        {
+            _resources = resources;
+        }
+
+        private void Awake()
+        {
+            _building = GetComponent<Building>();
+        }
+
         private void Start()
         {
             if (_building.IsPlaced)
@@ -36,11 +46,6 @@ namespace Assets.Scripts.BuildingSystem
             {
                 _building.OnPlaced += () => World.Storages.Add(this);
             }
-        }
-
-        private void OnEnable()
-        {
-            _building = GetComponent<Building>();
         }
 
         private void OnDisable()

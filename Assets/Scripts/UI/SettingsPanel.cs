@@ -4,9 +4,9 @@ namespace Assets.Scripts.UI
 {
     public class SettingsPanel : MonoBehaviour
     {
-        [SerializeField] private ScaleController _quality;
-        [SerializeField] private ScaleController _audio;
-        [SerializeField] private ScaleController _game;
+        [SerializeField] private UIAnimator _quality;
+        [SerializeField] private UIAnimator _audio;
+        [SerializeField] private UIAnimator _game;
 
         public void ShowQuality()
         {

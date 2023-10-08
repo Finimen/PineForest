@@ -44,6 +44,10 @@ namespace Assets.Scripts.VillagerSystem
                 {
                     SetAnimation(_buildingName);
                 }
+                else
+                {
+                    SetAnimation("");
+                }
             }
 
             _lastPosition = transform.position;

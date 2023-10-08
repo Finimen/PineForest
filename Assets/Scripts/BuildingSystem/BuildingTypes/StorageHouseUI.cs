@@ -12,7 +12,9 @@ namespace Assets.Scripts.BuildingSystem
         private void Start()
         {
             _storage = GetComponent<StorageHouse>();
+            
             _selectableUI = GetComponent<SelectableObjectUI>();
+
             if (!_storage.Building.IsPlaced)
             {
                 enabled = false;

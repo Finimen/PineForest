@@ -5,7 +5,7 @@ namespace Assets.Scripts.UI
 {
     public class PauseMenu : MonoBehaviour
     {
-        [SerializeField] private ScaleController _menu;
+        [SerializeField] private UIAnimator _menu;
 
         [SerializeField] private PlayerCamera _playerCamera;
 

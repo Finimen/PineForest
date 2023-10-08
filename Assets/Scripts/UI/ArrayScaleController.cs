@@ -4,7 +4,7 @@ namespace Assets.Scripts.UI
 {
     public class ArrayScaleController : MonoBehaviour
     {
-        [SerializeField] private ScaleController[] _controllers;
+        [SerializeField] private UIAnimator[] _controllers;
 
         [SerializeField] private bool _getInChildren;
 
@@ -20,7 +20,7 @@ namespace Assets.Scripts.UI
         {
             if(_getInChildren )
             {
-                _controllers = GetComponentsInChildren<ScaleController>();
+                _controllers = GetComponentsInChildren<UIAnimator>();
             }
         }
     }

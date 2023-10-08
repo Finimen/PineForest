@@ -9,6 +9,8 @@ namespace Assets.Scripts.SaveSystem.Data
         public Vector3 Position;
         public Quaternion Rotation;
 
-        public bool IsMined;
+        public string Name;
+
+        public bool IsIsCollected;
     }
 }

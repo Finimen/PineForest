@@ -5,6 +5,8 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using Assets.Scripts.WeatherSystem;
+using Unity.VisualScripting;
 
 namespace Assets.Scripts.SaveSystem
 {
@@ -23,7 +25,7 @@ namespace Assets.Scripts.SaveSystem
 
         [Space(25), Header("Villagers")]
         [SerializeField] private Transform _villagersParent;
-        [SerializeField] private Villager _villagerTemplates;
+        [SerializeField] private Villager _villagerTemplate;
 
         public void SetSaveName(string saveName)
         {
@@ -62,6 +64,8 @@ namespace Assets.Scripts.SaveSystem
         public void Save()
         {
             var buildings = FindObjectsOfType<Building>();
+            var villagers = FindObjectsOfType<Villager>();
+            var minedResources = FindObjectsOfType<MinedResource>();
 
             var buildingData = new List<BuildingData>();
             var minedResourceData = new List<MinedResourceData>();
@@ -75,12 +79,44 @@ namespace Assets.Scripts.SaveSystem
                     Rotation = building.transform.rotation,
                     IsPlaced = building.IsPlaced,
                     Name = building.name,
+
+                    StoredResources = building.GetComponent<StorageHouse>() != null ? 
+                    building.GetComponent<StorageHouse>().Resources : Resources.Empty, 
                 };
 
                 buildingData.Add(data);
             }
 
-            SceneData sceneData = new SceneData(buildingData, minedResourceData, villagerData);
+            foreach(var minedResource in minedResources)
+            {
+                var data = new MinedResourceData()
+                {
+                    Position = minedResource.transform.position,
+                    Rotation = minedResource.transform.rotation,
+
+                    Name = minedResource.name,
+                    IsIsCollected = minedResource.IsCollected,
+                };
+
+                minedResourceData.Add(data);
+            }
+
+            foreach (var villager in villagers)
+            {
+                var data = new VillagerData()
+                {
+                    Position = villager.transform.position,
+                    Rotation = villager.transform.rotation,
+                    ProfessionType = villager.Profession,
+                };
+
+                villagerData.Add(data);
+            }
+
+            var time = FindObjectOfType<ChangerDayAndNight>().CurrentTime;
+            var weather = FindObjectOfType<WeatherSystem.WeatherSystem>().CurrentIndex;
+
+            SceneData sceneData = new SceneData(buildingData, minedResourceData, villagerData, time, weather);
 
             SerializationManager.Save(saveName, folder, sceneData);
         }
@@ -100,12 +136,10 @@ namespace Assets.Scripts.SaveSystem
 
             foreach (var buildingData in sceneData.Buildings)
             {
-                Debug.Log(buildingData.Name);
+                var buildingClone = Instantiate(_buildingTemplates.Where(x => x.name == buildingData.Name).ToArray()[0],
+                    buildingData.Position, buildingData.Rotation, _buildingsParent);
 
-                var buildingClone = Instantiate(_buildingTemplates.Where(x => x.name == buildingData.Name).ToArray()[0], _buildingsParent);
-
-                buildingClone.transform.position = buildingData.Position;
-                buildingClone.transform.rotation = buildingData.Rotation;
+                buildingClone.name = buildingClone.name.Replace(" (Clone) ", "");
 
                 if (buildingData.IsPlaced)
                 {
@@ -113,7 +147,44 @@ namespace Assets.Scripts.SaveSystem
                 }
 
                 buildings.Add(buildingClone);
+
+                if(buildingData.StoredResources != Resources.Empty)
+                {
+                    buildingClone.GetComponent<StorageHouse>().SetResources(buildingData.StoredResources);
+                }
             }
+
+            foreach (var resourceData in sceneData.MinedResources)
+            {
+                if (!resourceData.IsIsCollected)
+                {
+                    try
+                    {
+                        var resourceClone = Instantiate(_resourcesTemplates.Where(x => x.name == resourceData.Name).ToArray()[0],
+                        resourceData.Position, resourceData.Rotation, _resourcesParent);
+
+                        resourceClone.name = resourceClone.name.Replace(" (Clone) ", "");
+
+                        resources.Add(resourceClone);
+                    }
+                    catch
+                    {
+                        Debug.Log($"NA {resourceData.Name}");
+                    }
+                }
+            }
+
+            foreach (var villagerData in sceneData.Villagers)
+            {
+                var villagerClone = Instantiate(_villagerTemplate, villagerData.Position, villagerData.Rotation, _villagersParent);
+
+                villagerClone.ChangeProfession(villagerData.ProfessionType);
+
+                villagers.Add(villagerClone);
+            }
+
+            FindObjectOfType<ChangerDayAndNight>().SetTime(sceneData.Time);
+            FindObjectOfType<WeatherSystem.WeatherSystem>().SetWeather(sceneData.Weather);
         }
 
         public bool HashSaveFile()
@@ -123,11 +194,19 @@ namespace Assets.Scripts.SaveSystem
 
         private void DestroySpawnedObjects()
         {
-            var buildings = FindObjectsOfType<Building>();
-
-            foreach (var building in buildings)
+            foreach (var building in FindObjectsOfType<Building>())
             {
                 Destroy(building.gameObject); 
+            }
+
+            foreach (var villager in FindObjectsOfType<Villager>())
+            {
+                Destroy(villager.gameObject);
+            }
+
+            foreach(var resource in FindObjectsOfType<MinedResource>())
+            {
+                Destroy(resource.gameObject);
             }
         }
     }
