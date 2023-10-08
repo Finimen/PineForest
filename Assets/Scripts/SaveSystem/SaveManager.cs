@@ -59,7 +59,7 @@ namespace Assets.Scripts.SaveSystem
         }
 
         [ContextMenu("Save")]
-        public void OnSave()
+        public void Save()
         {
             var buildings = FindObjectsOfType<Building>();
 
@@ -86,7 +86,7 @@ namespace Assets.Scripts.SaveSystem
         }
 
         [ContextMenu("Load")]
-        public void OnLoad()
+        public void Load()
         {
             DestroySpawnedObjects();
 
@@ -114,6 +114,11 @@ namespace Assets.Scripts.SaveSystem
 
                 buildings.Add(buildingClone);
             }
+        }
+
+        public bool HashSaveFile()
+        {
+            return SerializationManager.HashSaveFile(Application.persistentDataPath + folder + saveName + ".save");
         }
 
         private void DestroySpawnedObjects()

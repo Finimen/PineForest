@@ -1,7 +1,4 @@
-using Assets.Scripts.BuildingSystem;
 using Assets.Scripts.SaveSystem;
-using Assets.Scripts.VillagerSystem;
-using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.DebugTools
@@ -17,14 +14,14 @@ namespace Assets.Scripts.DebugTools
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Alpha9))
+            if (Input.GetKeyDown(KeyCode.X))
             {
-                _saver.OnSave();
+                _saver.Save();
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha0))
+            if (Input.GetKeyDown(KeyCode.C) && _saver.HashSaveFile())
             {
-                _saver.OnLoad();
+                _saver.Load();
             }
         }
     }

@@ -5,7 +5,6 @@ namespace Assets.Scripts.VillagerSystem
     [RequireComponent(typeof(Villager))]
     public class VillagerAnimator : MonoBehaviour
     {
-        [SerializeField] private string _idleName = "Idle";
         [SerializeField] private string _walkName = "Walk";
         [SerializeField] private string _runName = "Run";
         [SerializeField] private string _buildingName = "Building";
@@ -45,10 +44,6 @@ namespace Assets.Scripts.VillagerSystem
                 {
                     SetAnimation(_buildingName);
                 }
-                else
-                {
-                    SetAnimation(_idleName);
-                }
             }
 
             _lastPosition = transform.position;
@@ -56,7 +51,6 @@ namespace Assets.Scripts.VillagerSystem
 
         private void SetAnimation(string name)
         {
-            _animator.SetBool(_idleName, _idleName == name);
             _animator.SetBool(_walkName, _walkName == name);
             _animator.SetBool(_runName, _runName == name);
             _animator.SetBool(_miningName, _miningName == name);

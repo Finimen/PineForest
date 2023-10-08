@@ -58,6 +58,11 @@ namespace Assets.Scripts.SaveSystem
             }
         }
 
+        public static bool HashSaveFile(string path)
+        {
+            return File.Exists(path);
+        }
+
         private static BinaryFormatter GetBinaryFormatter()
         {
             BinaryFormatter formatter = new BinaryFormatter();
