@@ -1,4 +1,3 @@
-using DG.Tweening;
 using UnityEngine;
 
 namespace Assets.Scripts.CameraSystem
@@ -8,9 +7,13 @@ namespace Assets.Scripts.CameraSystem
         [SerializeField] private float _multiplier = 1;
         [SerializeField] private float _lerpSpeed = 1;
 
+        [SerializeField] private float _scrollMultiplier = 1;
+
+        [Space(25)]
         [SerializeField] private Transform _min;
         [SerializeField] private Transform _max;
 
+        [Space(25)]
         [SerializeField] private Transform _camera;
 
         private Vector3 _startPosition;
@@ -50,38 +53,6 @@ namespace Assets.Scripts.CameraSystem
 
         private void ReadInput()
         {
-#if UNITY_ANDROID
-            if (Input.touchCount == 1)
-            {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    startPosition = Input.mousePosition;
-                }
-
-                if (Input.GetMouseButton(0))
-                {
-                    Vector3 delta = Input.mousePosition - startPosition;
-
-                    distanation += (new Vector3((transform.forward * -delta.y).x, 0, (transform.forward * -delta.y).z) + transform.right * -delta.x) * multiplay * Mathf.Clamp(transform.position.y, 0, 95) / 100;
-
-                    startPosition = Input.mousePosition;
-                }
-            }
-            else if (Input.touchCount == 2)
-            {
-                var touchA = Input.GetTouch(0);
-                var touchB = Input.GetTouch(1);
-
-                var touchADircetion = touchA.position - touchA.deltaPosition;
-                var touchBDircetion = touchB.position - touchB.deltaPosition;
-
-                var distanceBetwenTouchesPosition = Vector2.Distance(touchA.position, touchB.position);
-                var distanceBetwenTouchesDirections = Vector2.Distance(touchADircetion, touchBDircetion);
-
-                scroll += Vector3.up * (distanceBetwenTouchesDirections - distanceBetwenTouchesPosition) * .01f;
-                scroll = new Vector3(scroll.x, Mathf.Clamp(scroll.y, minScroll, maxScroll), scroll.z);
-            }
-#else
             if (Input.GetMouseButtonDown(0))
             {
                 _startPosition = Input.mousePosition;
@@ -96,7 +67,8 @@ namespace Assets.Scripts.CameraSystem
 
                 _startPosition = Input.mousePosition;
             }
-#endif
+
+            _destination.y -= Input.mouseScrollDelta.y * _scrollMultiplier;
         }
 
         private void MoveCamera()

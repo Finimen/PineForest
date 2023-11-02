@@ -78,7 +78,7 @@ namespace Assets.Scripts.SaveSystem
                     Position = building.transform.position,
                     Rotation = building.transform.rotation,
                     IsPlaced = building.IsPlaced,
-                    Name = building.name,
+                    Id = building.Id,
 
                     StoredResources = building.GetComponent<StorageHouse>() != null ? 
                     building.GetComponent<StorageHouse>().Resources : Resources.Empty, 
@@ -94,7 +94,7 @@ namespace Assets.Scripts.SaveSystem
                     Position = minedResource.transform.position,
                     Rotation = minedResource.transform.rotation,
 
-                    Name = minedResource.name,
+                    Id = minedResource.Id,
                     IsIsCollected = minedResource.IsCollected,
                 };
 
@@ -136,21 +136,28 @@ namespace Assets.Scripts.SaveSystem
 
             foreach (var buildingData in sceneData.Buildings)
             {
-                var buildingClone = Instantiate(_buildingTemplates.Where(x => x.name == buildingData.Name).ToArray()[0],
+                try
+                {
+                    var buildingClone = Instantiate(_buildingTemplates.Where(x => x.Id == buildingData.Id).ToArray()[0],
                     buildingData.Position, buildingData.Rotation, _buildingsParent);
 
-                buildingClone.name = buildingClone.name.Replace(" (Clone) ", "");
+                    buildingClone.name = buildingClone.name.Replace(" (Clone) ", "");
 
-                if (buildingData.IsPlaced)
-                {
-                    buildingClone.Place();
+                    if (buildingData.IsPlaced)
+                    {
+                        buildingClone.Place();
+                    }
+
+                    buildings.Add(buildingClone);
+
+                    if (buildingData.StoredResources != Resources.Empty)
+                    {
+                        buildingClone.GetComponent<StorageHouse>().SetResources(buildingData.StoredResources);
+                    }
                 }
-
-                buildings.Add(buildingClone);
-
-                if(buildingData.StoredResources != Resources.Empty)
+                catch
                 {
-                    buildingClone.GetComponent<StorageHouse>().SetResources(buildingData.StoredResources);
+                    Debug.LogError(buildingData.Id);
                 }
             }
 
@@ -158,19 +165,12 @@ namespace Assets.Scripts.SaveSystem
             {
                 if (!resourceData.IsIsCollected)
                 {
-                    try
-                    {
-                        var resourceClone = Instantiate(_resourcesTemplates.Where(x => x.name == resourceData.Name).ToArray()[0],
-                        resourceData.Position, resourceData.Rotation, _resourcesParent);
+                    var resourceClone = Instantiate(_resourcesTemplates.Where(x => x.Id == resourceData.Id).ToArray()[0],
+                    resourceData.Position, resourceData.Rotation, _resourcesParent);
 
-                        resourceClone.name = resourceClone.name.Replace(" (Clone) ", "");
+                    resourceClone.name = resourceClone.name.Replace(" (Clone) ", "");
 
-                        resources.Add(resourceClone);
-                    }
-                    catch
-                    {
-                        Debug.Log($"NA {resourceData.Name}");
-                    }
+                    resources.Add(resourceClone);
                 }
             }
 

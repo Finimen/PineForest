@@ -1,12 +1,13 @@
 using Assets.Scripts.BuildingSystem;
 using Assets.Scripts.GameLogSystem;
+using Assets.Scripts.SaveSystem;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace Assets.Scripts.VillagerSystem
 {
     [RequireComponent(typeof(NavMeshAgent))]
-    public class Villager : MonoBehaviour
+    public class Villager : SaveableObject
     {
         public enum ProfessionType
         {
@@ -25,6 +26,7 @@ namespace Assets.Scripts.VillagerSystem
             WaitingForOtherBuildersToBringResources,
         }
 
+        [Space(25)]
         [SerializeField] private float _actionDistance = 2.5f;
 
         [Space(25)]

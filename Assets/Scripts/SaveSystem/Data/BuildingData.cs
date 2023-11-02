@@ -11,7 +11,7 @@ namespace Assets.Scripts.SaveSystem.Data
         public Vector3 Position;
         public Quaternion Rotation;
 
-        public string Name;
+        public int Id;
 
         public bool IsPlaced;
     }

@@ -1,12 +1,14 @@
-﻿using System;
+﻿using Assets.Scripts.SaveSystem;
+using System;
 using UnityEngine;
 
 namespace Assets.Scripts.VillagerSystem
 {
-    public class MinedResource : MonoBehaviour
+    public class MinedResource : SaveableObject
     {
         public event Action OnCollected;
 
+        [Space(25)]
         [SerializeField] private Resources _reward;
 
         [SerializeField] private float _strength = 1;

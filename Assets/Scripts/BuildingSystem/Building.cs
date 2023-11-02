@@ -1,4 +1,5 @@
 using Assets.Scripts.InventorySystem;
+using Assets.Scripts.SaveSystem;
 using Assets.Scripts.VillagerSystem;
 using System;
 using System.Collections.Generic;
@@ -8,10 +9,11 @@ using UnityEngine.AI;
 
 namespace Assets.Scripts.BuildingSystem
 {
-    public class Building : MonoBehaviour
+    public class Building : SaveableObject
     {
         public event Action OnPlaced;
 
+        [Space(25)]
         [SerializeField] private Transform[] _navigationPoints;
 
         [Space(25)]
@@ -190,7 +192,14 @@ namespace Assets.Scripts.BuildingSystem
         {
             if(!_isPlan && !_isPaced)
             {
-                BuildingPossible = _entryCount <= 0 && _playerInventory.Resources >= Price && _playerInventory.Unemployed >= _needUnemployed;
+                try
+                {
+                    BuildingPossible = _entryCount <= 0 && _playerInventory.Resources >= Price && _playerInventory.Unemployed >= _needUnemployed;
+                }
+                catch
+                {
+                    Debug.LogError($"{_playerInventory == null}");
+                }
 
                 foreach (var part in _parts)
                 {
