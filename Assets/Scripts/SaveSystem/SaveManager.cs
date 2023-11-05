@@ -6,14 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using Assets.Scripts.WeatherSystem;
-using Unity.VisualScripting;
 
 namespace Assets.Scripts.SaveSystem
 {
     internal class SaveManager : MonoBehaviour
     {
-        [SerializeField] private string saveName;
-        [SerializeField] private string folder = "/saves/";
+        [SerializeField] private string _saveName = "main";
+        [SerializeField] private string _folder = "/saves/";
 
         [Space(25), Header("Buildings")]
         [SerializeField] private Transform _buildingsParent;
@@ -29,26 +28,37 @@ namespace Assets.Scripts.SaveSystem
 
         public void SetSaveName(string saveName)
         {
-            this.saveName = saveName;
+            _saveName = saveName;
         }
 
         public void SetFolder(string folder)
         {
-            this.folder = folder;
+            _folder = folder;
         }
 
         public void ClearFolder()
         {
-            foreach(var file in GetLoadFiles())
+            foreach (var file in GetLoadFiles())
             {
                 File.Delete(file.Replace(@"\", @"/"));
+            }
+        }
+
+        public void DeleteCurrent()
+        {
+            foreach (var file in GetLoadFiles())
+            {
+                if(file.Replace(@"\", @"/") == _saveName.Replace(@"\", @"/"))
+                {
+                    File.Delete(_saveName.Replace(@"\", @"/"));
+                }
             }
         }
 
         [ContextMenu(nameof(GetLoadFiles))]
         public string[] GetLoadFiles()
         {
-            string savePath = Application.persistentDataPath + folder;
+            string savePath = Application.persistentDataPath + _folder;
 
             if (!Directory.Exists(savePath))
             {
@@ -61,7 +71,7 @@ namespace Assets.Scripts.SaveSystem
         }
 
         [ContextMenu("Save")]
-        public void Save()
+        public void SaveCurrent()
         {
             var buildings = FindObjectsOfType<Building>();
             var villagers = FindObjectsOfType<Villager>();
@@ -118,11 +128,11 @@ namespace Assets.Scripts.SaveSystem
 
             SceneData sceneData = new SceneData(buildingData, minedResourceData, villagerData, time, weather);
 
-            SerializationManager.Save(saveName, folder, sceneData);
+            SerializationManager.Save(_saveName, _folder, sceneData);
         }
 
         [ContextMenu("Load")]
-        public void Load()
+        public void LoadCurrent()
         {
             DestroySpawnedObjects();
 
@@ -130,9 +140,9 @@ namespace Assets.Scripts.SaveSystem
             var resources = new List<MinedResource>();
             var villagers = new List<Villager>();
 
-            UnityEngine.Debug.Log(Application.persistentDataPath + folder + saveName + ".save");
+            UnityEngine.Debug.Log(Application.persistentDataPath + _folder + _saveName + ".save");
 
-            SceneData sceneData = (SceneData)SerializationManager.Load(Application.persistentDataPath + folder + saveName + ".save");
+            SceneData sceneData = (SceneData)SerializationManager.Load(Application.persistentDataPath + _folder + _saveName + ".save");
 
             foreach (var buildingData in sceneData.Buildings)
             {
@@ -189,7 +199,7 @@ namespace Assets.Scripts.SaveSystem
 
         public bool HashSaveFile()
         {
-            return SerializationManager.HashSaveFile(Application.persistentDataPath + folder + saveName + ".save");
+            return SerializationManager.HashSaveFile(Application.persistentDataPath + _folder + _saveName + ".save");
         }
 
         private void DestroySpawnedObjects()

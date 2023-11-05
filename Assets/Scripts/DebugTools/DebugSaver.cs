@@ -16,12 +16,12 @@ namespace Assets.Scripts.DebugTools
         {
             if (Input.GetKeyDown(KeyCode.X))
             {
-                _saver.Save();
+                _saver.SaveCurrent();
             }
 
             if (Input.GetKeyDown(KeyCode.C) && _saver.HashSaveFile())
             {
-                _saver.Load();
+                _saver.LoadCurrent();
             }
 
             if (Input.GetKeyDown(KeyCode.R))
